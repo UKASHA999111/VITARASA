@@ -970,6 +970,7 @@
             "testimonial_text": "Pellentesque eu nibh eget mauris congue mattis mattis nec tellus. Phasellus imperdiet elit eu magna dictum, bibendum cursus velit sodales. Donec sed neque eget.",
             "author_name": "Robert Fox",
             "author_title": "Customer",
+            "author_image": "shopify://shop_images/Image_4_100x100_b2558210-bff2-4f5a-8fa4-4b16c22dcbda.webp",
             "rating": 5
           }
         },
@@ -979,6 +980,7 @@
             "testimonial_text": "Pellentesque eu nibh eget mauris congue mattis mattis nec tellus. Phasellus imperdiet elit eu magna dictum, bibendum cursus velit sodales. Donec sed neque eget.",
             "author_name": "Robert Fox",
             "author_title": "Customer",
+            "author_image": "shopify://shop_images/Image_3_100x100_1.avif",
             "rating": 5
           }
         },
@@ -988,6 +990,7 @@
             "testimonial_text": "Amazing service and quality products! I couldn't be happier with my purchase. The team went above and beyond to ensure customer satisfaction.",
             "author_name": "Dianne Russell",
             "author_title": "Happy Customer",
+            "author_image": "shopify://shop_images/Image_4_100x100_b2558210-bff2-4f5a-8fa4-4b16c22dcbda.webp",
             "rating": 5
           }
         },
@@ -997,6 +1000,7 @@
             "testimonial_text": "Outstanding experience from start to finish. The attention to detail and customer care is exceptional. Highly recommended to anyone looking for quality.",
             "author_name": "Eleanor Pena",
             "author_title": "Verified Buyer",
+            "author_image": "shopify://shop_images/Image_4_100x100_b2558210-bff2-4f5a-8fa4-4b16c22dcbda.webp",
             "rating": 5
           }
         },
@@ -1006,6 +1010,7 @@
             "testimonial_text": "Amazing service and quality products! I couldn't be happier with my purchase. The team went above and beyond to ensure customer satisfaction.",
             "author_name": "Dianne Russell",
             "author_title": "Happy Customer",
+            "author_image": "shopify://shop_images/Image_3_100x100_1.avif",
             "rating": 5
           }
         }
@@ -1024,6 +1029,7 @@
         "section_padding_top": 20,
         "section_padding_bottom": 10,
         "background_color": "rgba(0,0,0,0)",
+        "background_image": "shopify://shop_images/Group_43_2.webp",
         "badge_background_color": "rgba(0,0,0,0)",
         "badge_text_color": "#00b207",
         "badge_font_size": 12,
