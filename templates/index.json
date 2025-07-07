@@ -898,6 +898,7 @@
         "products_limit": 8,
         "button_text": "Add to cart",
         "background_color": "rgba(0,0,0,0)",
+        "background_image": "shopify://shop_images/Group_17.webp",
         "overlay_color": "#ffffff",
         "overlay_opacity": 0,
         "section_padding_top": 80,
