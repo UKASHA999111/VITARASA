@@ -1,1 +1,87 @@
-{"sections":{"sectionsbreadcrumb_LNC4bL":{"type":"sectionsbreadcrumb","name":"Dynamic Breadcrumb","settings":{"background_image":"shopify:\/\/shop_images\/Breadcrumbs_1.png","overlay_opacity":40,"section_height":120,"mobile_height":80,"container_width":1200,"padding_top":20,"padding_bottom":20,"padding_horizontal":20,"mobile_padding_top":15,"mobile_padding_bottom":15,"mobile_padding_horizontal":15,"font_family":"inherit","font_size":16,"mobile_font_size":14,"font_weight":"400","text_color":"#ffffff","hover_color":"#cccccc","current_color":"#ffffff","separator_color":"#ffffff","icon_size":20,"mobile_icon_size":16,"item_spacing":12,"mobile_item_spacing":8,"icon_text_spacing":6,"separator_spacing":8,"separator_size":14,"home_text":"Home","search_text":"Search","cart_text":"Cart","error_text":"Page Not Found","separator":">"}},"banner":{"type":"main-collection-banner","disabled":true,"settings":{"show_collection_description":false,"show_collection_image":false,"color_scheme":"scheme-1"}},"product-grid":{"type":"main-collection-product-grid","custom_css":[".card.card--card.card--media.color-scheme-1.gradient {background: #ffffff; border-radius: 12px; padding: 15px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); border: 0px solid #e0e0e0; transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: left;}"],"settings":{"products_per_page":36,"columns_desktop":4,"columns_mobile":"2","color_scheme":"scheme-1","image_ratio":"adapt","image_shape":"default","show_secondary_image":false,"show_vendor":false,"show_rating":false,"quick_add":"none","enable_filtering":true,"filter_type":"horizontal","enable_sorting":true,"padding_top":36,"padding_bottom":36}}},"order":["sectionsbreadcrumb_LNC4bL","banner","product-grid"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "sectionsbreadcrumb_LNC4bL": {
+      "type": "sectionsbreadcrumb",
+      "name": "Dynamic Breadcrumb",
+      "settings": {
+        "background_image": "shopify://shop_images/Breadcrumbs_1_1920x_26ee6cb1-f349-408a-ba4f-9de89df8d74b.webp",
+        "overlay_opacity": 40,
+        "section_height": 120,
+        "mobile_height": 80,
+        "container_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "padding_horizontal": 20,
+        "mobile_padding_top": 15,
+        "mobile_padding_bottom": 15,
+        "mobile_padding_horizontal": 15,
+        "font_family": "inherit",
+        "font_size": 16,
+        "mobile_font_size": 14,
+        "font_weight": "400",
+        "text_color": "#ffffff",
+        "hover_color": "#cccccc",
+        "current_color": "#ffffff",
+        "separator_color": "#ffffff",
+        "icon_size": 20,
+        "mobile_icon_size": 16,
+        "item_spacing": 12,
+        "mobile_item_spacing": 8,
+        "icon_text_spacing": 6,
+        "separator_spacing": 8,
+        "separator_size": 14,
+        "home_text": "Home",
+        "search_text": "Search",
+        "cart_text": "Cart",
+        "error_text": "Page Not Found",
+        "separator": ">"
+      }
+    },
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_collection_description": false,
+        "show_collection_image": false,
+        "color_scheme": "scheme-1"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "custom_css": [
+        ".card.card--card.card--media.color-scheme-1.gradient {background: #ffffff; border-radius: 12px; padding: 15px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); border: 0px solid #e0e0e0; transition: transform 0.3s ease, box-shadow 0.3s ease; text-align: left;}"
+      ],
+      "settings": {
+        "products_per_page": 36,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "sectionsbreadcrumb_LNC4bL",
+    "banner",
+    "product-grid"
+  ]
+}
