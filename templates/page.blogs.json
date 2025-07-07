@@ -1,1 +1,150 @@
-{"sections":{"main":{"type":"main-page","disabled":true,"settings":{"padding_top":28,"padding_bottom":28}},"sectionsbreadcrumb_qiTWJT":{"type":"sectionsbreadcrumb","blocks":{"custom_item_cnCGc9":{"type":"custom_item","settings":{"text":"Blogs","url":"shopify:\/\/pages\/blog","is_current":false}}},"block_order":["custom_item_cnCGc9"],"name":"Dynamic Breadcrumb","settings":{"background_image":"shopify:\/\/shop_images\/Breadcrumbs_1.png","overlay_opacity":40,"section_height":120,"mobile_height":80,"container_width":1200,"padding_top":20,"padding_bottom":20,"padding_horizontal":20,"mobile_padding_top":15,"mobile_padding_bottom":15,"mobile_padding_horizontal":15,"font_family":"inherit","font_size":16,"mobile_font_size":14,"font_weight":"400","text_color":"#ffffff","hover_color":"#cccccc","current_color":"#ffffff","separator_color":"#ffffff","icon_size":20,"mobile_icon_size":16,"item_spacing":12,"mobile_item_spacing":8,"icon_text_spacing":6,"separator_spacing":8,"separator_size":14,"home_text":"Home","search_text":"Search","cart_text":"Cart","error_text":"Page Not Found","separator":">"}},"image_banner_8wWV6F":{"type":"image-banner","blocks":{"heading_38x7Vm":{"type":"heading","settings":{"heading":"Blogs","heading_size":"h1"}},"text_XUgmgN":{"type":"text","settings":{"text":"Give customers details about the banner image(s) or content on the template.","text_style":"body"}},"buttons_THkPUt":{"type":"buttons","disabled":true,"settings":{"button_label_1":"Button label","button_link_1":"","button_style_secondary_1":false,"button_label_2":"Button label","button_link_2":"","button_style_secondary_2":false}}},"block_order":["heading_38x7Vm","text_XUgmgN","buttons_THkPUt"],"name":"t:sections.image-banner.presets.name","settings":{"image_overlay_opacity":0,"image_height":"medium","image_behavior":"none","desktop_content_position":"middle-center","desktop_content_alignment":"center","show_text_box":true,"color_scheme":"","stack_images_on_mobile":true,"mobile_content_alignment":"center","show_text_below":true}},"customblog_jWfa4R":{"type":"customblog","name":"Latest News","settings":{"section_title":"All Blogs","blog":"news","posts_to_show":12,"category_label":"Food","read_more_text":"Read More","background_color":"#f8f9fa","section_padding_top":60,"section_padding_bottom":60,"accent_color":"#28a745","title_size":36,"title_color":"#333333","title_weight":"600","blog_title_size":20,"blog_title_color":"#333333","blog_title_weight":"600","excerpt_size":14,"excerpt_color":"#666666","button_size":14}}},"order":["main","sectionsbreadcrumb_qiTWJT","image_banner_8wWV6F","customblog_jWfa4R"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "sectionsbreadcrumb_qiTWJT": {
+      "type": "sectionsbreadcrumb",
+      "blocks": {
+        "custom_item_cnCGc9": {
+          "type": "custom_item",
+          "settings": {
+            "text": "Blogs",
+            "url": "shopify://pages/blog",
+            "is_current": false
+          }
+        }
+      },
+      "block_order": [
+        "custom_item_cnCGc9"
+      ],
+      "name": "Dynamic Breadcrumb",
+      "settings": {
+        "background_image": "shopify://shop_images/Breadcrumbs_1_1920x_26ee6cb1-f349-408a-ba4f-9de89df8d74b.webp",
+        "overlay_opacity": 40,
+        "section_height": 120,
+        "mobile_height": 80,
+        "container_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "padding_horizontal": 20,
+        "mobile_padding_top": 15,
+        "mobile_padding_bottom": 15,
+        "mobile_padding_horizontal": 15,
+        "font_family": "inherit",
+        "font_size": 16,
+        "mobile_font_size": 14,
+        "font_weight": "400",
+        "text_color": "#ffffff",
+        "hover_color": "#cccccc",
+        "current_color": "#ffffff",
+        "separator_color": "#ffffff",
+        "icon_size": 20,
+        "mobile_icon_size": 16,
+        "item_spacing": 12,
+        "mobile_item_spacing": 8,
+        "icon_text_spacing": 6,
+        "separator_spacing": 8,
+        "separator_size": 14,
+        "home_text": "Home",
+        "search_text": "Search",
+        "cart_text": "Cart",
+        "error_text": "Page Not Found",
+        "separator": ">"
+      }
+    },
+    "image_banner_8wWV6F": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_38x7Vm": {
+          "type": "heading",
+          "settings": {
+            "heading": "Blogs",
+            "heading_size": "h1"
+          }
+        },
+        "text_XUgmgN": {
+          "type": "text",
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "buttons_THkPUt": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_38x7Vm",
+        "text_XUgmgN",
+        "buttons_THkPUt"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "customblog_jWfa4R": {
+      "type": "customblog",
+      "name": "Latest News",
+      "settings": {
+        "section_title": "All Blogs",
+        "blog": "news",
+        "posts_to_show": 12,
+        "category_label": "Food",
+        "read_more_text": "Read More",
+        "background_color": "#f8f9fa",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "accent_color": "#28a745",
+        "title_size": 36,
+        "title_color": "#333333",
+        "title_weight": "600",
+        "blog_title_size": 20,
+        "blog_title_color": "#333333",
+        "blog_title_weight": "600",
+        "excerpt_size": 14,
+        "excerpt_color": "#666666",
+        "button_size": 14
+      }
+    }
+  },
+  "order": [
+    "main",
+    "sectionsbreadcrumb_qiTWJT",
+    "image_banner_8wWV6F",
+    "customblog_jWfa4R"
+  ]
+}
