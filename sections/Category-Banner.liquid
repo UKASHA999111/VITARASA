@@ -1,0 +1,427 @@
+<!-- sections/category-banner.liquid -->
+<div class="category-banner-section">
+  <div class="category-banner-container">
+    <!-- Left Column (30% width) -->
+    <div class="category-banner-left">
+      {% for block in section.blocks %}
+        {% if block.settings.column == 'left' %}
+          <a href="{{ block.settings.category_url }}" class="category-block-link">
+            <div class="category-block category-block-left" 
+                 style="background-image: url('{{ block.settings.background_image | img_url: 'master' }}');"
+                 {{ block.shopify_attributes }}>
+              <div class="category-content">
+                <h3 class="category-title" 
+                    style="color: {{ block.settings.title_color }}; 
+                           font-size: {{ block.settings.title_size }}px; 
+                           font-weight: {{ block.settings.title_weight }};">
+                  {{ block.settings.title }}
+                </h3>
+                <span class="category-button"
+                      style="color: {{ block.settings.button_text_color }}; 
+                             background-color: {{ block.settings.button_bg_color }};
+                             font-size: {{ block.settings.button_size }}px;">
+                  {{ block.settings.button_text }}
+                  <svg class="button-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Right Column (70% width) -->
+    <div class="category-banner-right">
+      {% for block in section.blocks %}
+        {% if block.settings.column == 'right' %}
+          <a href="{{ block.settings.category_url }}" class="category-block-link">
+            <div class="category-block category-block-right" 
+                 style="background-image: url('{{ block.settings.background_image | img_url: 'master' }}');"
+                 {{ block.shopify_attributes }}>
+              <div class="category-content">
+                <h3 class="category-title" 
+                    style="color: {{ block.settings.title_color }}; 
+                           font-size: {{ block.settings.title_size }}px; 
+                           font-weight: {{ block.settings.title_weight }};">
+                  {{ block.settings.title }}
+                </h3>
+                <span class="category-button"
+                      style="color: {{ block.settings.button_text_color }}; 
+                             background-color: {{ block.settings.button_bg_color }};
+                             font-size: {{ block.settings.button_size }}px;">
+                  {{ block.settings.button_text }}
+                  <svg class="button-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+.category-banner-section {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.category-banner-container {
+  display: flex;
+  gap: 20px;
+  height: 470px;
+}
+
+.category-banner-left {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.category-banner-right {
+  width: 60%;
+  display: flex;
+  gap: 20px;
+}
+
+.category-block-link {
+  text-decoration: none;
+  display: block;
+  flex: 1;
+  color: inherit;
+}
+
+.category-block {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  height: 100%;
+  cursor: pointer;
+}
+
+.category-block:hover {
+  transform: translateY(-2px);
+}
+
+.category-block-left {
+  min-height: 230px;
+}
+
+.category-block-right {
+  height: 470px;
+}
+
+.category-content {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  right: 30px;
+  z-index: 2;
+}
+
+.category-title {
+  margin: 0 0 15px 0;
+  line-height: 1.2;
+  font-family: inherit;
+}
+
+.category-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0px;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.category-block-link:hover .category-button {
+  transform: translateX(2px);
+  opacity: 0.9;
+}
+
+.button-arrow {
+  transition: transform 0.3s ease;
+}
+
+.category-block-link:hover .button-arrow {
+  transform: translateX(2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .category-banner-container {
+    flex-direction: column;
+    height: auto;
+  }
+  .category-block-right {
+  height: 250px !important;
+}
+
+  .category-banner-left,
+  .category-banner-right {
+    width: 100%;
+  }
+  h3.category-title {
+    font-size: 20px !important;
+}
+  .category-block-left,
+  .category-block-right {
+    min-height: 200px;
+  }
+  
+  .category-content {
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+  }
+  
+  .category-banner-section {
+    padding: 20px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-block-left,
+  .category-block-right {
+    min-height: 180px;
+  }
+  
+  .category-content {
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Category Banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section padding top",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Section padding bottom",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category_block",
+      "name": "Category Block",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Layout"
+        },
+        {
+          "type": "select",
+          "id": "column",
+          "label": "Column Position",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left Column"
+            },
+            {
+              "value": "right",
+              "label": "Right Column"
+            }
+          ],
+          "default": "left"
+        },
+        {
+          "type": "image_picker",
+          "id": "background_image",
+          "label": "Background Image"
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Title",
+          "default": "Category Title"
+        },
+        {
+          "type": "url",
+          "id": "category_url",
+          "label": "Category URL"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Shop now"
+        },
+        {
+          "type": "header",
+          "content": "Title Styling"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "title_size",
+          "min": 16,
+          "max": 48,
+          "step": 2,
+          "unit": "px",
+          "label": "Title Font Size",
+          "default": 28
+        },
+        {
+          "type": "select",
+          "id": "title_weight",
+          "label": "Title Font Weight",
+          "options": [
+            {
+              "value": "300",
+              "label": "Light"
+            },
+            {
+              "value": "400",
+              "label": "Normal"
+            },
+            {
+              "value": "500",
+              "label": "Medium"
+            },
+            {
+              "value": "600",
+              "label": "Semi Bold"
+            },
+            {
+              "value": "700",
+              "label": "Bold"
+            }
+          ],
+          "default": "600"
+        },
+        {
+          "type": "header",
+          "content": "Button Styling"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button Text Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color",
+          "label": "Button Background Color",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "button_size",
+          "min": 12,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Button Font Size",
+          "default": 14
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Banner",
+      "blocks": [
+        {
+          "type": "category_block",
+          "settings": {
+            "column": "left",
+            "title": "Hair wellness from within",
+            "button_text": "Shop now",
+            "title_color": "#000000",
+            "title_size": 24,
+            "button_text_color": "#000000",
+            "button_bg_color": "transparent"
+          }
+        },
+        {
+          "type": "category_block",
+          "settings": {
+            "column": "left",
+            "title": "Hair Vitamins",
+            "button_text": "Shop now",
+            "title_color": "#000000",
+            "title_size": 24,
+            "button_text_color": "#000000",
+            "button_bg_color": "transparent"
+          }
+        },
+        {
+          "type": "category_block",
+          "settings": {
+            "column": "right",
+            "title": "The Ultimate Vitamin",
+            "button_text": "Shop now",
+            "title_color": "#ffffff",
+            "title_size": 28,
+            "button_text_color": "#000000",
+            "button_bg_color": "#ffffff"
+          }
+        },
+        {
+          "type": "category_block",
+          "settings": {
+            "column": "right",
+            "title": "Sustainable Beauty Sale",
+            "button_text": "Shop now",
+            "title_color": "#ffffff",
+            "title_size": 28,
+            "button_text_color": "#000000",
+            "button_bg_color": "#ffffff"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

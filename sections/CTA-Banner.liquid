@@ -1,0 +1,922 @@
+<!-- CTA Banner Section -->
+<section class="cta-banner-section cta-section-{{ section.id }}" 
+         style="
+           {% if section.settings.section_bg_image != blank %}
+             background-image: linear-gradient(rgba({{ section.settings.section_overlay_color | color_extract: 'red' }}, {{ section.settings.section_overlay_color | color_extract: 'green' }}, {{ section.settings.section_overlay_color | color_extract: 'blue' }}, {{ section.settings.section_overlay_opacity | times: 0.01 }})), url('{{ section.settings.section_bg_image | image_url: width: 1920 }}');
+             background-size: {{ section.settings.section_bg_size }};
+             background-position: {{ section.settings.section_bg_position }};
+             background-repeat: no-repeat;
+             background-attachment: {{ section.settings.section_bg_attachment }};
+           {% else %}
+             background-color: {{ section.settings.section_bg_color }};
+           {% endif %}
+           padding: {{ section.settings.section_padding_top }}px 0 {{ section.settings.section_padding_bottom }}px 0;
+         ">
+  <div class="container" style="max-width: {{ section.settings.container_width }}px; margin: 0 auto; padding: 0 20px;">
+    <div class="cta-banner-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: {{ section.settings.grid_gap }}px;">
+      
+      {% for block in section.blocks %}
+        <div class="cta-box" 
+             style="
+               {% if block.settings.background_image != blank %}
+                 background-image: linear-gradient(rgba({{ block.settings.overlay_color | color_extract: 'red' }}, {{ block.settings.overlay_color | color_extract: 'green' }}, {{ block.settings.overlay_color | color_extract: 'blue' }}, {{ block.settings.overlay_opacity | times: 0.01 }})), url('{{ block.settings.background_image | image_url: width: 600 }}');
+                 background-size: cover;
+                 background-position: center;
+                 background-repeat: no-repeat;
+               {% else %}
+                 background-color: {{ block.settings.bg_color }};
+               {% endif %}
+               border-radius: {{ block.settings.border_radius }}px;
+               padding: {{ block.settings.box_padding }}px;
+               text-align: {{ block.settings.text_alignment }};
+               min-height: {{ block.settings.box_height }}px;
+               display: flex;
+               flex-direction: column;
+               justify-content: center;
+               align-items: {{ block.settings.text_alignment }};
+               transition: transform 0.3s ease, box-shadow 0.3s ease;
+               border: {{ block.settings.border_width }}px solid {{ block.settings.border_color }};
+               box-shadow: {{ block.settings.box_shadow }};
+             "
+             onmouseover="this.style.transform='{{ block.settings.hover_effect }}'"
+             onmouseout="this.style.transform='scale(1)'">
+          
+          {% if block.settings.show_icon and block.settings.icon %}
+            <div class="cta-icon" style="margin-bottom: 15px;">
+              <img src="{{ block.settings.icon | img_url: '50x50' }}" 
+                   alt="{{ block.settings.heading }}"
+                   style="width: {{ block.settings.icon_size }}px; height: {{ block.settings.icon_size }}px;">
+            </div>
+          {% endif %}
+          
+          <div class="cta-number" 
+               style="
+                 font-size: {{ block.settings.number_font_size }}px;
+                 font-weight: {{ block.settings.number_font_weight }};
+                 color: {{ block.settings.number_color }};
+                 line-height: 1.2;
+                 margin-bottom: 8px;
+                 font-family: {{ block.settings.number_font_family }};
+               ">
+            {{ block.settings.number }}
+          </div>
+          
+          <div class="cta-heading" 
+               style="
+                 font-size: {{ block.settings.heading_font_size }}px;
+                 font-weight: {{ block.settings.heading_font_weight }};
+                 color: {{ block.settings.heading_color }};
+                 line-height: 1.4;
+                 margin-bottom: 10px;
+                 font-family: {{ block.settings.heading_font_family }};
+               ">
+            {{ block.settings.heading }}
+          </div>
+          
+          {% if block.settings.description %}
+            <div class="cta-description" 
+                 style="
+                   font-size: {{ block.settings.description_font_size }}px;
+                   font-weight: {{ block.settings.description_font_weight }};
+                   color: {{ block.settings.description_color }};
+                   line-height: 1.5;
+                   font-family: {{ block.settings.description_font_family }};
+                 ">
+              {{ block.settings.description }}
+            </div>
+          {% endif %}
+          
+          {% if block.settings.show_button and block.settings.button_text %}
+            <a href="{{ block.settings.button_link }}" 
+               class="cta-button"
+               style="
+                 display: inline-block;
+                 margin-top: 15px;
+                 padding: {{ block.settings.button_padding }};
+                 background-color: {{ block.settings.button_bg_color }};
+                 color: {{ block.settings.button_text_color }};
+                 text-decoration: none;
+                 border-radius: {{ block.settings.button_border_radius }}px;
+                 font-size: {{ block.settings.button_font_size }}px;
+                 font-weight: {{ block.settings.button_font_weight }};
+                 transition: all 0.3s ease;
+                 border: {{ block.settings.button_border_width }}px solid {{ block.settings.button_border_color }};
+               "
+               onmouseover="this.style.backgroundColor='{{ block.settings.button_hover_bg }}'; this.style.color='{{ block.settings.button_hover_text }}'"
+               onmouseout="this.style.backgroundColor='{{ block.settings.button_bg_color }}'; this.style.color='{{ block.settings.button_text_color }}'">
+              {{ block.settings.button_text }}
+            </a>
+          {% endif %}
+          
+        </div>
+      {% endfor %}
+      
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-banner-section {
+    position: relative;
+  }
+  
+  .cta-banner-grid {
+    display: grid;
+  }
+  
+  .cta-box:hover {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+  
+  @media (max-width: 768px) {
+    .cta-banner-grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important ;
+      gap: 20px !important;
+    }
+    
+    .cta-box {
+      min-height: 200px !important;
+      padding: 30px 20px !important;
+    }
+    
+    .cta-number {
+      font-size: 36px !important;
+    }
+    
+    .cta-heading {
+      font-size: 16px !important;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+      padding: 0 15px !important;
+    }
+    
+    .cta-number {
+      font-size: 32px !important;
+    }
+    
+    .cta-heading {
+      font-size: 14px !important;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "CTA Banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "section_bg_image",
+      "label": "Section Background Image",
+      "info": "Upload background image for entire section"
+    },
+    {
+      "type": "color",
+      "id": "section_bg_color",
+      "label": "Section Background Color",
+      "default": "#1a1a1a",
+      "info": "Used when no background image is set"
+    },
+    {
+      "type": "color",
+      "id": "section_overlay_color",
+      "label": "Section Overlay Color",
+      "default": "#000000",
+      "info": "Color overlay on section background image"
+    },
+    {
+      "type": "range",
+      "id": "section_overlay_opacity",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "label": "Section Overlay Opacity",
+      "default": 50,
+      "info": "Overlay opacity on section background image"
+    },
+    {
+      "type": "select",
+      "id": "section_bg_size",
+      "label": "Section Background Size",
+      "options": [
+        {
+          "value": "cover",
+          "label": "Cover"
+        },
+        {
+          "value": "contain",
+          "label": "Contain"
+        },
+        {
+          "value": "auto",
+          "label": "Auto"
+        },
+        {
+          "value": "100% 100%",
+          "label": "Stretch"
+        }
+      ],
+      "default": "cover",
+      "info": "How the background image should be sized"
+    },
+    {
+      "type": "select",
+      "id": "section_bg_position",
+      "label": "Section Background Position",
+      "options": [
+        {
+          "value": "center center",
+          "label": "Center"
+        },
+        {
+          "value": "top center",
+          "label": "Top Center"
+        },
+        {
+          "value": "bottom center",
+          "label": "Bottom Center"
+        },
+        {
+          "value": "left center",
+          "label": "Left Center"
+        },
+        {
+          "value": "right center",
+          "label": "Right Center"
+        },
+        {
+          "value": "top left",
+          "label": "Top Left"
+        },
+        {
+          "value": "top right",
+          "label": "Top Right"
+        },
+        {
+          "value": "bottom left",
+          "label": "Bottom Left"
+        },
+        {
+          "value": "bottom right",
+          "label": "Bottom Right"
+        }
+      ],
+      "default": "center center",
+      "info": "Position of the background image"
+    },
+    {
+      "type": "select",
+      "id": "section_bg_attachment",
+      "label": "Section Background Attachment",
+      "options": [
+        {
+          "value": "scroll",
+          "label": "Scroll"
+        },
+        {
+          "value": "fixed",
+          "label": "Fixed (Parallax)"
+        }
+      ],
+      "default": "scroll",
+      "info": "Fixed creates a parallax effect"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Section Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Section Padding Bottom",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 800,
+      "max": 1400,
+      "step": 50,
+      "unit": "px",
+      "label": "Container Max Width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "grid_gap",
+      "min": 10,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Gap Between Boxes",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "cta_box",
+      "name": "CTA Box",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Box Content"
+        },
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number/Statistic",
+          "default": "37+",
+          "info": "Main number or statistic to display"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Years of Hard Work",
+          "info": "Description text below the number"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description (Optional)",
+          "info": "Additional description text"
+        },
+        {
+          "type": "header",
+          "content": "Box Background"
+        },
+        {
+          "type": "image_picker",
+          "id": "background_image",
+          "label": "Background Image",
+          "info": "Upload background image for this box"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Fallback Background Color",
+          "default": "#2a2a2a",
+          "info": "Used when no background image is set"
+        },
+        {
+          "type": "color",
+          "id": "overlay_color",
+          "label": "Overlay Color",
+          "default": "#000000",
+          "info": "Color overlay on background image"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "min": 0,
+          "max": 90,
+          "step": 5,
+          "unit": "%",
+          "label": "Overlay Opacity",
+          "default": 40
+        },
+        {
+          "type": "header",
+          "content": "Box Styling"
+        },
+        {
+          "type": "range",
+          "id": "box_height",
+          "min": 150,
+          "max": 400,
+          "step": 10,
+          "unit": "px",
+          "label": "Box Height",
+          "default": 250
+        },
+        {
+          "type": "range",
+          "id": "box_padding",
+          "min": 20,
+          "max": 80,
+          "step": 5,
+          "unit": "px",
+          "label": "Box Padding",
+          "default": 40
+        },
+        {
+          "type": "range",
+          "id": "border_radius",
+          "min": 0,
+          "max": 30,
+          "step": 2,
+          "unit": "px",
+          "label": "Border Radius",
+          "default": 12
+        },
+        {
+          "type": "range",
+          "id": "border_width",
+          "min": 0,
+          "max": 5,
+          "step": 1,
+          "unit": "px",
+          "label": "Border Width",
+          "default": 0
+        },
+        {
+          "type": "color",
+          "id": "border_color",
+          "label": "Border Color",
+          "default": "#333333"
+        },
+        {
+          "type": "select",
+          "id": "box_shadow",
+          "label": "Box Shadow",
+          "options": [
+            {
+              "value": "none",
+              "label": "None"
+            },
+            {
+              "value": "0 2px 10px rgba(0,0,0,0.1)",
+              "label": "Light"
+            },
+            {
+              "value": "0 4px 20px rgba(0,0,0,0.15)",
+              "label": "Medium"
+            },
+            {
+              "value": "0 8px 30px rgba(0,0,0,0.2)",
+              "label": "Strong"
+            }
+          ],
+          "default": "0 4px 20px rgba(0,0,0,0.15)"
+        },
+        {
+          "type": "select",
+          "id": "text_alignment",
+          "label": "Text Alignment",
+          "options": [
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "flex-start",
+              "label": "Left"
+            },
+            {
+              "value": "flex-end",
+              "label": "Right"
+            }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "select",
+          "id": "hover_effect",
+          "label": "Hover Effect",
+          "options": [
+            {
+              "value": "scale(1)",
+              "label": "None"
+            },
+            {
+              "value": "scale(1.05)",
+              "label": "Scale Up"
+            },
+            {
+              "value": "translateY(-5px)",
+              "label": "Move Up"
+            },
+            {
+              "value": "scale(1.02) translateY(-3px)",
+              "label": "Scale + Move Up"
+            }
+          ],
+          "default": "scale(1.05)"
+        },
+        {
+          "type": "header",
+          "content": "Number Styling"
+        },
+        {
+          "type": "range",
+          "id": "number_font_size",
+          "min": 24,
+          "max": 80,
+          "step": 2,
+          "unit": "px",
+          "label": "Number Font Size",
+          "default": 48
+        },
+        {
+          "type": "select",
+          "id": "number_font_weight",
+          "label": "Number Font Weight",
+          "options": [
+            {
+              "value": "300",
+              "label": "Light"
+            },
+            {
+              "value": "400",
+              "label": "Normal"
+            },
+            {
+              "value": "500",
+              "label": "Medium"
+            },
+            {
+              "value": "600",
+              "label": "Semi Bold"
+            },
+            {
+              "value": "700",
+              "label": "Bold"
+            },
+            {
+              "value": "800",
+              "label": "Extra Bold"
+            }
+          ],
+          "default": "700"
+        },
+        {
+          "type": "select",
+          "id": "number_font_family",
+          "label": "Number Font Family",
+          "options": [
+            {
+              "value": "inherit",
+              "label": "Theme Default"
+            },
+            {
+              "value": "Arial, sans-serif",
+              "label": "Arial"
+            },
+            {
+              "value": "Georgia, serif",
+              "label": "Georgia"
+            },
+            {
+              "value": "'Helvetica Neue', sans-serif",
+              "label": "Helvetica"
+            },
+            {
+              "value": "'Times New Roman', serif",
+              "label": "Times"
+            }
+          ],
+          "default": "inherit"
+        },
+        {
+          "type": "color",
+          "id": "number_color",
+          "label": "Number Color",
+          "default": "#4ade80"
+        },
+        {
+          "type": "header",
+          "content": "Heading Styling"
+        },
+        {
+          "type": "range",
+          "id": "heading_font_size",
+          "min": 12,
+          "max": 32,
+          "step": 1,
+          "unit": "px",
+          "label": "Heading Font Size",
+          "default": 18
+        },
+        {
+          "type": "select",
+          "id": "heading_font_weight",
+          "label": "Heading Font Weight",
+          "options": [
+            {
+              "value": "300",
+              "label": "Light"
+            },
+            {
+              "value": "400",
+              "label": "Normal"
+            },
+            {
+              "value": "500",
+              "label": "Medium"
+            },
+            {
+              "value": "600",
+              "label": "Semi Bold"
+            },
+            {
+              "value": "700",
+              "label": "Bold"
+            }
+          ],
+          "default": "400"
+        },
+        {
+          "type": "select",
+          "id": "heading_font_family",
+          "label": "Heading Font Family",
+          "options": [
+            {
+              "value": "inherit",
+              "label": "Theme Default"
+            },
+            {
+              "value": "Arial, sans-serif",
+              "label": "Arial"
+            },
+            {
+              "value": "Georgia, serif",
+              "label": "Georgia"
+            },
+            {
+              "value": "'Helvetica Neue', sans-serif",
+              "label": "Helvetica"
+            },
+            {
+              "value": "'Times New Roman', serif",
+              "label": "Times"
+            }
+          ],
+          "default": "inherit"
+        },
+        {
+          "type": "color",
+          "id": "heading_color",
+          "label": "Heading Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "header",
+          "content": "Description Styling"
+        },
+        {
+          "type": "range",
+          "id": "description_font_size",
+          "min": 10,
+          "max": 24,
+          "step": 1,
+          "unit": "px",
+          "label": "Description Font Size",
+          "default": 14
+        },
+        {
+          "type": "select",
+          "id": "description_font_weight",
+          "label": "Description Font Weight",
+          "options": [
+            {
+              "value": "300",
+              "label": "Light"
+            },
+            {
+              "value": "400",
+              "label": "Normal"
+            },
+            {
+              "value": "500",
+              "label": "Medium"
+            }
+          ],
+          "default": "400"
+        },
+        {
+          "type": "select",
+          "id": "description_font_family",
+          "label": "Description Font Family",
+          "options": [
+            {
+              "value": "inherit",
+              "label": "Theme Default"
+            },
+            {
+              "value": "Arial, sans-serif",
+              "label": "Arial"
+            },
+            {
+              "value": "Georgia, serif",
+              "label": "Georgia"
+            },
+            {
+              "value": "'Helvetica Neue', sans-serif",
+              "label": "Helvetica"
+            },
+            {
+              "value": "'Times New Roman', serif",
+              "label": "Times"
+            }
+          ],
+          "default": "inherit"
+        },
+        {
+          "type": "color",
+          "id": "description_color",
+          "label": "Description Color",
+          "default": "#cccccc"
+        },
+        {
+          "type": "header",
+          "content": "Icon Settings"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_icon",
+          "label": "Show Icon",
+          "default": false
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon Image"
+        },
+        {
+          "type": "range",
+          "id": "icon_size",
+          "min": 20,
+          "max": 80,
+          "step": 5,
+          "unit": "px",
+          "label": "Icon Size",
+          "default": 40
+        },
+        {
+          "type": "header",
+          "content": "Button Settings"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_button",
+          "label": "Show Button",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Learn More"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "range",
+          "id": "button_font_size",
+          "min": 10,
+          "max": 20,
+          "step": 1,
+          "unit": "px",
+          "label": "Button Font Size",
+          "default": 14
+        },
+        {
+          "type": "select",
+          "id": "button_font_weight",
+          "label": "Button Font Weight",
+          "options": [
+            {
+              "value": "400",
+              "label": "Normal"
+            },
+            {
+              "value": "500",
+              "label": "Medium"
+            },
+            {
+              "value": "600",
+              "label": "Semi Bold"
+            },
+            {
+              "value": "700",
+              "label": "Bold"
+            }
+          ],
+          "default": "500"
+        },
+        {
+          "type": "text",
+          "id": "button_padding",
+          "label": "Button Padding",
+          "default": "10px 20px",
+          "info": "CSS padding format: top/bottom left/right"
+        },
+        {
+          "type": "color",
+          "id": "button_bg_color",
+          "label": "Button Background",
+          "default": "#4ade80"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button Text Color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "button_hover_bg",
+          "label": "Button Hover Background",
+          "default": "#22c55e"
+        },
+        {
+          "type": "color",
+          "id": "button_hover_text",
+          "label": "Button Hover Text Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "range",
+          "id": "button_border_radius",
+          "min": 0,
+          "max": 30,
+          "step": 2,
+          "unit": "px",
+          "label": "Button Border Radius",
+          "default": 6
+        },
+        {
+          "type": "range",
+          "id": "button_border_width",
+          "min": 0,
+          "max": 3,
+          "step": 1,
+          "unit": "px",
+          "label": "Button Border Width",
+          "default": 0
+        },
+        {
+          "type": "color",
+          "id": "button_border_color",
+          "label": "Button Border Color",
+          "default": "#4ade80"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "CTA Banner",
+      "blocks": [
+        {
+          "type": "cta_box",
+          "settings": {
+            "number": "37+",
+            "heading": "Years of Hard Work",
+            "number_color": "#4ade80",
+            "heading_color": "#ffffff"
+          }
+        },
+        {
+          "type": "cta_box",
+          "settings": {
+            "number": "500k+",
+            "heading": "Happy Customer",
+            "number_color": "#4ade80",
+            "heading_color": "#ffffff"
+          }
+        },
+        {
+          "type": "cta_box",
+          "settings": {
+            "number": "28",
+            "heading": "Qualified Team Member",
+            "number_color": "#4ade80",
+            "heading_color": "#ffffff"
+          }
+        },
+        {
+          "type": "cta_box",
+          "settings": {
+            "number": "750k+",
+            "heading": "Monthly Orders",
+            "number_color": "#4ade80",
+            "heading_color": "#ffffff"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

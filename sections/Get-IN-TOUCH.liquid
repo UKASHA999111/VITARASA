@@ -1,0 +1,683 @@
+{{ 'section-get-in-touch.css' | asset_url | stylesheet_tag }}
+
+<div class="get-in-touch-section">
+  <div class="page-width">
+    <div class="get-in-touch-container">
+      
+      <!-- Location Card -->
+      <div class="contact-card">
+        <div class="contact-icon">
+          {% if section.settings.location_icon != blank %}
+            <img src="{{ section.settings.location_icon | img_url: '40x40' }}" alt="Location icon" width="40" height="40">
+          {% else %}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="currentColor"/>
+            </svg>
+          {% endif %}
+        </div>
+        <h3 class="contact-title">{{ section.settings.location_title }}</h3>
+        <div class="contact-content">
+          {{ section.settings.location_content }}
+        </div>
+      </div>
+
+      <!-- Phone Card -->
+      <div class="contact-card">
+        <div class="contact-icon">
+          {% if section.settings.phone_icon != blank %}
+            <img src="{{ section.settings.phone_icon | img_url: '40x40' }}" alt="Phone icon" width="40" height="40">
+          {% else %}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" fill="currentColor"/>
+            </svg>
+          {% endif %}
+        </div>
+        <h3 class="contact-title">{{ section.settings.phone_title }}</h3>
+        <div class="contact-content">
+          <a href="tel:{{ section.settings.phone_number | replace: ' ', '' | replace: '-', '' | replace: '(', '' | replace: ')', '' }}" class="phone-link">
+            {{ section.settings.phone_number }}
+          </a>
+        </div>
+      </div>
+
+      <!-- Newsletter Card -->
+      <div class="contact-card newsletter-card">
+        <div class="contact-icon">
+          {% if section.settings.newsletter_icon != blank %}
+            <img src="{{ section.settings.newsletter_icon | img_url: '40x40' }}" alt="Newsletter icon" width="40" height="40">
+          {% else %}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="currentColor"/>
+            </svg>
+          {% endif %}
+        </div>
+        <h3 class="contact-title">{{ section.settings.newsletter_title }}</h3>
+        
+        {% if section.settings.enable_newsletter %}
+          <div class="newsletter-form-wrapper">
+            {% form 'customer', class: 'newsletter-form' %}
+              <input type="hidden" name="contact[tags]" value="newsletter">
+              <div class="newsletter-input-group">
+                <input
+                  type="email"
+                  name="contact[email]"
+                  id="newsletter-email-{{ section.id }}"
+                  class="newsletter-input"
+                  placeholder="{{ section.settings.newsletter_placeholder }}"
+                  required
+                  autocomplete="email"
+                >
+                <button type="submit" class="newsletter-submit" name="commit">
+                  {{ section.settings.newsletter_button_text }}
+                </button>
+              </div>
+              {% if form.posted_successfully? %}
+                <div class="newsletter-success">
+                  {{ section.settings.newsletter_success_message }}
+                </div>
+              {% endif %}
+              {% if form.errors %}
+                <div class="newsletter-error">
+                  {{ form.errors | default_errors }}
+                </div>
+              {% endif %}
+            {% endform %}
+          </div>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .get-in-touch-section {
+    padding: {{ section.settings.section_padding_top }}px 0 {{ section.settings.section_padding_bottom }}px;
+    background-color: {{ section.settings.background_color }};
+  }
+
+  .get-in-touch-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .contact-card {
+    background: {{ section.settings.card_background }};
+    border-radius: {{ section.settings.card_border_radius }}px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: {{ section.settings.card_shadow }};
+    border: {{ section.settings.card_border_width }}px solid {{ section.settings.card_border_color }};
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .contact-icon {
+    width: 60px;
+    height: 60px;
+    background: {{ section.settings.icon_background }};
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: {{ section.settings.icon_color }};
+  }
+
+  .contact-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .contact-title {
+    font-size: {{ section.settings.title_font_size }}px;
+    font-weight: {{ section.settings.title_font_weight }};
+    color: {{ section.settings.title_color }};
+    margin: 0 0 1rem;
+    text-transform: {{ section.settings.title_text_transform }};
+    letter-spacing: {{ section.settings.title_letter_spacing }}px;
+  }
+
+  .contact-content {
+    font-size: {{ section.settings.content_font_size }}px;
+    color: {{ section.settings.content_color }};
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .phone-link {
+    color: {{ section.settings.phone_link_color }};
+    text-decoration: none;
+    font-weight: 600;
+    font-size: {{ section.settings.phone_font_size }}px;
+    transition: color 0.3s ease;
+  }
+
+  .phone-link:hover {
+    color: {{ section.settings.phone_link_hover_color }};
+  }
+
+  .newsletter-form-wrapper {
+    margin-top: 1rem;
+  }
+
+  .newsletter-input-group {
+    display: flex;
+    gap: 0;
+    max-width: 100%;
+    border-radius: {{ section.settings.input_border_radius }}px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .newsletter-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: none;
+    font-size: {{ section.settings.input_font_size }}px;
+    background: {{ section.settings.input_background }};
+    color: {{ section.settings.input_text_color }};
+    outline: none;
+  }
+
+  .newsletter-input::placeholder {
+    color: {{ section.settings.input_placeholder_color }};
+  }
+
+  .newsletter-submit {
+    padding: 12px 12px;
+    background: {{ section.settings.button_background }};
+    color: {{ section.settings.button_text_color }};
+    border: none;
+    font-size: {{ section.settings.button_font_size }}px;
+    font-weight: {{ section.settings.button_font_weight }};
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-transform: {{ section.settings.button_text_transform }};
+  }
+
+  .newsletter-submit:hover {
+    background: {{ section.settings.button_hover_background }};
+  }
+
+  .newsletter-success {
+    margin-top: 1rem;
+    padding: 10px;
+    background: {{ section.settings.success_background }};
+    color: {{ section.settings.success_text_color }};
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .newsletter-error {
+    margin-top: 1rem;
+    padding: 10px;
+    background: {{ section.settings.error_background }};
+    color: {{ section.settings.error_text_color }};
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 768px) {
+    .get-in-touch-container {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .contact-card {
+      padding: 1.5rem;
+    }
+    
+    .newsletter-input-group {
+      flex-direction: column;
+    }
+    
+    .newsletter-submit {
+      border-radius: 0 0 {{ section.settings.input_border_radius }}px {{ section.settings.input_border_radius }}px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Get In Touch",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 60
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f8f9fa"
+    },
+    {
+      "type": "header",
+      "content": "Card Settings"
+    },
+    {
+      "type": "color",
+      "id": "card_background",
+      "label": "Card background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "card_border_radius",
+      "min": 0,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Card border radius",
+      "default": 12
+    },
+    {
+      "type": "text",
+      "id": "card_shadow",
+      "label": "Card shadow",
+      "default": "0 4px 20px rgba(0, 0, 0, 0.1)"
+    },
+    {
+      "type": "range",
+      "id": "card_border_width",
+      "min": 0,
+      "max": 5,
+      "step": 1,
+      "unit": "px",
+      "label": "Card border width",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "card_border_color",
+      "label": "Card border color",
+      "default": "#e0e0e0"
+    },
+    {
+      "type": "header",
+      "content": "Icon Settings"
+    },
+    {
+      "type": "color",
+      "id": "icon_background",
+      "label": "Icon background",
+      "default": "#e8f5e8"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon color",
+      "default": "#4caf50"
+    },
+    {
+      "type": "header",
+      "content": "Location Card"
+    },
+    {
+      "type": "image_picker",
+      "id": "location_icon",
+      "label": "Location icon (optional)"
+    },
+    {
+      "type": "text",
+      "id": "location_title",
+      "label": "Location title",
+      "default": "OUR LOCATION"
+    },
+    {
+      "type": "richtext",
+      "id": "location_content",
+      "label": "Location content",
+      "default": "<p>1601 Thornridge Cir. Shiloh, Washington<br>DC 20020, United States</p>"
+    },
+    {
+      "type": "header",
+      "content": "Phone Card"
+    },
+    {
+      "type": "image_picker",
+      "id": "phone_icon",
+      "label": "Phone icon (optional)"
+    },
+    {
+      "type": "text",
+      "id": "phone_title",
+      "label": "Phone title",
+      "default": "CALL US 24/7"
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "Phone number",
+      "default": "(303) 555-0105"
+    },
+    {
+      "type": "range",
+      "id": "phone_font_size",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "label": "Phone number font size",
+      "default": 20
+    },
+    {
+      "type": "color",
+      "id": "phone_link_color",
+      "label": "Phone link color",
+      "default": "#4caf50"
+    },
+    {
+      "type": "color",
+      "id": "phone_link_hover_color",
+      "label": "Phone link hover color",
+      "default": "#45a049"
+    },
+    {
+      "type": "header",
+      "content": "Newsletter Card"
+    },
+    {
+      "type": "image_picker",
+      "id": "newsletter_icon",
+      "label": "Newsletter icon (optional)"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_title",
+      "label": "Newsletter title",
+      "default": "SUBSCRIBE NEWSLETTER"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_newsletter",
+      "label": "Enable newsletter signup",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "newsletter_placeholder",
+      "label": "Newsletter input placeholder",
+      "default": "Your email address"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_button_text",
+      "label": "Newsletter button text",
+      "default": "Subscribe"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_success_message",
+      "label": "Success message",
+      "default": "Thank you for subscribing!"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Title font size",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "Title font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "title_text_transform",
+      "label": "Title text transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "range",
+      "id": "title_letter_spacing",
+      "min": 0,
+      "max": 3,
+      "step": 0.1,
+      "unit": "px",
+      "label": "Title letter spacing",
+      "default": 1
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "content_font_size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Content font size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "content_color",
+      "label": "Content color",
+      "default": "#666666"
+    },
+    {
+      "type": "header",
+      "content": "Newsletter Form Styling"
+    },
+    {
+      "type": "range",
+      "id": "input_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Input border radius",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "input_background",
+      "label": "Input background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "input_text_color",
+      "label": "Input text color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "input_placeholder_color",
+      "label": "Input placeholder color",
+      "default": "#999999"
+    },
+    {
+      "type": "range",
+      "id": "input_font_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Input font size",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "label": "Button background",
+      "default": "#4caf50"
+    },
+    {
+      "type": "color",
+      "id": "button_hover_background",
+      "label": "Button hover background",
+      "default": "#45a049"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Button font size",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "button_font_weight",
+      "label": "Button font weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "600",
+          "label": "Semi-bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "select",
+      "id": "button_text_transform",
+      "label": "Button text transform",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ],
+      "default": "uppercase"
+    },
+    {
+      "type": "header",
+      "content": "Message Styling"
+    },
+    {
+      "type": "color",
+      "id": "success_background",
+      "label": "Success message background",
+      "default": "#d4edda"
+    },
+    {
+      "type": "color",
+      "id": "success_text_color",
+      "label": "Success message text color",
+      "default": "#155724"
+    },
+    {
+      "type": "color",
+      "id": "error_background",
+      "label": "Error message background",
+      "default": "#f8d7da"
+    },
+    {
+      "type": "color",
+      "id": "error_text_color",
+      "label": "Error message text color",
+      "default": "#721c24"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Get In Touch"
+    }
+  ]
+}
+{% endschema %}

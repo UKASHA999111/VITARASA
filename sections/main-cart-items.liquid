@@ -1,0 +1,960 @@
+{{ 'component-cart.css' | asset_url | stylesheet_tag }}
+{{ 'component-cart-items.css' | asset_url | stylesheet_tag }}
+{{ 'component-totals.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+{{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .custom-cart-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  .cart__footer.isolate.section-template--24913326997787__cart-footer-padding {
+    display: none;
+}
+
+  .custom-cart-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .custom-cart-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 40px;
+    align-items: start;
+  }
+
+  .custom-cart-items {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .custom-cart-header {
+    background: transparent;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e9ecef;
+    display: grid;
+    grid-template-columns: 1fr 80px 100px 100px 30px;
+    gap: 20px;
+    align-items: center;
+    font-weight: 600;
+    color: #666;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .custom-cart-itemsborderline {
+    border: 1px solid #e6e6e6;
+    border-radius: 12px;
+    /* padding: 12px; */
+}
+
+  .custom-cart-item {
+    padding: 20px;
+    border-bottom: 1px solid #e9ecef !important;
+    display: grid;
+    grid-template-columns: 1fr 80px 100px 100px 30px;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .custom-cart-item:last-child {
+    border-bottom: none;
+  }
+
+  .custom-product-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .custom-product-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    background: #f8f9fa;
+  }
+
+  .custom-product-details h3 {
+    font-size: 12px;
+    font-weight: 500;
+    color: #333;
+    line-height: 20px;
+    margin: 0 0 5px 0;
+  }
+
+  .custom-product-price {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    text-align: center;
+  }
+
+  .custom-quantity-controls {
+    display: flex;
+    align-items: center;
+    border: 1px solid #e9e9e9;
+    gap: 3px;
+    border-radius: 26px;
+    padding: 5px;
+  }
+
+  .custom-quantity-btn {
+    width: 25px;
+    height: 25px;
+    border: 0px solid #ddd;
+    background: #f2f2f2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    color: #000000;
+  }
+
+  .custom-quantity-btn:hover {
+    background: #f8f9fa;
+  }
+
+  .custom-quantity-input {
+    width: 40px;
+    height: 30px;
+    text-align: center;
+    border: 0px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .custom-subtotal {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    text-align: center;
+  }
+
+  .custom-remove-btn {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #666;
+    font-size: 18px;
+  }
+
+  .custom-remove-btn:hover {
+    color: #dc3545;
+  }
+
+  .custom-cart-summary {
+    background: #fff;
+    border-radius: 8px;
+    padding: 25px;
+    height: fit-content;
+    border: 1px solid #e9ecef;
+  }
+
+  .custom-cart-summary h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin: 0 0 20px 0;
+  }
+
+  .custom-summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+
+  .custom-summary-row.total {
+    border-top: 1px solid #e9ecef;
+    padding-top: 15px;
+    font-weight: 600;
+    font-size: 18px;
+    color: #333;
+  }
+
+  .custom-checkout-btn {
+    width: 100%;
+  background: #00b207;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 26px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.2s;
+  }
+
+  .custom-checkout-btn:hover {
+    background: #218838;
+  }
+
+  .custom-coupon-section {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    margin: 40px auto;
+}
+
+  .custom-coupon-label {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0px;
+}
+
+  .custom-coupon-input-group {
+    display: flex;
+    gap: 10px;
+    width: 80%;
+}
+
+  .custom-coupon-input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #e6e6e6;
+    border-radius: 26px;
+    font-size: 14px;
+}
+
+  .custom-coupon-btn {
+    background: #333333;
+    color: white;
+    border: none;
+    padding: 16px 30px;
+    border-radius: 26px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    margin-left: -25px;
+}
+
+  .custom-coupon-btn:hover {
+    background: #5a6268;
+  }
+
+  .custom-continue-shopping {
+    background: #f2f2f2;
+    color: #4c4c4c;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    border-radius: 26px;
+    text-decoration: none;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 0px;
+    font-weight: 600;
+  }
+
+  .custom-continue-shopping:hover {
+    background: #e9ecef;
+    text-decoration: none;
+  }
+
+  .custom-update-cart {
+    background: #f2f2f2;
+    color: #4c4c4c;
+    border: 1px solid #ddd;
+    padding: 10px 20px;
+    border-radius: 26px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-left: 10px;
+    font-weight: 600;
+  }
+
+  .custom-update-cart:hover {
+    background: #f2f2f2;
+  }
+
+  .custom-cart-actions {
+        display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* margin-bottom: 20px; */
+    padding: 15px 20px;
+  }
+
+  .custom-empty-cart {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+  }
+
+  .custom-empty-cart h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  /* Loading state */
+  .updating {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  @media (max-width: 768px) {
+    .custom-cart-container {
+      padding: 20px 15px;
+    }
+
+    .custom-cart-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .custom-cart-layout {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .custom-cart-header {
+      display: none;
+    }
+
+    .custom-cart-item {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      padding: 20px 15px;
+      position: relative;
+    }
+
+    .custom-product-info {
+      justify-content: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .custom-product-image {
+      width: 80px;
+      height: 80px;
+    }
+
+    .custom-product-details h3 {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .custom-product-details div {
+      font-size: 14px !important;
+      color: #666 !important;
+      margin-top: 5px;
+    }
+
+    .custom-remove-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 30px;
+      height: 30px;
+      background: #f8f9fa;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: #666;
+    }
+
+    .custom-mobile-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .custom-mobile-item-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .custom-mobile-label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .custom-product-price,
+    .custom-subtotal {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+      text-align: right;
+    }
+
+    .custom-quantity-controls {
+      justify-content: flex-start;
+      width: fit-content;
+    }
+
+    .custom-quantity-btn {
+      width: 35px;
+      height: 35px;
+      font-size: 18px;
+    }
+
+    .custom-quantity-input {
+      width: 50px;
+      height: 35px;
+      font-size: 16px;
+    }
+
+    .custom-cart-actions {
+      flex-direction: column;
+      gap: 10px;
+      padding: 20px 15px;
+    }
+
+    .custom-continue-shopping,
+    .custom-update-cart {
+      width: 100%;
+      text-align: center;
+      padding: 12px 20px;
+      margin: 0;
+    }
+
+    .custom-coupon-section {
+      flex-direction: column;
+      gap: 15px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+
+    .custom-coupon-label {
+      align-self: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .custom-coupon-input-group {
+      flex-direction: row;
+      width: 100%;
+      position: relative;
+    }
+
+    .custom-coupon-input {
+      padding: 15px 20px;
+      font-size: 16px;
+      padding-right: 120px;
+    }
+
+    .custom-coupon-btn {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 10px 20px;
+      margin-left: 0;
+      font-size: 14px;
+    }
+
+    .custom-cart-summary {
+      padding: 20px 15px;
+      margin: 0;
+    }
+
+    .custom-cart-summary h3 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .custom-summary-row {
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    .custom-summary-row.total {
+      font-size: 18px;
+      padding-top: 12px;
+    }
+
+    .custom-checkout-btn {
+      padding: 18px;
+      font-size: 16px;
+      font-weight: 600;
+      margin-top: 15px;
+    }
+
+    .custom-empty-cart {
+      padding: 40px 15px;
+    }
+
+    .custom-empty-cart h2 {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .custom-cart-container {
+      padding: 15px 10px;
+    }
+
+    .custom-cart-title {
+      font-size: 22px;
+    }
+
+    .custom-cart-item {
+      padding: 15px 10px;
+    }
+
+    .custom-product-info {
+      gap: 10px;
+    }
+
+    .custom-product-image {
+      width: 70px;
+      height: 70px;
+    }
+
+    .custom-product-details h3 {
+      font-size: 15px;
+    }
+
+    .custom-cart-summary {
+      padding: 15px 10px;
+    }
+
+    .custom-coupon-section {
+      padding: 0 10px;
+    }
+
+    .custom-coupon-input {
+      padding: 12px 15px;
+      padding-right: 110px;
+    }
+
+    .custom-coupon-btn {
+      padding: 8px 15px;
+      font-size: 13px;
+    }
+  }
+{%- endstyle -%}
+
+{%- unless settings.cart_type == 'drawer' -%}
+  <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+{%- endunless -%}
+
+<script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+
+<div class="custom-cart-container">
+  <h1 class="custom-cart-title">My Shopping Cart</h1>
+
+  {%- if cart == empty -%}
+    <div class="custom-empty-cart">
+      <h2>{{ 'sections.cart.empty' | t }}</h2>
+      <a href="{{ routes.all_products_collection_url }}" class="custom-checkout-btn" style="display: inline-block; width: auto; padding: 15px 30px;">
+        {{ 'general.continue_shopping' | t }}
+      </a>
+    </div>
+  {%- else -%}
+    <div class="custom-cart-layout">
+      <div class="custom-cart-items">
+       
+<div class="custom-cart-itemsborderline">
+        <div class="custom-cart-header">
+          <div>PRODUCT</div>
+          <div>PRICE</div>
+          <div>QUANTITY</div>
+          <div>SUBTOTAL</div>
+          <div></div>
+        </div>
+
+        <div id="cart-items">
+          {%- for item in cart.items -%}
+            <div class="custom-cart-item" data-variant-id="{{ item.variant.id }}" data-line-item-key="{{ item.key }}">
+              <div class="custom-product-info">
+                {%- if item.image -%}
+                  <img
+                    src="{{ item.image | image_url: width: 120 }}"
+                    alt="{{ item.image.alt | escape }}"
+                    class="custom-product-image"
+                    loading="lazy"
+                  >
+                {%- else -%}
+                  <div class="custom-product-image"></div>
+                {%- endif -%}
+                <div class="custom-product-details">
+                  <h3>{{ item.product.title | escape }}</h3>
+                  {%- if item.product.has_only_default_variant == false -%}
+                    {%- for option in item.options_with_values -%}
+                      <div style="font-size: 14px; color: #666;">
+                        {{ option.name }}: {{ option.value }}
+                      </div>
+                    {%- endfor -%}
+                  {%- endif -%}
+                </div>
+              </div>
+
+              <!-- Mobile layout rows -->
+              <div class="custom-mobile-item-row" style="display: none;">
+                <span class="custom-mobile-label">Price:</span>
+                <span class="custom-product-price">{{ item.original_price | money }}</span>
+              </div>
+
+              <div class="custom-mobile-item-row" style="display: none;">
+                <span class="custom-mobile-label">Quantity:</span>
+                <div class="custom-quantity-controls">
+                  <button type="button" class="custom-quantity-btn" onclick="changeQuantity('{{ item.key }}', -1)">−</button>
+                  <input
+                    type="number"
+                    value="{{ item.quantity }}"
+                    min="0"
+                    class="custom-quantity-input"
+                    data-key="{{ item.key }}"
+                    onchange="updateQuantity('{{ item.key }}', this.value)"
+                  >
+                  <button type="button" class="custom-quantity-btn" onclick="changeQuantity('{{ item.key }}', 1)">+</button>
+                </div>
+              </div>
+
+              <div class="custom-mobile-item-row" style="display: none;">
+                <span class="custom-mobile-label">Subtotal:</span>
+                <span class="custom-subtotal" data-key="{{ item.key }}">{{ item.final_line_price | money }}</span>
+              </div>
+
+              <!-- Desktop layout (original) -->
+              <div class="custom-product-price">
+                {{ item.original_price | money }}
+              </div>
+
+              <div class="custom-quantity-controls">
+                <button type="button" class="custom-quantity-btn" onclick="changeQuantity('{{ item.key }}', -1)">−</button>
+                <input
+                  type="number"
+                  value="{{ item.quantity }}"
+                  min="0"
+                  class="custom-quantity-input"
+                  data-key="{{ item.key }}"
+                  onchange="updateQuantity('{{ item.key }}', this.value)"
+                >
+                <button type="button" class="custom-quantity-btn" onclick="changeQuantity('{{ item.key }}', 1)">+</button>
+              </div>
+
+              <div class="custom-subtotal" data-key="{{ item.key }}">
+                {{ item.final_line_price | money }}
+              </div>
+
+              <button type="button" class="custom-remove-btn" onclick="removeItem('{{ item.key }}')" title="Remove item">×</button>
+            </div>
+          {%- endfor -%}
+        </div>
+         <div class="custom-cart-actions">
+          <a href="{{ routes.all_products_collection_url }}" class="custom-continue-shopping">
+            Return to shop
+          </a>
+          <button type="button" class="custom-update-cart" onclick="updateEntireCart()">
+            Update Cart
+          </button>
+        </div>
+  </div>
+         <div class="custom-coupon-section">
+          <label class="custom-coupon-label">Coupon Code</label>
+          <div class="custom-coupon-input-group">
+            <input type="text" class="custom-coupon-input" placeholder="Enter code">
+            <button type="button" class="custom-coupon-btn" onclick="applyCoupon()">Apply Coupon</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="custom-cart-summary">
+        <h3>Cart Total</h3>
+        
+        <div class="custom-summary-row">
+          <span>Subtotal:</span>
+          <span id="cart-subtotal">{{ cart.total_price | money }}</span>
+        </div>
+        
+        <div class="custom-summary-row">
+          <span>Shipping:</span>
+          <span>Free</span>
+        </div>
+        
+        <div class="custom-summary-row total">
+          <span>Total:</span>
+          <span id="cart-total">{{ cart.total_price | money }}</span>
+        </div>
+
+        <button type="button" class="custom-checkout-btn" onclick="window.location.href='/checkout'">
+          Proceed to checkout
+        </button>
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+
+<style>
+@media (max-width: 768px) {
+  .custom-cart-item > .custom-product-price,
+  .custom-cart-item > .custom-quantity-controls,
+  .custom-cart-item > .custom-subtotal {
+    display: none;
+  }
+  
+  .custom-mobile-item-row {
+    display: flex !important;
+  }
+}
+</style>
+
+<script>
+// Store original prices for calculation
+const itemPrices = {};
+{%- for item in cart.items -%}
+  itemPrices['{{ item.key }}'] = {{ item.original_price }};
+{%- endfor -%}
+
+// Flag to prevent multiple simultaneous updates
+let isUpdating = false;
+
+// Function to change quantity using +/- buttons
+function changeQuantity(itemKey, change) {
+  if (isUpdating) return;
+  
+  const quantityInputs = document.querySelectorAll(`[data-key="${itemKey}"].custom-quantity-input`);
+  const currentValue = parseInt(quantityInputs[0].value) || 0;
+  const newValue = Math.max(0, currentValue + change);
+  
+  // Update all quantity inputs for this item (desktop and mobile)
+  quantityInputs.forEach(input => {
+    input.value = newValue;
+  });
+  
+  // Update cart immediately
+  updateQuantity(itemKey, newValue);
+}
+
+// Function to update single item quantity
+function updateQuantity(itemKey, quantity) {
+  if (isUpdating) return;
+  
+  isUpdating = true;
+  
+  // Show loading state
+  const cartItems = document.getElementById('cart-items');
+  cartItems.classList.add('updating');
+  
+  // Prepare data for single line item update
+  const updates = {};
+  updates[itemKey] = parseInt(quantity) || 0;
+  
+  fetch('/cart/update.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ updates: updates })
+  })
+  .then(response => response.json())
+  .then(data => {
+    updateCartDisplay(data);
+    cartItems.classList.remove('updating');
+    isUpdating = false;
+  })
+  .catch(error => {
+    console.error('Error updating cart:', error);
+    cartItems.classList.remove('updating');
+    isUpdating = false;
+    // Fallback: reload page
+    window.location.reload();
+  });
+}
+
+// Function to remove item completely
+function removeItem(itemKey) {
+  if (isUpdating) return;
+  
+  if (confirm('Are you sure you want to remove this item?')) {
+    updateQuantity(itemKey, 0);
+  }
+}
+
+// Function to update entire cart (for update cart button)
+function updateEntireCart() {
+  if (isUpdating) return;
+  
+  isUpdating = true;
+  
+  // Show loading state
+  const updateButton = document.querySelector('.custom-update-cart');
+  const originalText = updateButton.textContent;
+  updateButton.textContent = 'Updating...';
+  updateButton.disabled = true;
+  
+  // Collect all quantities
+  const updates = {};
+  document.querySelectorAll('.custom-quantity-input').forEach(input => {
+    const key = input.dataset.key;
+    if (key && !updates[key]) { // Avoid duplicates from mobile/desktop
+      updates[key] = parseInt(input.value) || 0;
+    }
+  });
+  
+  fetch('/cart/update.js', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ updates: updates })
+  })
+  .then(response => response.json())
+  .then(data => {
+    updateCartDisplay(data);
+    updateButton.textContent = originalText;
+    updateButton.disabled = false;
+    isUpdating = false;
+  })
+  .catch(error => {
+    console.error('Error updating cart:', error);
+    updateButton.textContent = originalText;
+    updateButton.disabled = false;
+    isUpdating = false;
+    window.location.reload();
+  });
+}
+
+// Function to update cart display with new data
+function updateCartDisplay(cartData) {
+  // Update cart totals first
+  const subtotalElement = document.getElementById('cart-subtotal');
+  const totalElement = document.getElementById('cart-total');
+  
+  if (subtotalElement) {
+    subtotalElement.textContent = formatMoney(cartData.total_price);
+  }
+  if (totalElement) {
+    totalElement.textContent = formatMoney(cartData.total_price);
+  }
+  
+  // Update individual line items
+  cartData.items.forEach(item => {
+    const itemElements = document.querySelectorAll(`[data-line-item-key="${item.key}"]`);
+    
+    if (itemElements.length > 0) {
+      // Update quantity inputs
+      const quantityInputs = document.querySelectorAll(`[data-key="${item.key}"].custom-quantity-input`);
+      quantityInputs.forEach(input => {
+        input.value = item.quantity;
+      });
+      
+      // Update subtotals
+      const subtotalElements = document.querySelectorAll(`[data-key="${item.key}"].custom-subtotal`);
+      subtotalElements.forEach(element => {
+        element.textContent = formatMoney(item.final_line_price);
+      });
+    }
+  });
+  
+  // Remove items with zero quantity
+  const currentItems = document.querySelectorAll('.custom-cart-item');
+  currentItems.forEach(itemElement => {
+    const key = itemElement.dataset.lineItemKey;
+    const foundInCart = cartData.items.find(item => item.key === key);
+    
+    if (!foundInCart || foundInCart.quantity === 0) {
+      itemElement.remove();
+    }
+  });
+  
+  // Check if cart is empty and reload if needed
+  if (cartData.items.length === 0) {
+    window.location.reload();
+  }
+}
+
+// Helper function to format money
+function formatMoney(cents) {
+  return new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: window.Shopify?.currency?.active || 'USD'
+  }).format(cents / 100);
+}
+
+// Handle coupon code
+function applyCoupon() {
+  const couponInput = document.querySelector('.custom-coupon-input');
+  const couponCode = couponInput.value.trim();
+  
+  if (couponCode) {
+    // Apply discount code
+    fetch('/discount/' + encodeURIComponent(couponCode), {
+      method: 'POST'
+    })
+    .then(response => {
+      if (response.ok) {
+        window.location.reload();
+      } else {
+        alert('Invalid coupon code');
+      }
+    })
+    .catch(error => {
+      console.error('Error applying coupon:', error);
+      alert('Error applying coupon code');
+    });
+  } else {
+    alert('Please enter a coupon code');
+  }
+}
+
+// Initialize cart functionality when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  // Any additional initialization code can go here
+  console.log('Cart initialized');
+});
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.main-cart-items.name",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

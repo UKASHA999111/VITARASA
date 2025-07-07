@@ -1,0 +1,1330 @@
+<!-- Product Information Tabs Section -->
+<div class="product-tabs-section">
+  <div class="container">
+    <!-- Tab Navigation -->
+    <div class="tabs-navigation">
+      <button class="tab-button active" data-tab="descriptions" style="color: {{ section.settings.active_tab_color }}; border-bottom-color: {{ section.settings.active_tab_border_color }};">
+        {{ section.settings.descriptions_tab_title }}
+      </button>
+      <button class="tab-button" data-tab="additional-info" style="color: {{ section.settings.inactive_tab_color }};">
+        {{ section.settings.additional_info_tab_title }}
+      </button>
+      <button class="tab-button" data-tab="customer-feedback" style="color: {{ section.settings.inactive_tab_color }};">
+        {{ section.settings.customer_feedback_tab_title }}
+      </button>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tabs-content">
+      
+      <!-- Descriptions Tab -->
+      <div class="tab-content active" id="descriptions">
+        <div class="row">
+          <!-- Left Side - Product Description -->
+          <div class="col-md-6 product-description-col">
+            <div class="product-description-content">
+              {% if section.settings.descriptions_product_description %}
+                <div class="product-description" style="color: {{ section.settings.descriptions_description_color }}; font-size: {{ section.settings.descriptions_description_font_size }}px;">
+                  {{ section.settings.descriptions_product_description }}
+                </div>
+              {% endif %}
+
+              {% if section.settings.descriptions_show_features_list %}
+                <ul class="product-features">
+                  {% for block in section.blocks %}
+                    {% if block.type == 'descriptions_feature_item' %}
+                      <li style="color: {{ section.settings.descriptions_features_color }}; font-size: {{ section.settings.descriptions_features_font_size }}px;">
+                        <span class="feature-icon" style="color: {{ block.settings.icon_color }};">
+                          {% if block.settings.icon_type == 'checkmark' %}
+                            ✓
+                          {% elsif block.settings.icon_type == 'star' %}
+                            ★
+                          {% elsif block.settings.icon_type == 'dot' %}
+                            •
+                          {% endif %}
+                        </span>
+                        {{ block.settings.feature_text }}
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </div>
+          </div>
+
+          <!-- Right Side - Feature Blocks -->
+          <div class="col-md-6 features-blocks-col">
+            <div class="features-blocks-container">
+              {% assign descriptions_info_blocks = section.blocks | where: 'type', 'descriptions_info_block' %}
+              {% for block in descriptions_info_blocks limit: 4 %}
+                <div class="feature-block" style="background-color: {{ block.settings.background_color }}; border-radius: {{ section.settings.descriptions_block_border_radius }}px;">
+                  <div class="feature-icon-container" style="background-color: {{ block.settings.icon_background_color }}; border-radius: {{ section.settings.descriptions_icon_border_radius }}px;">
+                    {% if block.settings.icon_image %}
+                      <img src="{{ block.settings.icon_image | img_url: '48x48' }}" 
+                           alt="{{ block.settings.title }}" 
+                           class="feature-icon-image"
+                           style="width: {{ section.settings.descriptions_icon_size }}px; height: {{ section.settings.descriptions_icon_size }}px;">
+                    {% elsif block.settings.icon_svg %}
+                      <div class="feature-icon-svg" style="width: {{ section.settings.descriptions_icon_size }}px; height: {{ section.settings.descriptions_icon_size }}px; fill: {{ block.settings.icon_color }};">
+                        {{ block.settings.icon_svg }}
+                      </div>
+                    {% else %}
+                      <div class="feature-icon-text" style="color: {{ block.settings.icon_color }}; font-size: {{ section.settings.descriptions_icon_size }}px;">
+                        {{ block.settings.icon_text | default: '🚚' }}
+                      </div>
+                    {% endif %}
+                  </div>
+                  
+                  <div class="feature-content">
+                    <h3 class="feature-title" style="color: {{ block.settings.title_color }}; font-size: {{ section.settings.descriptions_block_title_font_size }}px;">
+                      {{ block.settings.title }}
+                    </h3>
+                    <p class="feature-description" style="color: {{ block.settings.description_color }}; font-size: {{ section.settings.descriptions_block_description_font_size }}px;">
+                      {{ block.settings.description }}
+                    </p>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Information Tab -->
+      <div class="tab-content" id="additional-info">
+        <div class="row">
+          <!-- Left Side - Product Specifications -->
+          <div class="col-md-6 product-specs-col">
+            <div class="product-specs-content">
+              <div class="specs-table">
+                {% for block in section.blocks %}
+                  {% if block.type == 'spec_item' %}
+                    <div class="spec-row">
+                      <div class="spec-label" style="color: {{ section.settings.additional_label_color }}; font-size: {{ section.settings.additional_label_font_size }}px;">
+                        {{ block.settings.label }}:
+                      </div>
+                      <div class="spec-value" style="color: {{ section.settings.additional_value_color }}; font-size: {{ section.settings.additional_value_font_size }}px;">
+                        {% if block.settings.value_type == 'text' %}
+                          {{ block.settings.text_value }}
+                        {% elsif block.settings.value_type == 'product_weight' %}
+                          {{ product.weight | weight_with_unit }}
+                        {% elsif block.settings.value_type == 'product_type' %}
+                          {{ product.type }}
+                        {% elsif block.settings.value_type == 'product_vendor' %}
+                          {{ product.vendor }}
+                        {% elsif block.settings.value_type == 'product_tags' %}
+                          {% for tag in product.tags limit: block.settings.tags_limit %}
+                            <span class="tag-item" style="background-color: {{ block.settings.tag_background_color }}; color: {{ block.settings.tag_text_color }};">
+                              {{ tag }}
+                            </span>
+                            {% unless forloop.last %}, {% endunless %}
+                          {% endfor %}
+                        {% elsif block.settings.value_type == 'availability' %}
+                          {% if product.available %}
+                            <span class="availability-status available" style="color: {{ block.settings.available_color }};">
+                              {{ block.settings.available_text }}
+                            </span>
+                          {% else %}
+                            <span class="availability-status unavailable" style="color: {{ block.settings.unavailable_color }};">
+                              {{ block.settings.unavailable_text }}
+                            </span>
+                          {% endif %}
+                        {% elsif block.settings.value_type == 'custom_metafield' and block.settings.metafield_namespace and block.settings.metafield_key %}
+                          {{ product.metafields[block.settings.metafield_namespace][block.settings.metafield_key] }}
+                        {% endif %}
+                      </div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Side - Feature Blocks (Same as Descriptions) -->
+          <div class="col-md-6 features-blocks-col">
+            <div class="features-blocks-container">
+              {% assign additional_info_blocks = section.blocks | where: 'type', 'additional_info_block' %}
+              {% for block in additional_info_blocks limit: 4 %}
+                <div class="feature-block" style="background-color: {{ block.settings.background_color }}; border-radius: {{ section.settings.additional_block_border_radius }}px;">
+                  <div class="feature-icon-container" style="background-color: {{ block.settings.icon_background_color }}; border-radius: {{ section.settings.additional_icon_border_radius }}px;">
+                    {% if block.settings.icon_image %}
+                      <img src="{{ block.settings.icon_image | img_url: '48x48' }}" 
+                           alt="{{ block.settings.title }}" 
+                           class="feature-icon-image"
+                           style="width: {{ section.settings.additional_icon_size }}px; height: {{ section.settings.additional_icon_size }}px;">
+                    {% elsif block.settings.icon_svg %}
+                      <div class="feature-icon-svg" style="width: {{ section.settings.additional_icon_size }}px; height: {{ section.settings.additional_icon_size }}px; fill: {{ block.settings.icon_color }};">
+                        {{ block.settings.icon_svg }}
+                      </div>
+                    {% else %}
+                      <div class="feature-icon-text" style="color: {{ block.settings.icon_color }}; font-size: {{ section.settings.additional_icon_size }}px;">
+                        {{ block.settings.icon_text | default: '🚚' }}
+                      </div>
+                    {% endif %}
+                  </div>
+                  
+                  <div class="feature-content">
+                    <h3 class="feature-title" style="color: {{ block.settings.title_color }}; font-size: {{ section.settings.additional_block_title_font_size }}px;">
+                      {{ block.settings.title }}
+                    </h3>
+                    <p class="feature-description" style="color: {{ block.settings.description_color }}; font-size: {{ section.settings.additional_block_description_font_size }}px;">
+                      {{ block.settings.description }}
+                    </p>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customer Feedback Tab -->
+      <div class="tab-content" id="customer-feedback">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="customer-feedback-content">
+              {% if section.settings.feedback_title %}
+                <h3 style="color: {{ section.settings.feedback_title_color }}; font-size: {{ section.settings.feedback_title_font_size }}px; text-align: center; margin-bottom: 30px;">
+                  {{ section.settings.feedback_title }}
+                </h3>
+              {% endif %}
+              
+              <div class="feedback-blocks">
+                {% for block in section.blocks %}
+                  {% if block.type == 'customer_review' %}
+                    <div class="review-block" style="background-color: {{ block.settings.background_color }}; border-radius: {{ section.settings.feedback_border_radius }}px; margin-bottom: 20px; padding: 25px;">
+                      <div class="review-header">
+                        <div class="review-rating">
+                          {% for i in (1..5) %}
+                            {% if i <= block.settings.rating %}
+                              <span class="star filled" style="color: {{ section.settings.star_color }};">★</span>
+                            {% else %}
+                              <span class="star empty" style="color: {{ section.settings.empty_star_color }};">★</span>
+                            {% endif %}
+                          {% endfor %}
+                        </div>
+                        <div class="review-meta">
+                          <strong style="color: {{ section.settings.reviewer_name_color }};">{{ block.settings.reviewer_name }}</strong>
+                          <span style="color: {{ section.settings.review_date_color }}; margin-left: 10px;">{{ block.settings.review_date }}</span>
+                        </div>
+                      </div>
+                      <div class="review-content" style="color: {{ section.settings.review_text_color }}; font-size: {{ section.settings.review_text_font_size }}px; margin-top: 15px;">
+                        {{ block.settings.review_text }}
+                      </div>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+.product-tabs-section {
+  padding: {{ section.settings.section_padding_top }}px 0 {{ section.settings.section_padding_bottom }}px;
+  background-color: {{ section.settings.section_background_color }};
+}
+
+.product-tabs-section .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Tab Navigation */
+.tabs-navigation {
+  display: flex;
+  border-bottom: 2px solid {{ section.settings.tab_border_color }};
+  margin-bottom: 40px;
+  justify-content: center;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  padding: 15px 30px;
+  font-size: {{ section.settings.tab_font_size }}px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+}
+
+.tab-button:hover {
+  color: {{ section.settings.active_tab_color }} !important;
+}
+
+.tab-button.active {
+  color: {{ section.settings.active_tab_color }} !important;
+  border-bottom-color: {{ section.settings.active_tab_border_color }} !important;
+}
+
+/* Tab Content */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+.col-md-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding: 0 15px;
+}
+
+.col-md-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding: 0 15px;
+}
+
+/* Descriptions Tab Styles */
+.product-description-content {
+  padding-right: 30px;
+}
+
+.product-description {
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.product-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.product-features li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.feature-icon {
+  margin-right: 12px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.features-blocks-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.feature-block {
+  padding: 25px 20px;
+  text-align: center;
+  border: 1px solid #f0f0f0;
+  transition: all 0.3s ease;
+}
+
+.feature-block:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.feature-icon-container {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-icon-image,
+.feature-icon-svg,
+.feature-icon-text {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.feature-title {
+  margin: 0 0 10px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.feature-description {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Additional Information Tab Styles */
+.product-specs-content {
+  padding-right: 30px;
+}
+
+.specs-table {
+  width: 100%;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: {{ section.settings.additional_row_padding }}px 0;
+  border-bottom: 1px solid {{ section.settings.additional_border_color }};
+}
+
+.spec-row:last-child {
+  border-bottom: none;
+}
+
+.spec-label {
+  font-weight: 500;
+  flex: 0 0 auto;
+  margin-right: 20px;
+  min-width: 120px;
+}
+
+.spec-value {
+  flex: 1;
+  text-align: right;
+  word-break: break-word;
+}
+
+.tag-item {
+  display: inline-block;
+  padding: 4px 8px;
+  margin: 2px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.availability-status {
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+/* Customer Feedback Tab Styles */
+.customer-feedback-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.review-block {
+  border: 1px solid #f0f0f0;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.review-rating .star {
+  font-size: 18px;
+  margin-right: 2px;
+}
+
+.review-meta {
+  font-size: 14px;
+}
+
+.review-content {
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .product-tabs-section {
+    padding: 10px 0 60px;
+
+}
+  
+  .product-description-content,
+  .product-specs-content {
+    padding-right: 0;
+    margin-bottom: 30px;
+  }
+  
+  .features-blocks-container {
+    grid-template-columns: 1fr 1fr;;
+  }
+  
+  .spec-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .spec-label {
+    margin-bottom: 5px;
+    margin-right: 0;
+  }
+  
+  .spec-value {
+    text-align: left;
+  }
+  
+  .tabs-navigation     {
+  flex-direction: row;
+        gap: 20px;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+    }
+  
+  .tab-button {
+    text-align: center;
+    padding: 12px 0;
+        font-size: 14px;
+  }
+  
+  .review-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .review-meta {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .features-blocks-container {
+    gap: 15px;
+  }
+  
+  .feature-block {
+    padding: 20px 15px;
+  }
+  
+  .feature-icon-container {
+    width: 50px;
+    height: 50px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabContents = document.querySelectorAll('.tab-content');
+  
+  tabButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const targetTab = this.getAttribute('data-tab');
+      
+      // Remove active class from all buttons and contents
+      tabButtons.forEach(btn => {
+        btn.classList.remove('active');
+        btn.style.color = '{{ section.settings.inactive_tab_color }}';
+        btn.style.borderBottomColor = 'transparent';
+      });
+      
+      tabContents.forEach(content => {
+        content.classList.remove('active');
+      });
+      
+      // Add active class to clicked button and corresponding content
+      this.classList.add('active');
+      this.style.color = '{{ section.settings.active_tab_color }}';
+      this.style.borderBottomColor = '{{ section.settings.active_tab_border_color }}';
+      
+      document.getElementById(targetTab).classList.add('active');
+    });
+  });
+});
+</script>
+{% schema %}
+{
+  "name": "Product Information Tabs",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "section_background_color",
+      "label": "Section Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "section_padding_top",
+      "label": "Section Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "section_padding_bottom",
+      "label": "Section Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "header",
+      "content": "Tab Navigation"
+    },
+    {
+      "type": "text",
+      "id": "descriptions_tab_title",
+      "label": "Descriptions Tab Title",
+      "default": "Descriptions"
+    },
+    {
+      "type": "text",
+      "id": "additional_info_tab_title",
+      "label": "Additional Information Tab Title",
+      "default": "Additional information"
+    },
+    {
+      "type": "text",
+      "id": "customer_feedback_tab_title",
+      "label": "Customer Feedback Tab Title",
+      "default": "Customer Feedback"
+    },
+    {
+      "type": "range",
+      "id": "tab_font_size",
+      "label": "Tab Font Size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "active_tab_color",
+      "label": "Active Tab Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "inactive_tab_color",
+      "label": "Inactive Tab Color",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "active_tab_border_color",
+      "label": "Active Tab Border Color",
+      "default": "#22c55e"
+    },
+    {
+      "type": "color",
+      "id": "tab_border_color",
+      "label": "Tab Border Color",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "header",
+      "content": "Descriptions Tab Settings"
+    },
+    {
+      "type": "richtext",
+      "id": "descriptions_product_description",
+      "label": "Product Description",
+      "default": "<p>Milk thistle (Silybum marianum) is a flowering herb known for its potential health benefits. Silymarin, an extract taken from the seeds of the milk thistle plant, has antioxidant properties which may help protect the liver from certain toxins to promote a healthy detoxification process.</p>"
+    },
+    {
+      "type": "color",
+      "id": "descriptions_description_color",
+      "label": "Description Text Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "descriptions_description_font_size",
+      "label": "Description Font Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "checkbox",
+      "id": "descriptions_show_features_list",
+      "label": "Show Features List",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "descriptions_features_color",
+      "label": "Features Text Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "descriptions_features_font_size",
+      "label": "Features Font Size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "descriptions_block_title_font_size",
+      "label": "Block Title Font Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "descriptions_block_description_font_size",
+      "label": "Block Description Font Size",
+      "min": 11,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "descriptions_block_border_radius",
+      "label": "Block Border Radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "descriptions_icon_size",
+      "label": "Icon Size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "descriptions_icon_border_radius",
+      "label": "Icon Container Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Additional Information Tab Settings"
+    },
+    {
+      "type": "color",
+      "id": "additional_label_color",
+      "label": "Label Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "additional_label_font_size",
+      "label": "Label Font Size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "additional_value_color",
+      "label": "Value Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "additional_value_font_size",
+      "label": "Value Font Size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "color",
+      "id": "additional_border_color",
+      "label": "Row Border Color",
+      "default": "#f0f0f0"
+    },
+    {
+      "type": "range",
+      "id": "additional_row_padding",
+      "label": "Row Padding",
+      "min": 8,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "additional_block_title_font_size",
+      "label": "Block Title Font Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "additional_block_description_font_size",
+      "label": "Block Description Font Size",
+      "min": 11,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "additional_block_border_radius",
+      "label": "Block Border Radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "additional_icon_size",
+      "label": "Icon Size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "additional_icon_border_radius",
+      "label": "Icon Container Border Radius",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Customer Feedback Tab Settings"
+    },
+    {
+      "type": "text",
+      "id": "feedback_title",
+      "label": "Feedback Section Title",
+      "default": "What Our Customers Say"
+    },
+    {
+      "type": "color",
+      "id": "feedback_title_color",
+      "label": "Feedback Title Color",
+      "default": "#333333"
+    },
+    {
+      "type": "range",
+      "id": "feedback_title_font_size",
+      "label": "Feedback Title Font Size",
+      "min": 16,
+      "max": 36,
+      "step": 1,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "feedback_border_radius",
+      "label": "Review Block Border Radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "color",
+      "id": "star_color",
+      "label": "Star Rating Color",
+      "default": "#ffd700"
+    },
+    {
+      "type": "color",
+      "id": "empty_star_color",
+      "label": "Empty Star Color",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "color",
+      "id": "reviewer_name_color",
+      "label": "Reviewer Name Color",
+      "default": "#333333"
+    },
+    {
+      "type": "color",
+      "id": "review_date_color",
+      "label": "Review Date Color",
+      "default": "#999999"
+    },
+    {
+      "type": "color",
+      "id": "review_text_color",
+      "label": "Review Text Color",
+      "default": "#666666"
+    },
+    {
+      "type": "range",
+      "id": "review_text_font_size",
+      "label": "Review Text Font Size",
+      "min": 12,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    }
+  ],
+  "blocks": [
+    {
+      "type": "descriptions_feature_item",
+      "name": "Feature(Descriptions)",
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature_text",
+          "label": "Feature Text",
+          "default": "High quality ingredients"
+        },
+        {
+          "type": "select",
+          "id": "icon_type",
+          "label": "Icon Type",
+          "options": [
+            { "value": "checkmark", "label": "Checkmark" },
+            { "value": "star", "label": "Star" },
+            { "value": "dot", "label": "Dot" }
+          ],
+          "default": "checkmark"
+        },
+        {
+          "type": "color",
+          "id": "icon_color",
+          "label": "Icon Color",
+          "default": "#22c55e"
+        }
+      ]
+    },
+    {
+      "type": "descriptions_info_block",
+      "name": "Info Block (Descriptions)",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Free Shipping"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Free shipping on all orders over $50"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background Color",
+          "default": "#f8f9fa"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title Color",
+          "default": "#333333"
+        },
+        {
+          "type": "color",
+          "id": "description_color",
+          "label": "Description Color",
+          "default": "#666666"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image"
+        },
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Icon SVG Code"
+        },
+        {
+          "type": "text",
+          "id": "icon_text",
+          "label": "Icon Text/Emoji",
+          "default": "🚚"
+        },
+        {
+          "type": "color",
+          "id": "icon_color",
+          "label": "Icon Color",
+          "default": "#22c55e"
+        },
+        {
+          "type": "color",
+          "id": "icon_background_color",
+          "label": "Icon Background Color",
+          "default": "#ffffff"
+        }
+      ]
+    },
+    {
+      "type": "spec_item",
+      "name": "Specification Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Weight"
+        },
+        {
+          "type": "select",
+          "id": "value_type",
+          "label": "Value Type",
+          "options": [
+            { "value": "text", "label": "Custom Text" },
+            { "value": "product_weight", "label": "Product Weight" },
+            { "value": "product_type", "label": "Product Type" },
+            { "value": "product_vendor", "label": "Product Vendor" },
+            { "value": "product_tags", "label": "Product Tags" },
+            { "value": "availability", "label": "Availability Status" },
+            { "value": "custom_metafield", "label": "Custom Metafield" }
+          ],
+          "default": "text"
+        },
+        {
+          "type": "text",
+          "id": "text_value",
+          "label": "Custom Text Value",
+          "default": "100g"
+        },
+        {
+          "type": "range",
+          "id": "tags_limit",
+          "label": "Tags Limit",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "color",
+          "id": "tag_background_color",
+          "label": "Tag Background Color",
+          "default": "#f0f0f0"
+        },
+        {
+          "type": "color",
+          "id": "tag_text_color",
+          "label": "Tag Text Color",
+          "default": "#333333"
+        },
+        {
+          "type": "text",
+          "id": "available_text",
+          "label": "Available Text",
+          "default": "In Stock"
+        },
+        {
+          "type": "text",
+          "id": "unavailable_text",
+          "label": "Unavailable Text",
+          "default": "Out of Stock"
+        },
+        {
+          "type": "color",
+          "id": "available_color",
+          "label": "Available Color",
+          "default": "#22c55e"
+        },
+        {
+          "type": "color",
+          "id": "unavailable_color",
+          "label": "Unavailable Color",
+          "default": "#ef4444"
+        },
+        {
+          "type": "text",
+          "id": "metafield_namespace",
+          "label": "Metafield Namespace"
+        },
+        {
+          "type": "text",
+          "id": "metafield_key",
+          "label": "Metafield Key"
+        }
+      ]
+    },
+    {
+      "type": "additional_info_block",
+      "name": "Info Block (Additional)",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Quality Assured"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "All products are quality tested"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background Color",
+          "default": "#f8f9fa"
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Title Color",
+          "default": "#333333"
+        },
+        {
+          "type": "color",
+          "id": "description_color",
+          "label": "Description Color",
+          "default": "#666666"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon Image"
+        },
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Icon SVG Code"
+        },
+        {
+          "type": "text",
+          "id": "icon_text",
+          "label": "Icon Text/Emoji",
+          "default": "✓"
+        },
+        {
+          "type": "color",
+          "id": "icon_color",
+          "label": "Icon Color",
+          "default": "#22c55e"
+        },
+        {
+          "type": "color",
+          "id": "icon_background_color",
+          "label": "Icon Background Color",
+          "default": "#ffffff"
+        }
+      ]
+    },
+    {
+      "type": "customer_review",
+      "name": "Customer Review",
+      "settings": [
+        {
+          "type": "text",
+          "id": "reviewer_name",
+          "label": "Reviewer Name",
+          "default": "John Smith"
+        },
+        {
+          "type": "text",
+          "id": "review_date",
+          "label": "Review Date",
+          "default": "January 15, 2024"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "review_text",
+          "label": "Review Text",
+          "default": "Excellent product! I've been using it for a few weeks now and I can already see the difference. Highly recommended for anyone looking for a quality supplement."
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Review Background Color",
+          "default": "#ffffff"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Information Tabs",
+      "blocks": [
+        {
+          "type": "descriptions_feature_item",
+          "settings": {
+            "feature_text": "Premium quality ingredients",
+            "icon_type": "checkmark"
+          }
+        },
+        {
+          "type": "descriptions_feature_item",
+          "settings": {
+            "feature_text": "Third-party tested for purity",
+            "icon_type": "checkmark"
+          }
+        },
+        {
+          "type": "descriptions_feature_item",
+          "settings": {
+            "feature_text": "Manufactured in FDA approved facility",
+            "icon_type": "checkmark"
+          }
+        },
+        {
+          "type": "descriptions_info_block",
+          "settings": {
+            "title": "Free Shipping",
+            "description": "Free shipping on all orders over $50",
+            "icon_text": "🚚"
+          }
+        },
+        {
+          "type": "descriptions_info_block",
+          "settings": {
+            "title": "Money Back Guarantee",
+            "description": "30-day money back guarantee",
+            "icon_text": "💰"
+          }
+        },
+        {
+          "type": "descriptions_info_block",
+          "settings": {
+            "title": "24/7 Support",
+            "description": "Customer support available 24/7",
+            "icon_text": "💬"
+          }
+        },
+        {
+          "type": "descriptions_info_block",
+          "settings": {
+            "title": "Secure Payment",
+            "description": "100% secure payment processing",
+            "icon_text": "🔒"
+          }
+        },
+        {
+          "type": "spec_item",
+          "settings": {
+            "label": "Weight",
+            "value_type": "product_weight"
+          }
+        },
+        {
+          "type": "spec_item",
+          "settings": {
+            "label": "Type",
+            "value_type": "product_type"
+          }
+        },
+        {
+          "type": "spec_item",
+          "settings": {
+            "label": "Brand",
+            "value_type": "product_vendor"
+          }
+        },
+        {
+          "type": "spec_item",
+          "settings": {
+            "label": "Availability",
+            "value_type": "availability"
+          }
+        },
+        {
+          "type": "additional_info_block",
+          "settings": {
+            "title": "Quality Assured",
+            "description": "All products are quality tested",
+            "icon_text": "✓"
+          }
+        },
+        {
+          "type": "additional_info_block",
+          "settings": {
+            "title": "Fast Delivery",
+            "description": "Quick and reliable shipping",
+            "icon_text": "⚡"
+          }
+        },
+        {
+          "type": "customer_review",
+          "settings": {
+            "reviewer_name": "Sarah Johnson",
+            "review_date": "January 15, 2024",
+            "rating": 5,
+            "review_text": "Excellent product! I've been using it for a few weeks now and I can already see the difference. Highly recommended for anyone looking for a quality supplement."
+          }
+        },
+        {
+          "type": "customer_review",
+          "settings": {
+            "reviewer_name": "Mike Davis",
+            "review_date": "January 10, 2024",
+            "rating": 4,
+            "review_text": "Great quality and fast shipping. The product works as described and I'm satisfied with my purchase. Will definitely order again."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

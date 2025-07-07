@@ -1,0 +1,391 @@
+{{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign social_icons = true
+  if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
+    assign social_icons = false
+  endif
+  if section.settings.enable_country_selector or section.settings.enable_language_selector
+    assign language_country_selector = true
+  endif
+  if section.blocks.size > 0
+    assign announcement_bar = true
+  endif
+-%}
+
+{% if social_icons %}
+  {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
+{% endif %}
+
+<style>
+  .utility-bar {
+    background-color: {{ section.settings.background_color | default: '#f8f8f8' }};
+    {% if section.settings.show_border %}border-bottom: 1px solid {{ section.settings.border_color | default: '#e8e8e8' }};{% endif %}
+    padding: {{ section.settings.padding_vertical | default: 8 }}px 0;
+    font-size: {{ section.settings.font_size | default: 13 }}px;
+    color: {{ section.settings.text_color | default: '#666666' }};
+    font-weight: {{ section.settings.font_weight | default: 'normal' }};
+  }
+  
+  .utility-bar__grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .store-location {
+    display: flex;
+    align-items: center;
+    font-size: {{ section.settings.font_size | default: 13 }}px;
+    color: {{ section.settings.text_color | default: '#666666' }};
+    font-weight: {{ section.settings.font_weight | default: 'normal' }};
+  }
+  
+  .store-location .location-icon {
+    margin-right: 6px;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .store-location .location-icon img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+  }
+  
+  .store-location .location-icon svg {
+    width: 14px;
+    height: 14px;
+    fill: {{ section.settings.text_color | default: '#666666' }};
+  }
+  
+  .utility-bar__right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .localization-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .localization-form select {
+    background: transparent;
+    border: none;
+    font-size: {{ section.settings.font_size | default: 13 }}px;
+    color: {{ section.settings.dropdown_text_color | default: '#666666' }};
+    font-weight: {{ section.settings.font_weight | default: 'normal' }};
+    cursor: pointer;
+    padding: 2px 8px;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='{{ section.settings.dropdown_text_color | default: '#666666' | url_encode }}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 4px center;
+    background-size: 12px;
+    padding-right: 20px;
+  }
+  
+  .localization-form select:hover {
+    color: {{ section.settings.dropdown_hover_color | default: '#333333' }};
+  }
+  
+  .localization-form select:focus {
+    outline: none;
+    color: {{ section.settings.dropdown_hover_color | default: '#333333' }};
+  }
+  
+  .announcement-bar {
+    display: none; /* Hide the announcement content to focus on location/language */
+  }
+  
+  @media (max-width: 768px) {
+    .utility-bar__grid {
+      padding: 0 15px;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .store-location {
+      font-size: {{ section.settings.font_size | minus: 1 | default: 10 }}px;
+      text-align: center;
+        align-items: self-start;
+    }
+    
+    .utility-bar__right {
+      gap: 15px;
+    }
+    
+    .localization-form select {
+      font-size: {{ section.settings.font_size | minus: 1 | default: 12 }}px;
+    }
+  }
+</style>
+
+<div class="utility-bar color-{{ section.settings.color_scheme }} gradient">
+  <div class="utility-bar__grid">
+    <!-- Store Location -->
+    <div class="store-location">
+      {% if section.settings.location_icon_type == 'emoji' %}
+        <span class="location-icon">📍</span>
+      {% elsif section.settings.location_icon_type == 'svg' %}
+        <span class="location-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+        </span>
+      {% elsif section.settings.location_icon_type == 'image' and section.settings.location_icon_image != blank %}
+        <span class="location-icon">
+          <img src="{{ section.settings.location_icon_image | image_url: width: 32 }}" alt="Location Icon" width="16" height="16" loading="lazy">
+        </span>
+      {% elsif section.settings.location_icon_type == 'image' and section.settings.location_icon_image == blank %}
+        <span class="location-icon">📍</span>
+      {% elsif section.settings.location_icon_type == 'none' %}
+        <!-- No icon -->
+      {% else %}
+        <span class="location-icon">📍</span>
+      {% endif %}
+      {{ section.settings.store_location | default: 'Store Location Lincoln- 344 Illinois, Chicago, USA' }}
+    </div>
+    
+    <!-- Language and Currency Selectors -->
+    <div class="utility-bar__right">
+      <div class="localization-wrapper">
+        {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+          <localization-form>
+            {%- form 'localization', id: 'AnnouncementLanguageForm', class: 'localization-form' -%}
+              <div>
+                <h2 class="visually-hidden" id="AnnouncementLanguageLabel">{{ 'localization.language_label' | t }}</h2>
+                <select name="language_code" onchange="this.form.submit()" aria-labelledby="AnnouncementLanguageLabel">
+                  {%- for language in localization.available_languages -%}
+                    <option value="{{ language.iso_code }}" {% if language.iso_code == localization.language.iso_code %}selected{% endif %}>
+                      {{ language.endonym_name | capitalize }}
+                    </option>
+                  {%- endfor -%}
+                </select>
+              </div>
+            {%- endform -%}
+          </localization-form>
+        {%- else -%}
+          <div class="localization-form">
+            <select disabled>
+              <option>Eng</option>
+            </select>
+          </div>
+        {%- endif -%}
+        
+        {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+          <localization-form>
+            {%- form 'localization', id: 'AnnouncementCountryForm', class: 'localization-form' -%}
+              <div>
+                <h2 class="visually-hidden" id="AnnouncementCountryLabel">{{ 'localization.country_label' | t }}</h2>
+                <select name="country_code" onchange="this.form.submit()" aria-labelledby="AnnouncementCountryLabel">
+                  {%- for country in localization.available_countries -%}
+                    <option value="{{ country.iso_code }}" {% if country.iso_code == localization.country.iso_code %}selected{% endif %}>
+                      {{ country.currency.symbol }} {{ country.currency.iso_code }}
+                    </option>
+                  {%- endfor -%}
+                </select>
+              </div>
+            {%- endform -%}
+          </localization-form>
+        {%- else -%}
+          <div class="localization-form">
+            <select disabled>
+              <option>USD</option>
+            </select>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.announcement-bar.name",
+  "max_blocks": 12,
+  "class": "announcement-bar-section",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Store Location Settings"
+    },
+    {
+      "type": "text",
+      "id": "store_location",
+      "label": "Store Location Text",
+      "default": "Store Location Lincoln- 344 Illinois, Chicago, USA",
+      "info": "Enter your store address or location information"
+    },
+    {
+      "type": "select",
+      "id": "location_icon_type",
+      "label": "Location Icon Type",
+      "default": "emoji",
+      "options": [
+        {
+          "value": "emoji",
+          "label": "Emoji (📍)"
+        },
+        {
+          "value": "svg",
+          "label": "SVG Icon"
+        },
+        {
+          "value": "image",
+          "label": "Custom Image"
+        },
+        {
+          "value": "none",
+          "label": "No Icon"
+        }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "location_icon_image",
+      "label": "Custom Location Icon Image",
+      "info": "Upload a custom icon image (recommended size: 16x16px)"
+    },
+    {
+      "type": "header",
+      "content": "Styling Settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#f8f8f8"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "Border Color",
+      "default": "#e8e8e8"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size",
+      "default": 13
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Vertical Padding",
+      "default": 8
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font Weight",
+      "default": "normal",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "normal",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "bold",
+          "label": "Bold"
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border",
+      "default": true,
+      "label": "Show Bottom Border"
+    },
+    {
+      "type": "header",
+      "content": "Localization Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_country_selector",
+      "default": true,
+      "label": "t:sections.announcement-bar.settings.enable_country_selector.label",
+      "info": "t:sections.announcement-bar.settings.enable_country_selector.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_language_selector",
+      "default": true,
+      "label": "t:sections.announcement-bar.settings.enable_language_selector.label",
+      "info": "t:sections.announcement-bar.settings.enable_language_selector.info"
+    },
+    {
+      "type": "color",
+      "id": "dropdown_text_color",
+      "label": "Dropdown Text Color",
+      "default": "#666666"
+    },
+    {
+      "type": "color",
+      "id": "dropdown_hover_color",
+      "label": "Dropdown Hover Color",
+      "default": "#333333"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "t:sections.announcement-bar.blocks.announcement.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Welcome to our store",
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.link.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.announcement-bar.presets.name"
+    }
+  ]
+}
+{% endschema %}

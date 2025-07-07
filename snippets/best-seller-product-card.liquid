@@ -1,0 +1,707 @@
+<!-- snippets/best-seller-product-card.liquid -->
+<div class="product-card" style="
+  background: {{ section.settings.card_background }};
+  border: 1px solid {{ section.settings.card_border_color }};
+  border-radius: {{ section.settings.card_border_radius }}px;
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+"
+onclick="window.location.href='{{ product.url }}'"
+>
+  
+  <!-- Product Image -->
+  <div class="product-image" style="
+    width: 100%;
+    aspect-ratio: 1;
+    margin-bottom: 15px;
+    overflow: hidden;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  ">
+    {% if product.featured_image %}
+      <img 
+        src="{{ product.featured_image | image_url: width: 300 }}"
+        alt="{{ product.featured_image.alt | escape }}"
+        loading="lazy"
+        style="
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          transition: transform 0.3s ease;
+        "
+        onmouseover="this.style.transform='scale(1.05)'"
+        onmouseout="this.style.transform='scale(1)'"
+      >
+    {% else %}
+      <div style="
+        width: 100%;
+        height: 100%;
+        background: #f0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #999;
+        font-size: 12px;
+      ">
+        No Image
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Product Info Container -->
+  <div class="product-info" style="
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    flex-grow: 1;
+  ">
+    
+    <!-- Left Side: Title, Price, Rating -->
+    <div class="product-details" style="flex: 1; min-width: 0;">
+      
+      <!-- Brand/Vendor -->
+      {% if product.vendor and product.vendor != blank %}
+        <div class="product-vendor" style="
+          font-size: 12px;
+          color: #666;
+          margin-bottom: 5px;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        ">
+          {{ product.vendor }}
+        </div>
+      {% endif %}
+      
+      <!-- Product Title -->
+      <h3 class="product-title" style="
+        font-size: {{ section.settings.product_title_font_size }}px;
+        font-weight: {{ section.settings.product_title_font_weight }};
+        color: {{ section.settings.product_title_color }};
+        margin: 0 0 8px 0;
+        line-height: 1.3;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      ">
+        {{ product.title }}
+      </h3>
+
+      <!-- Price -->
+      <div class="product-price" style="
+        font-size: {{ section.settings.price_font_size }}px;
+        font-weight: {{ section.settings.price_font_weight }};
+        color: {{ section.settings.price_color }};
+        margin-bottom: 8px;
+      ">
+        {% if product.compare_at_price > product.price %}
+          <span class="price-sale" style="color: #e74c3c;">
+            {{ product.price | money }}
+          </span>
+          <span class="price-compare" style="
+            text-decoration: line-through;
+            color: #999;
+            font-size: 14px;
+            margin-left: 8px;
+          ">
+            {{ product.compare_at_price | money }}
+          </span>
+        {% else %}
+          <span class="price-regular">
+            {{ product.price | money }}
+          </span>
+        {% endif %}
+      </div>
+
+      <!-- Star Rating -->
+      <div class="product-rating" style="
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 5px;
+      ">
+        {% comment %} Generate random rating for demo - replace with actual rating system {% endcomment %}
+        {% assign rating = 4 %}
+        {% assign random_extra = product.id | modulo: 3 %}
+        {% if random_extra == 1 %}
+          {% assign rating = 5 %}
+        {% elsif random_extra == 2 %}
+          {% assign rating = 3 %}
+        {% endif %}
+        
+        <div class="stars" style="display: flex; gap: 2px;">
+          {% for i in (1..5) %}
+            <svg width="14" height="14" viewBox="0 0 24 24" style="
+              fill: {% if i <= rating %}{{ section.settings.star_color }}{% else %}#e0e0e0{% endif %};
+            ">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          {% endfor %}
+        </div>
+        
+        {% comment %} Optional: Show rating number {% endcomment %}
+        <span style="font-size: 12px; color: #666; margin-left: 3px;">
+          ({{ rating }})
+        </span>
+      </div>
+    </div>
+
+    <!-- Right Side: Add to Cart Button -->
+    <div class="cart-action" style="
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    ">
+      <button 
+        class="add-to-cart-btn"
+        type="button"
+        data-product-id="{{ product.id }}"
+        data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+        style="
+          background: none;
+          border: 2px solid {{ section.settings.cart_button_color }};
+          border-radius: 100%;
+          padding: 8px;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+        "
+        onmouseover="
+          this.style.backgroundColor = '{{ section.settings.cart_button_hover_color }}';
+          this.style.borderColor = '{{ section.settings.cart_button_hover_color }}';
+          {% if section.settings.cart_icon_image == blank %}
+            this.querySelector('svg').style.fill = 'white';
+          {% endif %}
+        "
+        onmouseout="
+          this.style.backgroundColor = 'transparent';
+          this.style.borderColor = '{{ section.settings.cart_button_color }}';
+          {% if section.settings.cart_icon_image == blank %}
+            this.querySelector('svg').style.fill = '{{ section.settings.cart_button_color }}';
+          {% endif %}
+        "
+      >
+        {% if section.settings.cart_icon_image %}
+          <img 
+            src="{{ section.settings.cart_icon_image | image_url: width: 48 }}"
+            alt="Add to Cart"
+            class="cart-icon-img"
+            style="
+              width: {{ section.settings.cart_icon_size }}px;
+              height: {{ section.settings.cart_icon_size }}px;
+              object-fit: contain;
+              transition: all 0.3s ease;
+            "
+          >
+        {% else %}
+          <svg width="{{ section.settings.cart_icon_size }}" height="{{ section.settings.cart_icon_size }}" viewBox="0 0 24 24" style="
+            fill: {{ section.settings.cart_button_color }};
+            transition: fill 0.3s ease;
+          ">
+            <path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+          </svg>
+        {% endif %}
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+  }
+  
+  .product-title:hover {
+    color: {{ section.settings.cart_button_hover_color }} !important;
+  }
+  
+  @media (max-width: 768px) {
+    .product-card {
+      padding: 15px !important;
+    }
+    
+    .product-info {
+      gap: 10px !important;
+    }
+    
+    .add-to-cart-btn {
+      width: 35px !important;
+      height: 35px !important;
+      padding: 6px !important;
+    }
+    
+    .add-to-cart-btn svg {
+      width: 16px !important;
+      height: 16px !important;
+    }
+    
+    .add-to-cart-btn .cart-icon-img {
+      width: 16px !important;
+      height: 16px !important;
+    }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .cart-updated {
+    animation: cartBounce 0.6s ease-in-out;
+  }
+  
+  @keyframes cartBounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+  
+  .cart-count-bubble {
+    transition: all 0.3s ease;
+  }
+</style>
+
+<script>
+  // Initialize when DOM is loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    // Ensure Shopify routes are available
+    if (!window.Shopify) {
+      window.Shopify = {};
+    }
+    if (!window.Shopify.routes) {
+      window.Shopify.routes = {
+        root: window.location.origin + '/'
+      };
+    }
+    
+    // Attach event listeners to cart buttons
+    initializeCartButtons();
+  });
+  
+  function initializeCartButtons() {
+    // Remove existing listeners and add new ones
+    const cartButtons = document.querySelectorAll('.add-to-cart-btn');
+    cartButtons.forEach(button => {
+      // Remove existing event listeners
+      button.removeEventListener('click', handleAddToCart);
+      // Add new event listener
+      button.addEventListener('click', handleAddToCart);
+    });
+  }
+  
+  function handleAddToCart(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    const button = event.currentTarget;
+    if (!button) {
+      console.error('Button element not found');
+      return;
+    }
+    
+    addToCart(button);
+  }
+  
+  function addToCart(button) {
+    // Validate button exists
+    if (!button) {
+      console.error('Button element is null');
+      return;
+    }
+    
+    const variantId = button.getAttribute('data-variant-id');
+    const productId = button.getAttribute('data-product-id');
+    
+    // Validate required data
+    if (!variantId) {
+      console.error('Variant ID not found');
+      return;
+    }
+    
+    // Store original button content
+    const originalContent = button.innerHTML;
+    
+    // Show loading state
+    button.innerHTML = `
+      <svg width="18" height="18" viewBox="0 0 24 24" style="fill: currentColor; animation: spin 1s linear infinite;">
+        <path d="M12,4V2A10,10 0 0,0 2,12H4A8,8 0 0,1 12,4Z"/>
+      </svg>
+    `;
+    button.disabled = true;
+    
+    // Create form data for Dawn theme compatibility
+    const formData = new FormData();
+    formData.append('id', variantId);
+    formData.append('quantity', 1);
+    
+    // Add to cart via Shopify Ajax API
+    fetch(window.Shopify.routes.root + 'cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      body: formData
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Success feedback
+      button.innerHTML = `
+        <svg width="18" height="18" viewBox="0 0 24 24" style="fill: #4CAF50;">
+          <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"/>
+        </svg>
+      `;
+      
+      // Dawn theme cart integration
+      updateDawnCartElements(data);
+      
+      // Reset button after 2 seconds
+      setTimeout(() => {
+        if (button && !button.disabled) return; // Prevent multiple resets
+        button.innerHTML = originalContent;
+        button.disabled = false;
+      }, 2000);
+    })
+    .catch(error => {
+      console.error('Error adding to cart:', error);
+      
+      // Error feedback
+      button.innerHTML = `
+        <svg width="18" height="18" viewBox="0 0 24 24" style="fill: #e74c3c;">
+          <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
+        </svg>
+      `;
+      
+      // Reset button after 2 seconds
+      setTimeout(() => {
+        if (button && !button.disabled) return; // Prevent multiple resets
+        button.innerHTML = originalContent;
+        button.disabled = false;
+      }, 2000);
+    });
+  }
+  
+  function updateDawnCartElements(addedItem) {
+    // Dawn theme specific section rendering approach
+    const sectionsToRender = getSectionsToRender();
+    
+    if (sectionsToRender.length > 0) {
+      // Use Dawn's section rendering API
+      const sectionIds = sectionsToRender.map(section => section.id);
+      
+      fetch(`${window.Shopify.routes.root}?sections=${sectionIds.join(',')}`)
+        .then(response => response.json())
+        .then(sections => {
+          // Update each section
+          sectionsToRender.forEach(section => {
+            const sectionElement = document.querySelector(section.selector);
+            if (sectionElement && sections[section.id]) {
+              const parser = new DOMParser();
+              const doc = parser.parseFromString(sections[section.id], 'text/html');
+              const newContent = doc.querySelector(section.selector);
+              if (newContent) {
+                sectionElement.innerHTML = newContent.innerHTML;
+              }
+            }
+          });
+          
+          // Update cart count specifically
+          updateCartCount();
+          
+          // Open cart drawer/notification
+          openDawnCartDrawer();
+        })
+        .catch(error => {
+          console.error('Error with section rendering:', error);
+          // Fallback to basic cart update
+          updateCartCountFallback();
+        });
+    } else {
+      // Fallback method
+      updateCartCountFallback();
+    }
+  }
+  
+  function getSectionsToRender() {
+    // Dawn theme section rendering configuration
+    const sections = [];
+    
+    // Cart drawer section
+    const cartDrawer = document.querySelector('cart-drawer');
+    if (cartDrawer && cartDrawer.dataset.id) {
+      sections.push({
+        id: cartDrawer.dataset.id,
+        selector: 'cart-drawer .drawer__inner'
+      });
+    }
+    
+    // Cart notification section
+    const cartNotification = document.querySelector('cart-notification');
+    if (cartNotification && cartNotification.dataset.id) {
+      sections.push({
+        id: cartNotification.dataset.id,
+        selector: 'cart-notification .cart-notification__wrapper'
+      });
+    }
+    
+    // Header cart icon section
+    const headerCartIcon = document.querySelector('.header__icon--cart');
+    if (headerCartIcon && headerCartIcon.closest('[data-section-id]')) {
+      const sectionId = headerCartIcon.closest('[data-section-id]').dataset.sectionId;
+      sections.push({
+        id: sectionId,
+        selector: '.header__icon--cart'
+      });
+    }
+    
+    return sections;
+  }
+  
+  function updateCartCount() {
+    // Get current cart state
+    fetch(window.Shopify.routes.root + 'cart.js')
+      .then(response => response.json())
+      .then(cart => {
+        // Update cart count in header - Dawn theme specific selectors
+        const cartCountElements = document.querySelectorAll(
+          '.cart-count-bubble span, ' +
+          '[data-cart-count], ' +
+          '.cart-count, ' +
+          '.header__icon--cart .cart-count-bubble span, ' +
+          '.header__icon--cart [data-cart-count], ' +
+          '.cart-notification .cart-count-bubble span'
+        );
+        
+        cartCountElements.forEach(element => {
+          if (element) {
+            element.textContent = cart.item_count;
+            if (element.hasAttribute('data-cart-count')) {
+              element.setAttribute('data-cart-count', cart.item_count);
+            }
+          }
+        });
+        
+        // Update cart count bubble visibility
+        const cartBubbles = document.querySelectorAll(
+          '.cart-count-bubble, ' +
+          '.header__icon--cart .cart-count-bubble'
+        );
+        
+        cartBubbles.forEach(bubble => {
+          if (bubble) {
+            if (cart.item_count > 0) {
+              bubble.style.display = 'flex';
+              bubble.setAttribute('aria-hidden', 'false');
+              bubble.classList.remove('hidden');
+            } else {
+              bubble.style.display = 'none';
+              bubble.setAttribute('aria-hidden', 'true');
+              bubble.classList.add('hidden');
+            }
+          }
+        });
+        
+        // Update cart icon animation
+        const cartIcons = document.querySelectorAll(
+          '.header__icon--cart, ' +
+          '[data-cart-icon], ' +
+          '.cart-icon'
+        );
+        
+        cartIcons.forEach(icon => {
+          if (icon) {
+            icon.classList.add('cart-updated');
+            setTimeout(() => icon.classList.remove('cart-updated'), 1000);
+          }
+        });
+        
+        // Publish cart update event for Dawn theme
+        document.dispatchEvent(new CustomEvent('cart:updated', {
+          detail: { 
+            cart: cart, 
+            addedItem: addedItem,
+            source: 'product-card'
+          }
+        }));
+      })
+      .catch(error => {
+        console.error('Error updating cart count:', error);
+      });
+  }
+  
+  function updateCartCountFallback() {
+    // Fallback method for cart count update
+    fetch(window.Shopify.routes.root + 'cart.js')
+      .then(response => response.json())
+      .then(cart => {
+        // Update cart count elements
+        const cartCountElements = document.querySelectorAll(
+          '.cart-count-bubble span, ' +
+          '[data-cart-count], ' +
+          '.cart-count, ' +
+          '.header__icon--cart .cart-count-bubble span, ' +
+          '.header__icon--cart [data-cart-count], ' +
+          '.cart-notification .cart-count-bubble span'
+        );
+        
+        cartCountElements.forEach(element => {
+          if (element) {
+            element.textContent = cart.item_count;
+            if (element.hasAttribute('data-cart-count')) {
+              element.setAttribute('data-cart-count', cart.item_count);
+            }
+          }
+        });
+        
+        // Show cart count bubble
+        const cartBubbles = document.querySelectorAll('.cart-count-bubble');
+        cartBubbles.forEach(bubble => {
+          if (bubble && cart.item_count > 0) {
+            bubble.style.display = 'flex';
+            bubble.setAttribute('aria-hidden', 'false');
+            bubble.classList.remove('hidden');
+          }
+        });
+        
+        // Open cart drawer/notification
+        openDawnCartDrawer();
+      })
+      .catch(error => {
+        console.error('Error in fallback cart update:', error);
+      });
+  }
+  
+  function openDawnCartDrawer() {
+    // Try multiple Dawn theme cart opening methods
+    
+    // Method 1: Cart drawer element with open method
+    const cartDrawer = document.querySelector('cart-drawer');
+    if (cartDrawer) {
+      if (typeof cartDrawer.open === 'function') {
+        cartDrawer.open();
+        return;
+      }
+      
+      // Manual drawer opening for Dawn theme
+      cartDrawer.classList.add('active');
+      cartDrawer.setAttribute('open', '');
+      cartDrawer.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('overflow-hidden');
+      
+      // Focus trap for accessibility
+      const focusableElements = cartDrawer.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (focusableElements.length > 0) {
+        focusableElements[0].focus();
+      }
+      return;
+    }
+    
+    // Method 2: Cart notification
+    const cartNotification = document.querySelector('cart-notification');
+    if (cartNotification) {
+      if (typeof cartNotification.open === 'function') {
+        cartNotification.open();
+        return;
+      }
+      
+      // Manual notification opening
+      cartNotification.classList.add('active');
+      cartNotification.setAttribute('open', '');
+      cartNotification.setAttribute('aria-hidden', 'false');
+      return;
+    }
+    
+    // Method 3: Click cart icon/trigger (only if it doesn't navigate)
+    const cartTrigger = document.querySelector(
+      'details[id*="cart" i] summary, ' +
+      '.header__icon--cart:not([href]), ' +
+      '[data-cart-drawer-toggle], ' +
+      '.cart-icon:not([href]), ' +
+      'summary[aria-label*="cart" i], ' +
+      'summary[aria-label*="bag" i]'
+    );
+    
+    if (cartTrigger) {
+      cartTrigger.click();
+      return;
+    }
+    
+    // Method 4: Try to find cart details element and open it
+    const cartDetails = document.querySelector('details[id*="cart" i], details[id*="Cart" i]');
+    if (cartDetails) {
+      cartDetails.setAttribute('open', '');
+      return;
+    }
+    
+    // Method 5: Dispatch Dawn-specific events
+    document.dispatchEvent(new CustomEvent('cart:open'));
+    document.dispatchEvent(new CustomEvent('cart:show'));
+    
+    // Method 6: Show cart notification as fallback
+    showCartNotification();
+  }
+  
+  function showCartNotification() {
+    // Create a simple notification if no cart drawer exists
+    let notification = document.querySelector('.custom-cart-notification');
+    if (!notification) {
+      notification = document.createElement('div');
+      notification.className = 'custom-cart-notification';
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        z-index: 9999;
+        max-width: 300px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+      `;
+      document.body.appendChild(notification);
+    }
+    
+    notification.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" style="fill: #4CAF50;">
+          <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"/>
+        </svg>
+        <span>Product added to cart!</span>
+      </div>
+    `;
+    
+    // Show notification
+    setTimeout(() => {
+      notification.style.transform = 'translateX(0)';
+    }, 100);
+    
+    // Hide after 3 seconds
+    setTimeout(() => {
+      notification.style.transform = 'translateX(100%)';
+    }, 3000);
+  }
+  
+  // Re-initialize cart buttons when new content is loaded (for AJAX/dynamic content)
+  window.reinitializeCartButtons = initializeCartButtons;
+</script>

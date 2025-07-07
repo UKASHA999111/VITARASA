@@ -1,0 +1,690 @@
+<!-- sections/breadcrumb.liquid -->
+<style>
+  .breadcrumb-section {
+    width: 100%;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: {{ section.settings.section_height }}px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: {{ section.settings.padding_top }}px {{ section.settings.padding_horizontal }}px {{ section.settings.padding_bottom }}px {{ section.settings.padding_horizontal }}px;
+  }
+  
+  .breadcrumb-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, {{ section.settings.overlay_opacity | divided_by: 100.0 }});
+    z-index: 1;
+  }
+  
+  .breadcrumb-container {
+    position: relative;
+    z-index: 2;
+    max-width: {{ section.settings.container_width }}px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .breadcrumb-nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: {{ section.settings.item_spacing }}px;
+  }
+  
+  .breadcrumb-item {
+    display: flex;
+    align-items: center;
+    gap: {{ section.settings.icon_text_spacing }}px;
+  }
+  
+  .breadcrumb-item a,
+  .breadcrumb-item span {
+    color: {{ section.settings.text_color }};
+    font-size: {{ section.settings.font_size }}px;
+    font-weight: {{ section.settings.font_weight }};
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-family: {{ section.settings.font_family }};
+  }
+  
+  .breadcrumb-item a:hover {
+    color: {{ section.settings.hover_color }};
+  }
+  
+  .breadcrumb-item.current span {
+    color: {{ section.settings.current_color }};
+  }
+  
+  .breadcrumb-icon {
+    width: {{ section.settings.icon_size }}px;
+    height: {{ section.settings.icon_size }}px;
+    flex-shrink: 0;
+  }
+  
+  .breadcrumb-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .breadcrumb-separator {
+    color: {{ section.settings.separator_color }};
+    font-size: {{ section.settings.separator_size }}px;
+    margin: 0 {{ section.settings.separator_spacing }}px;
+  }
+  
+  @media (max-width: 768px) {
+    .breadcrumb-section {
+      min-height: {{ section.settings.mobile_height }}px;
+      padding: {{ section.settings.mobile_padding_top }}px {{ section.settings.mobile_padding_horizontal }}px {{ section.settings.mobile_padding_bottom }}px {{ section.settings.mobile_padding_horizontal }}px;
+    }
+    
+    .breadcrumb-item a,
+    .breadcrumb-item span {
+      font-size: {{ section.settings.mobile_font_size }}px;
+    }
+    
+    .breadcrumb-icon {
+      width: {{ section.settings.mobile_icon_size }}px;
+      height: {{ section.settings.mobile_icon_size }}px;
+    }
+    
+    .breadcrumb-nav {
+      gap: {{ section.settings.mobile_item_spacing }}px;
+    }
+  }
+</style>
+
+<section class="breadcrumb-section" 
+         {% if section.settings.background_image %}
+           style="background-image: url('{{ section.settings.background_image | img_url: '1920x' }}');"
+         {% endif %}>
+  <div class="breadcrumb-container">
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+      
+      <!-- Home Link -->
+      <div class="breadcrumb-item">
+        {% if section.settings.home_icon %}
+          <div class="breadcrumb-icon">
+            <img src="{{ section.settings.home_icon | img_url: 'master' }}" alt="Home" loading="lazy">
+          </div>
+        {% endif %}
+        <a href="{{ routes.root_url }}" title="Home">
+          {{ section.settings.home_text | default: 'Home' }}
+        </a>
+      </div>
+      
+      {% unless template == 'index' %}
+        <span class="breadcrumb-separator">{{ section.settings.separator | default: '>' }}</span>
+      {% endunless %}
+      
+      <!-- Collection/Category Links -->
+      {% case template %}
+        {% when 'collection' %}
+          <div class="breadcrumb-item current">
+            {% if section.settings.category_icon %}
+              <div class="breadcrumb-icon">
+                <img src="{{ section.settings.category_icon | img_url: 'master' }}" alt="Category" loading="lazy">
+              </div>
+            {% endif %}
+            <span>{{ collection.title }}</span>
+          </div>
+          
+        {% when 'product' %}
+          {% if collection %}
+            <div class="breadcrumb-item">
+              {% if section.settings.category_icon %}
+                <div class="breadcrumb-icon">
+                  <img src="{{ section.settings.category_icon | img_url: 'master' }}" alt="Category" loading="lazy">
+                </div>
+              {% endif %}
+              <a href="{{ collection.url }}" title="{{ collection.title }}">
+                {{ collection.title }}
+              </a>
+            </div>
+            <span class="breadcrumb-separator">{{ section.settings.separator | default: '>' }}</span>
+          {% endif %}
+          
+          <div class="breadcrumb-item current">
+            {% if section.settings.product_icon %}
+              <div class="breadcrumb-icon">
+                <img src="{{ section.settings.product_icon | img_url: 'master' }}" alt="Product" loading="lazy">
+              </div>
+            {% endif %}
+            <span>{{ product.title }}</span>
+          </div>
+          
+        {% when 'page' %}
+          <div class="breadcrumb-item current">
+            {% if section.settings.page_icon %}
+              <div class="breadcrumb-icon">
+                <img src="{{ section.settings.page_icon | img_url: 'master' }}" alt="Page" loading="lazy">
+              </div>
+            {% endif %}
+            <span>{{ page.title }}</span>
+          </div>
+          
+        {% when 'blog' %}
+          <div class="breadcrumb-item current">
+            {% if section.settings.blog_icon %}
+              <div class="breadcrumb-icon">
+                <img src="{{ section.settings.blog_icon | img_url: 'master' }}" alt="Blog" loading="lazy">
+              </div>
+            {% endif %}
+            <span>{{ blog.title }}</span>
+          </div>
+          
+        {% when 'article' %}
+          <div class="breadcrumb-item">
+            {% if section.settings.blog_icon %}
+              <div class="breadcrumb-icon">
+                <img src="{{ section.settings.blog_icon | img_url: 'master' }}" alt="Blog" loading="lazy">
+              </div>
+            {% endif %}
+            <a href="{{ blog.url }}" title="{{ blog.title }}">
+              {{ blog.title }}
+            </a>
+          </div>
+          <span class="breadcrumb-separator">{{ section.settings.separator | default: '>' }}</span>
+          
+          <div class="breadcrumb-item current">
+            {% if section.settings.article_icon %}
+              <div class="breadcrumb-icon">
+                <img src="{{ section.settings.article_icon | img_url: 'master' }}" alt="Article" loading="lazy">
+              </div>
+            {% endif %}
+            <span>{{ article.title }}</span>
+          </div>
+          
+        {% when 'search' %}
+          <div class="breadcrumb-item current">
+            {% if section.settings.search_icon %}
+              <div class="breadcrumb-icon">
+                <img src="{{ section.settings.search_icon | img_url: 'master' }}" alt="Search" loading="lazy">
+              </div>
+            {% endif %}
+            <span>{{ section.settings.search_text | default: 'Search' }}</span>
+          </div>
+          
+        {% when 'cart' %}
+          <div class="breadcrumb-item current">
+            {% if section.settings.cart_icon %}
+              <div class="breadcrumb-icon">
+                <img src="{{ section.settings.cart_icon | img_url: 'master' }}" alt="Cart" loading="lazy">
+              </div>
+            {% endif %}
+            <span>{{ section.settings.cart_text | default: 'Cart' }}</span>
+          </div>
+          
+        {% when '404' %}
+          <div class="breadcrumb-item current">
+            {% if section.settings.error_icon %}
+              <div class="breadcrumb-icon">
+                <img src="{{ section.settings.error_icon | img_url: 'master' }}" alt="Error" loading="lazy">
+              </div>
+            {% endif %}
+            <span>{{ section.settings.error_text | default: 'Page Not Found' }}</span>
+          </div>
+          
+        {% else %}
+          <!-- Custom breadcrumb items -->
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'custom_item' %}
+                <div class="breadcrumb-item {% if block.settings.is_current %}current{% endif %}">
+                  {% if block.settings.icon %}
+                    <div class="breadcrumb-icon">
+                      <img src="{{ block.settings.icon | img_url: 'master' }}" alt="{{ block.settings.text }}" loading="lazy">
+                    </div>
+                  {% endif %}
+                  
+                  {% if block.settings.is_current %}
+                    <span>{{ block.settings.text }}</span>
+                  {% else %}
+                    <a href="{{ block.settings.url }}" title="{{ block.settings.text }}">
+                      {{ block.settings.text }}
+                    </a>
+                  {% endif %}
+                </div>
+                
+                {% unless forloop.last or block.settings.is_current %}
+                  <span class="breadcrumb-separator">{{ section.settings.separator | default: '>' }}</span>
+                {% endunless %}
+            {% endcase %}
+          {% endfor %}
+      {% endcase %}
+      
+    </nav>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Dynamic Breadcrumb",
+  "tag": "section",
+  "class": "breadcrumb-section-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Background Overlay Opacity",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "section_height",
+      "min": 60,
+      "max": 300,
+      "step": 10,
+      "unit": "px",
+      "label": "Section Height (Desktop)",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "mobile_height",
+      "min": 40,
+      "max": 200,
+      "step": 10,
+      "unit": "px",
+      "label": "Section Height (Mobile)",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Container Settings"
+    },
+    {
+      "type": "range",
+      "id": "container_width",
+      "min": 1000,
+      "max": 1400,
+      "step": 50,
+      "unit": "px",
+      "label": "Container Max Width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top (Desktop)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom (Desktop)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_horizontal",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Horizontal (Desktop)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_top",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top (Mobile)",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_bottom",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom (Mobile)",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_padding_horizontal",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Horizontal (Mobile)",
+      "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Typography Settings"
+    },
+    {
+      "type": "select",
+      "id": "font_family",
+      "label": "Font Family",
+      "options": [
+        {
+          "value": "inherit",
+          "label": "Theme Default"
+        },
+        {
+          "value": "Arial, sans-serif",
+          "label": "Arial"
+        },
+        {
+          "value": "Helvetica, sans-serif",
+          "label": "Helvetica"
+        },
+        {
+          "value": "Georgia, serif",
+          "label": "Georgia"
+        },
+        {
+          "value": "'Times New Roman', serif",
+          "label": "Times New Roman"
+        }
+      ],
+      "default": "inherit"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size (Desktop)",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "mobile_font_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size (Mobile)",
+      "default": 14
+    },
+    {
+      "type": "select",
+      "id": "font_weight",
+      "label": "Font Weight",
+      "options": [
+        {
+          "value": "300",
+          "label": "Light"
+        },
+        {
+          "value": "400",
+          "label": "Normal"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semi Bold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "header",
+      "content": "Color Settings"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "hover_color",
+      "label": "Hover Color",
+      "default": "#cccccc"
+    },
+    {
+      "type": "color",
+      "id": "current_color",
+      "label": "Current Page Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "separator_color",
+      "label": "Separator Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Icon Settings"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "min": 12,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon Size (Desktop)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "mobile_icon_size",
+      "min": 10,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon Size (Mobile)",
+      "default": 16
+    },
+    {
+      "type": "image_picker",
+      "id": "home_icon",
+      "label": "Home Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "category_icon",
+      "label": "Category Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_icon",
+      "label": "Product Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "page_icon",
+      "label": "Page Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "blog_icon",
+      "label": "Blog Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "article_icon",
+      "label": "Article Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "search_icon",
+      "label": "Search Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "cart_icon",
+      "label": "Cart Icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "error_icon",
+      "label": "Error Icon"
+    },
+    {
+      "type": "header",
+      "content": "Spacing Settings"
+    },
+    {
+      "type": "range",
+      "id": "item_spacing",
+      "min": 6,
+      "max": 30,
+      "step": 2,
+      "unit": "px",
+      "label": "Item Spacing (Desktop)",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "mobile_item_spacing",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Item Spacing (Mobile)",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "icon_text_spacing",
+      "min": 4,
+      "max": 16,
+      "step": 2,
+      "unit": "px",
+      "label": "Icon to Text Spacing",
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "separator_spacing",
+      "min": 4,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Separator Spacing",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "separator_size",
+      "min": 10,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Separator Size",
+      "default": 14
+    },
+    {
+      "type": "header",
+      "content": "Text Customization"
+    },
+    {
+      "type": "text",
+      "id": "home_text",
+      "label": "Home Text",
+      "default": "Home"
+    },
+    {
+      "type": "text",
+      "id": "search_text",
+      "label": "Search Text",
+      "default": "Search"
+    },
+    {
+      "type": "text",
+      "id": "cart_text",
+      "label": "Cart Text",
+      "default": "Cart"
+    },
+    {
+      "type": "text",
+      "id": "error_text",
+      "label": "Error Page Text",
+      "default": "Page Not Found"
+    },
+    {
+      "type": "text",
+      "id": "separator",
+      "label": "Separator Character",
+      "default": ">"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "custom_item",
+      "name": "Custom Breadcrumb Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Custom Page"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_current",
+          "label": "Is Current Page",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dynamic Breadcrumb"
+    }
+  ]
+}
+{% endschema %}

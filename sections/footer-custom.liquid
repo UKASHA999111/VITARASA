@@ -1,0 +1,761 @@
+
+<footer class="footer custom-footer color-{{ section.settings.color_scheme }} gradient">
+  <!-- First Div - Main Content with 5 blocks -->
+  <div class="footer__content-top page-width">
+    <div class="footer-block-grid">
+      
+      <!-- 1st Block: Logo, Description, Social Icons (20% width) -->
+      <div class="footer-block footer-block--logo">
+        {% if section.settings.logo != blank %}
+          <div class="footer-block__logo">
+            {{ section.settings.logo | image_url: width: 200 | image_tag: 
+               class: 'footer__logo',
+               widths: '50, 100, 150, 200',
+               alt: shop.name
+            }}
+          </div>
+        {% else %}
+          <h2 class="footer__heading">{{ shop.name }}</h2>
+        {% endif %}
+        
+        {% if section.settings.footer_description != blank %}
+          <div class="footer__description rte">
+            {{ section.settings.footer_description }}
+          </div>
+        {% endif %}
+
+        <!-- Social Media Icons -->
+        {% if section.settings.show_social %}
+          <ul class="footer__list-social list-unstyled list-social" role="list">
+            {%- if settings.social_facebook_link != blank -%}
+              <li class="list-social__item">
+                <a href="{{ settings.social_facebook_link }}" class="list-social__link link">
+                  <svg aria-hidden="true" focusable="false" class="icon icon-facebook" viewBox="0 0 18 18">
+                    <path fill="currentColor" d="M16.42.61c.27 0 .5.1.69.28.19.2.28.42.28.7v15.44c0 .27-.1.5-.28.69a.94.94 0 01-.7.28h-4.39v-6.7h2.25l.31-2.65h-2.56v-1.7c0-.4.1-.72.28-.93.18-.2.5-.32 1-.32h1.37V3.35c-.6-.06-1.27-.1-2.01-.1-1.01 0-1.83.3-2.45.9-.62.6-.93 1.44-.93 2.53v1.97H7.04v2.65h2.24V18H.98c-.28 0-.5-.1-.7-.28A.94.94 0 010 16.97V1.59c0-.28.1-.5.28-.7A.94.94 0 01.98.6H16.42z"/>
+                  </svg>
+                  <span class="visually-hidden">{{ 'general.social.links.facebook' | t }}</span>
+                </a>
+              </li>
+            {%- endif -%}
+            {%- if settings.social_twitter_link != blank -%}
+              <li class="list-social__item">
+                <a href="{{ settings.social_twitter_link }}" class="list-social__link link">
+                  <svg aria-hidden="true" focusable="false" class="icon icon-twitter" viewBox="0 0 18 15">
+                    <path fill="currentColor" d="M17.64 2.6c-.64.28-1.32.47-2.03.56.73-.44 1.29-1.13 1.55-1.95-.68.4-1.43.69-2.23.85-.64-.68-1.55-1.11-2.56-1.11-1.94 0-3.51 1.57-3.51 3.51 0 .27.03.54.08.8C5.8 4.95 3.1 3.68 1.26 1.67c-.3.52-.48 1.13-.48 1.77 0 1.22.62 2.29 1.56 2.92-.58-.02-1.11-.18-1.59-.44v.04c0 1.7 1.21 3.12 2.81 3.44-.29.08-.6.12-.92.12-.23 0-.45-.02-.67-.06.45 1.4 1.75 2.42 3.29 2.45-1.2.94-2.72 1.5-4.37 1.5-.28 0-.56-.02-.84-.05 1.56.99 3.41 1.57 5.4 1.57 6.48 0 10.02-5.37 10.02-10.02 0-.15 0-.3-.01-.45.69-.5 1.28-1.12 1.75-1.83z"/>
+                  </svg>
+                  <span class="visually-hidden">{{ 'general.social.links.twitter' | t }}</span>
+                </a>
+              </li>
+            {%- endif -%}
+            {%- if settings.social_pinterest_link != blank -%}
+              <li class="list-social__item">
+                <a href="{{ settings.social_pinterest_link }}" class="list-social__link link">
+                  <svg aria-hidden="true" focusable="false" class="icon icon-pinterest" viewBox="0 0 17 18">
+                    <path fill="currentColor" d="M8.48.01C3.8.01 0 3.81 0 8.49c0 3.23 1.8 6.02 4.44 7.41-.06-.56-.12-1.41.02-2.02.13-.55.84-3.56.84-3.56s-.21-.43-.21-1.06c0-.99.57-1.73 1.29-1.73.61 0 .9.46.9 1.01 0 .61-.39 1.53-.59 2.38-.17.71.36 1.29 1.07 1.29 1.28 0 2.27-1.35 2.27-3.31 0-1.73-1.24-2.94-3.02-2.94-2.06 0-3.27 1.54-3.27 3.13 0 .62.24 1.29.54 1.65.06.07.07.13.05.2-.05.22-.18.73-.2.83-.03.13-.11.16-.25.1C2.24 9.15 1.6 8.04 1.6 6.56c0-2.28 1.65-4.37 4.76-4.37 2.5 0 4.45 1.78 4.45 4.17 0 2.48-1.57 4.48-3.74 4.48-.73 0-1.42-.38-1.65-.83 0 0-.36 1.37-.45 1.71-.16.63-.6 1.42-.89 1.91.67.21 1.38.32 2.12.32 4.68 0 8.48-3.8 8.48-8.49C16.96 3.81 13.16.01 8.48.01z"/>
+                  </svg>
+                  <span class="visually-hidden">{{ 'general.social.links.pinterest' | t }}</span>
+                </a>
+              </li>
+            {%- endif -%}
+            {%- if settings.social_instagram_link != blank -%}
+              <li class="list-social__item">
+                <a href="{{ settings.social_instagram_link }}" class="list-social__link link">
+                  <svg aria-hidden="true" focusable="false" class="icon icon-instagram" viewBox="0 0 18 18">
+                    <path fill="currentColor" d="M8.77 1.58c2.34 0 2.62.01 3.54.05.86.04 1.32.18 1.63.3.41.17.7.35 1.01.66.31.31.49.6.65 1.01.12.31.26.77.3 1.63.04.92.05 1.2.05 3.54 0 2.34-.01 2.62-.05 3.54-.04.86-.18 1.32-.3 1.63-.17.41-.35.7-.66 1.01-.31.31-.6.49-1.01.65-.31.12-.77.26-1.63.3-.92.04-1.2.05-3.54.05-2.34 0-2.62-.01-3.54-.05-.86-.04-1.32-.18-1.63-.3-.41-.17-.7-.35-1.01-.66-.31-.31-.49-.6-.65-1.01-.12-.31-.26-.77-.3-1.63-.04-.92-.05-1.2-.05-3.54 0-2.34.01-2.62.05-3.54.04-.86.18-1.32.3-1.63.17-.41.35-.7.66-1.01.31-.31.6-.49 1.01-.65.31-.12.77-.26 1.63-.3.92-.04 1.2-.05 3.54-.05M8.77 0C6.39 0 6.09.01 5.15.05c-.93.04-1.57.2-2.13.42-.57.23-1.06.54-1.55 1.02C1 1.96.7 2.45.46 3.02c-.22.56-.38 1.2-.42 2.13C.01 6.09 0 6.39 0 8.77s.01 2.68.05 3.61c.04.94.2 1.57.42 2.13.23.58.54 1.07 1.02 1.56.49.48.98.78 1.55 1.01.56.22 1.2.38 2.13.42.94.04 1.24.05 3.62.05 2.39 0 2.68-.01 3.62-.05.93-.04 1.57-.2 2.13-.42.58-.23 1.07-.54 1.56-1.01.48-.49.78-.98 1.01-1.55.22-.56.38-1.2.42-2.13.04-.94.05-1.24.05-3.62 0-2.39-.01-2.68-.05-3.62-.04-.93-.2-1.57-.42-2.13-.23-.58-.54-1.07-1.01-1.56-.49-.48-.98-.78-1.55-1.01-.56-.22-1.2-.38-2.13-.42C11.45.01 11.15 0 8.77 0z"/>
+                    <path fill="currentColor" d="M8.77 4.36c-2.44 0-4.41 1.97-4.41 4.41 0 2.44 1.97 4.41 4.41 4.41 2.44 0 4.41-1.97 4.41-4.41 0-2.44-1.97-4.41-4.41-4.41zM8.77 11.58c-1.58 0-2.86-1.28-2.86-2.86 0-1.58 1.28-2.86 2.86-2.86 1.58 0 2.86 1.28 2.86 2.86 0 1.58-1.28 2.86-2.86 2.86z"/>
+                    <circle fill="currentColor" cx="13.36" cy="4.18" r="1.03"/>
+                  </svg>
+                  <span class="visually-hidden">{{ 'general.social.links.instagram' | t }}</span>
+                </a>
+              </li>
+            {%- endif -%}
+          </ul>
+        {% endif %}
+      </div>
+
+      <!-- 2nd Block: Menu Block 1 (20% width) -->
+      <div class="footer-block footer-block--menu">
+        {% if section.settings.menu_1_heading != blank %}
+          <h2 class="footer-block__heading">{{ section.settings.menu_1_heading }}</h2>
+        {% endif %}
+        {% if section.settings.menu_1 != blank %}
+          <ul class="footer-block__details-content list-unstyled" role="list">
+            {% for link in linklists[section.settings.menu_1].links %}
+              <li>
+                <a href="{{ link.url }}" class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}">
+                  {{ link.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+
+      <!-- 3rd Block: Menu Block 2 (20% width) -->
+      <div class="footer-block footer-block--menu">
+        {% if section.settings.menu_2_heading != blank %}
+          <h2 class="footer-block__heading">{{ section.settings.menu_2_heading }}</h2>
+        {% endif %}
+        {% if section.settings.menu_2 != blank %}
+          <ul class="footer-block__details-content list-unstyled" role="list">
+            {% for link in linklists[section.settings.menu_2].links %}
+              <li>
+                <a href="{{ link.url }}" class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}">
+                  {{ link.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+
+      <!-- 4th Block: Menu Block 3 (20% width) -->
+      <div class="footer-block footer-block--menu">
+        {% if section.settings.menu_3_heading != blank %}
+          <h2 class="footer-block__heading">{{ section.settings.menu_3_heading }}</h2>
+        {% endif %}
+        {% if section.settings.menu_3 != blank %}
+          <ul class="footer-block__details-content list-unstyled" role="list">
+            {% for link in linklists[section.settings.menu_3].links %}
+              <li>
+                <a href="{{ link.url }}" class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}">
+                  {{ link.title }}
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+
+      <!-- 5th Block: Download Mobile Apps (20% width) -->
+      <div class="footer-block footer-block--mobile-apps">
+        <h2 class="footer-block__heading">{{ section.settings.mobile_apps_heading | default: 'Download Mobile App' }}</h2>
+        <div class="mobile-app-buttons">
+          {% if section.settings.app_store_image != blank and section.settings.app_store_url != blank %}
+            <a href="{{ section.settings.app_store_url }}" class="mobile-app-link" target="_blank">
+              {{ section.settings.app_store_image | image_url: width: 150 | image_tag: alt: 'Download on App Store', class: 'app-button-img' }}
+            </a>
+          {% endif %}
+          {% if section.settings.google_play_image != blank and section.settings.google_play_url != blank %}
+            <a href="{{ section.settings.google_play_url }}" class="mobile-app-link" target="_blank">
+              {{ section.settings.google_play_image | image_url: width: 150 | image_tag: alt: 'Get it on Google Play', class: 'app-button-img' }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Second Div - Copyright and Payment Methods -->
+  <div class="footer__content-bottom">
+    <div class="footer__content-bottom-wrapper page-width">
+      <!-- Left: Copyright -->
+      <div class="footer__copyright">
+        <small class="copyright__content">
+          &copy; {{ 'now' | date: "%Y" }} {{ shop.name }}. {{ section.settings.copyright_text | default: 'All Rights Reserved' }}
+        </small>
+      </div>
+      
+      <!-- Right: Payment Icons -->
+      <div class="footer__payment">
+        <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
+        {% if section.settings.payment_method_1 != blank or section.settings.payment_method_2 != blank or section.settings.payment_method_3 != blank or section.settings.payment_method_4 != blank or section.settings.payment_method_5 != blank or section.settings.payment_method_6 != blank %}
+          <div class="footer__payment-icons">
+            {% for i in (1..8) %}
+              {% assign payment_method = 'payment_method_' | append: i %}
+              {% if section.settings[payment_method] != blank %}
+                {{ section.settings[payment_method] | image_url: width: 50 | image_tag: class: 'payment-icon' }}
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% else %}
+          <div class="footer__payment-icons">
+            {%- for type in shop.enabled_payment_types -%}
+              {{ type | payment_type_img_tag: class: 'payment-icon' }}
+            {%- endfor -%}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+
+.custom-footer {
+  {% if section.settings.background_image != blank %}
+    background-image: url('{{ section.settings.background_image | image_url: width: 1920 }}');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  {% endif %}
+  background-color: {{ section.settings.background_color | default: '#1a1a1a' }};
+    color: {{ section.settings.text_color | default: '#ffffff' }};
+    padding: {{ section.settings.padding_top | default: 60 }}px 0 0;
+    position: relative;
+}
+
+  
+  
+  .custom-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, {{ section.settings.overlay_opacity | default: 0.7 }});
+    z-index: 1;
+  }
+  
+  .footer__content-top,
+  .footer__content-bottom {
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* 5 Column Grid Layout - Each block 20% width */
+  .footer-block-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 40px;
+    margin-bottom: 60px;
+  }
+  
+  .footer-block {
+    width: 100%;
+  }
+  
+  .footer-block__heading {
+    font-size: {{ section.settings.heading_font_size | default: 18 }}px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: {{ section.settings.heading_color | default: '#ffffff' }};
+    text-transform: {{ section.settings.heading_transform | default: 'none' }};
+  }
+  
+  .footer__description {
+    font-size: {{ section.settings.description_font_size | default: 14 }}px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: {{ section.settings.text_color | default: '#cccccc' }};
+  }
+  
+  .footer__logo {
+    max-width: {{ section.settings.logo_width | default: 120 }}px;
+    margin-bottom: 15px;
+  }
+  
+  /* Menu Links Styling */
+  .footer-block__details-content {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .list-social {
+    justify-content: start !important;
+}
+  .footer-block__details-content li {
+    margin-bottom: 12px;
+  }
+  .list-social__link {
+
+    padding: 10px !important;
+
+}
+  
+  .footer-block__details-content a {
+    color: {{ section.settings.link_color | default: '#cccccc' }};
+    text-decoration: none;
+    font-size: {{ section.settings.link_font_size | default: 14 }}px;
+    transition: color 0.3s ease;
+    display: block;
+  }
+  
+  .footer-block__details-content a:hover {
+    color: {{ section.settings.link_hover_color | default: '#ffffff' }};
+  }
+  
+  /* Social Media Icons */
+  .footer__list-social {
+    display: flex;
+    gap: 1px;
+    margin: 20px 0 0;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .list-social__link {
+    color: {{ section.settings.social_icon_color | default: '#ffffff' }};
+    font-size: 20px;
+    transition: color 0.3s ease;
+  }
+  
+  .list-social__link:hover {
+    color: {{ section.settings.social_icon_hover_color | default: '#4CAF50' }};
+  }
+  
+  .list-social__link .icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* Mobile App Buttons - Inline with space between */
+  .mobile-app-buttons {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+  }
+  
+  .mobile-app-link {
+    display: inline-block;
+  }
+  
+  .app-button-img {
+    max-width: 130px;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  .mobile-app-link:hover .app-button-img {
+    transform: scale(1.05);
+  }
+  
+  /* Second Div - Bottom Section */
+  .footer__content-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px 0;
+  }
+  
+  .footer__content-bottom-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  /* Left: Copyright */
+  .footer__copyright {
+    flex: 1;
+  }
+  
+  .copyright__content {
+    color: {{ section.settings.copyright_color | default: '#999999' }};
+    font-size: {{ section.settings.copyright_font_size | default: 12 }}px;
+    margin: 0;
+  }
+  
+  /* Right: Payment Icons */
+  .footer__payment {
+    flex-shrink: 0;
+  }
+  
+  .footer__payment-icons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  .payment-icon {
+    height: 30px;
+    width: auto;
+    border-radius: 4px;
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 1199px) {
+    .footer-block-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+    
+    .footer-block:nth-child(4),
+    .footer-block:nth-child(5) {
+      grid-column: span 1;
+    }
+  }
+  
+  @media screen and (max-width: 989px) {
+    .footer-block-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+  }
+  
+  @media screen and (max-width: 749px) {
+    .footer-block-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    
+    .footer__content-bottom-wrapper {
+      flex-direction: column;
+      text-align: center;
+      gap: 20px;
+    }
+    
+    .mobile-app-buttons {
+      align-items: center;
+    }
+    
+    .footer__payment-icons {
+      justify-content: center;
+    }
+  }
+  
+  /* Desktop specific - ensure 5 columns stay inline */
+  @media screen and (min-width: 1200px) {
+    .footer-block-grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+</style>
+{% schema %}
+{
+  "name": "Custom Footer",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Logo & Description"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Footer logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 200,
+      "step": 10,
+      "default": 120,
+      "unit": "px",
+      "label": "Logo width"
+    },
+    {
+      "type": "richtext",
+      "id": "footer_description",
+      "label": "Footer description",
+      "default": "<p>Morbi cursus porttitor enim lobortis molestie. Duis gravida turpis dui, eget bibendum magna congue nec.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "default": true,
+      "label": "Show social media icons"
+    },
+    {
+      "type": "header",
+      "content": "Menu Block 1"
+    },
+    {
+      "type": "text",
+      "id": "menu_1_heading",
+      "default": "My Account",
+      "label": "Menu 1 heading"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_1",
+      "label": "Menu 1"
+    },
+    {
+      "type": "header",
+      "content": "Menu Block 2"
+    },
+    {
+      "type": "text",
+      "id": "menu_2_heading",
+      "default": "Help",
+      "label": "Menu 2 heading"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_2",
+      "label": "Menu 2"
+    },
+    {
+      "type": "header",
+      "content": "Menu Block 3"
+    },
+    {
+      "type": "text",
+      "id": "menu_3_heading",
+      "default": "Proxy",
+      "label": "Menu 3 heading"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_3",
+      "label": "Menu 3"
+    },
+    {
+      "type": "header",
+      "content": "Mobile Apps"
+    },
+    {
+      "type": "text",
+      "id": "mobile_apps_heading",
+      "default": "Download Mobile App",
+      "label": "Mobile apps heading"
+    },
+    {
+      "type": "image_picker",
+      "id": "app_store_image",
+      "label": "App Store button image"
+    },
+    {
+      "type": "url",
+      "id": "app_store_url",
+      "label": "App Store URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "google_play_image",
+      "label": "Google Play button image"
+    },
+    {
+      "type": "url",
+      "id": "google_play_url",
+      "label": "Google Play URL"
+    },
+    {
+      "type": "header",
+      "content": "Payment Methods"
+    },
+    {
+      "type": "image_picker",
+      "id": "payment_method_1",
+      "label": "Payment method 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "payment_method_2",
+      "label": "Payment method 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "payment_method_3",
+      "label": "Payment method 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "payment_method_4",
+      "label": "Payment method 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "payment_method_5",
+      "label": "Payment method 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "payment_method_6",
+      "label": "Payment method 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "payment_method_7",
+      "label": "Payment method 7"
+    },
+    {
+      "type": "image_picker",
+      "id": "payment_method_8",
+      "label": "Payment method 8"
+    },
+    {
+      "type": "header",
+      "content": "Background & Design"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "default": "#1a1a1a",
+      "label": "Background color"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.7,
+      "label": "Background overlay opacity"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "default": 60,
+      "unit": "px",
+      "label": "Top padding"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#ffffff",
+      "label": "Text color"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#ffffff",
+      "label": "Heading color"
+    },
+    {
+      "type": "range",
+      "id": "heading_font_size",
+      "min": 14,
+      "max": 24,
+      "step": 1,
+      "default": 18,
+      "unit": "px",
+      "label": "Heading font size"
+    },
+    {
+      "type": "select",
+      "id": "heading_transform",
+      "label": "Heading text transform",
+      "default": "none",
+      "options": [
+        {
+          "value": "none",
+          "label": "Normal"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "description_font_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "default": 14,
+      "unit": "px",
+      "label": "Description font size"
+    },
+    {
+      "type": "color",
+      "id": "link_color",
+      "default": "#cccccc",
+      "label": "Link color"
+    },
+    {
+      "type": "color",
+      "id": "link_hover_color",
+      "default": "#ffffff",
+      "label": "Link hover color"
+    },
+    {
+      "type": "range",
+      "id": "link_font_size",
+      "min": 12,
+      "max": 18,
+      "step": 1,
+      "default": 14,
+      "unit": "px",
+      "label": "Link font size"
+    },
+    {
+      "type": "header",
+      "content": "Social Media"
+    },
+    {
+      "type": "color",
+      "id": "social_icon_color",
+      "default": "#ffffff",
+      "label": "Social icon color"
+    },
+    {
+      "type": "color",
+      "id": "social_icon_hover_color",
+      "default": "#4CAF50",
+      "label": "Social icon hover color"
+    },
+    {
+      "type": "header",
+      "content": "Copyright"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "default": "All Rights Reserved",
+      "label": "Copyright text"
+    },
+    {
+      "type": "color",
+      "id": "copyright_color",
+      "default": "#999999",
+      "label": "Copyright text color"
+    },
+    {
+      "type": "range",
+      "id": "copyright_font_size",
+      "min": 10,
+      "max": 16,
+      "step": 1,
+      "default": 12,
+      "unit": "px",
+      "label": "Copyright font size"
+    },
+    {
+      "type": "header",
+      "content": "Color Scheme"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "Accent 1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent 2"
+        },
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        },
+        {
+          "value": "inverse",
+          "label": "Inverse"
+        }
+      ],
+      "default": "background-1",
+      "label": "Color scheme"
+    }
+  ]
+}
+{% endschema %}

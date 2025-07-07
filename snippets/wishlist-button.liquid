@@ -1,0 +1,254 @@
+{% comment %}
+  Wishlist Button Snippet - Save as snippets/wishlist-button.liquid
+  Usage: {% render 'wishlist-button', product: product %}
+{% endcomment %}
+
+<button 
+  class="wishlist-btn" 
+  data-product-id="{{ product.id }}"
+  data-product-title="{{ product.title | escape }}"
+  data-product-url="{{ product.url }}"
+  data-product-price="{{ product.price | money }}"
+  data-product-compare-price="{% if product.compare_at_price %}{{ product.compare_at_price | money }}{% endif %}"
+  data-product-image="{{ product.featured_image | img_url: '300x300' }}"
+  data-product-available="{{ product.available }}"
+  title="Add to Wishlist"
+>
+  <svg class="wishlist-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+  </svg>
+  <span class="wishlist-text">Add to Wishlist</span> 
+  <span class="wishlist-count" style="display: none;">0</span>
+</button>
+
+<style>
+  span.wishlist-text {
+    color: black !important;
+}
+  span.wishlist-text {
+    color: black !important;
+    display: none;
+}
+.wishlist-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 5px;
+  background: transparent;
+  border: 0px solid #ddd;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.wishlist-btn:hover {
+  border-color:#00b207;
+  color: #00b207;
+  transform: translateY(-1px);
+}
+
+.wishlist-btn.added {
+  background: #00b207;
+  border-color: #00b207;
+  color: white;
+}
+
+.wishlist-btn.added .wishlist-icon {
+  fill: currentColor;
+}
+
+.wishlist-btn.added .wishlist-text::after {
+  content: "ed";
+}
+
+.wishlist-icon {
+  transition: all 0.3s ease;
+}
+
+.wishlist-btn:hover .wishlist-icon {
+  transform: scale(1.1);
+}
+
+.wishlist-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background:#00b207;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: none !important;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+/* Animation for adding to wishlist */
+.wishlist-btn.adding {
+  animation: pulse 0.3s ease;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .wishlist-btn {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+  
+  .wishlist-btn .wishlist-text {
+    display: none;
+  }
+  
+  .wishlist-btn {
+    width: 44px;
+    height: 44px;
+    justify-content: center;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const wishlistBtns = document.querySelectorAll('.wishlist-btn');
+  
+  wishlistBtns.forEach(btn => {
+    // Check if product is already in wishlist
+    updateWishlistButtonState(btn);
+    
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      toggleWishlist(this);
+    });
+  });
+  
+  // Update wishlist count on page load
+  updateWishlistCount();
+});
+
+function toggleWishlist(btn) {
+  const productId = btn.dataset.productId;
+  const productData = {
+    id: productId,
+    title: btn.dataset.productTitle,
+    url: btn.dataset.productUrl,
+    price: btn.dataset.productPrice,
+    compare_at_price: btn.dataset.productComparePrice,
+    image: btn.dataset.productImage,
+    available: btn.dataset.productAvailable === 'true',
+    variant: btn.dataset.productVariant || null
+  };
+  
+  let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+  const existingIndex = wishlist.findIndex(item => item.id === productId);
+  
+  // Add animation
+  btn.classList.add('adding');
+  setTimeout(() => btn.classList.remove('adding'), 300);
+  
+  if (existingIndex > -1) {
+    // Remove from wishlist
+    wishlist.splice(existingIndex, 1);
+    btn.classList.remove('added');
+    btn.querySelector('.wishlist-text').textContent = 'Add to Wishlist';
+    showNotification('Removed from wishlist', 'success');
+  } else {
+    // Add to wishlist
+    wishlist.push(productData);
+    btn.classList.add('added');
+    btn.querySelector('.wishlist-text').textContent = 'Added to Wishlist';
+    showNotification('Added to wishlist', 'success');
+  }
+  
+  localStorage.setItem('wishlist', JSON.stringify(wishlist));
+  updateWishlistCount();
+  
+  // Update all wishlist buttons for this product
+  document.querySelectorAll(`[data-product-id="${productId}"]`).forEach(button => {
+    updateWishlistButtonState(button);
+  });
+}
+
+function updateWishlistButtonState(btn) {
+  const productId = btn.dataset.productId;
+  const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+  const isInWishlist = wishlist.some(item => item.id === productId);
+  
+  if (isInWishlist) {
+    btn.classList.add('added');
+    btn.querySelector('.wishlist-text').textContent = 'Added to Wishlist';
+  } else {
+    btn.classList.remove('added');
+    btn.querySelector('.wishlist-text').textContent = 'Add to Wishlist';
+  }
+}
+
+function updateWishlistCount() {
+  const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+  const countElements = document.querySelectorAll('.wishlist-count');
+  countElements.forEach(el => {
+    el.textContent = wishlist.length;
+    el.style.display = wishlist.length > 0 ? 'flex' : 'none';
+  });
+}
+
+function showNotification(message, type = 'info') {
+  // Create notification element
+  const notification = document.createElement('div');
+  notification.className = `wishlist-notification ${type}`;
+  notification.textContent = message;
+  
+  // Add styles
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: ${type === 'success' ? '#28a745' : '#007bff'};
+    color: white;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 9999;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  `;
+  
+  document.body.appendChild(notification);
+  
+  // Animate in
+  setTimeout(() => {
+    notification.style.transform = 'translateX(0)';
+  }, 100);
+  
+  // Remove after 3 seconds
+  setTimeout(() => {
+    notification.style.transform = 'translateX(100%)';
+    setTimeout(() => {
+      document.body.removeChild(notification);
+    }, 300);
+  }, 3000);
+}
+
+// Listen for storage changes to update buttons across tabs
+window.addEventListener('storage', function(e) {
+  if (e.key === 'wishlist') {
+    updateWishlistCount();
+    document.querySelectorAll('.wishlist-btn').forEach(btn => {
+      updateWishlistButtonState(btn);
+    });
+  }
+});
+</script>
