@@ -1,1 +1,213 @@
-{"sections":{"main":{"type":"main-page","disabled":true,"settings":{"padding_top":28,"padding_bottom":28}},"sectionsbreadcrumb_Kh7zWX":{"type":"sectionsbreadcrumb","name":"Dynamic Breadcrumb","settings":{"background_image":"shopify:\/\/shop_images\/Breadcrumbs_1.png","overlay_opacity":40,"section_height":120,"mobile_height":80,"container_width":1200,"padding_top":20,"padding_bottom":20,"padding_horizontal":20,"mobile_padding_top":15,"mobile_padding_bottom":15,"mobile_padding_horizontal":15,"font_family":"inherit","font_size":16,"mobile_font_size":14,"font_weight":"400","text_color":"#ffffff","hover_color":"#cccccc","current_color":"#ffffff","separator_color":"#ffffff","icon_size":20,"mobile_icon_size":16,"item_spacing":12,"mobile_item_spacing":8,"icon_text_spacing":6,"separator_spacing":8,"separator_size":14,"home_text":"Home","search_text":"Search","cart_text":"Cart","error_text":"Page Not Found","separator":">"}},"image_banner_8wWV6F":{"type":"image-banner","blocks":{"heading_38x7Vm":{"type":"heading","settings":{"heading":"ABOUT US","heading_size":"h1"}},"text_XUgmgN":{"type":"text","settings":{"text":"Give customers details about the banner image(s) or content on the template.","text_style":"body"}},"buttons_THkPUt":{"type":"buttons","disabled":true,"settings":{"button_label_1":"Button label","button_link_1":"","button_style_secondary_1":false,"button_label_2":"Button label","button_link_2":"","button_style_secondary_2":false}}},"block_order":["heading_38x7Vm","text_XUgmgN","buttons_THkPUt"],"name":"t:sections.image-banner.presets.name","settings":{"image_overlay_opacity":0,"image_height":"medium","image_behavior":"none","desktop_content_position":"middle-center","desktop_content_alignment":"center","show_text_box":true,"color_scheme":"","stack_images_on_mobile":true,"mobile_content_alignment":"center","show_text_below":true}},"multirow_74FK47":{"type":"multirow","blocks":{"row_hy4BHG":{"type":"row","settings":{"caption":"Caption","heading":"Row","text":"<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>","button_label":"Button label","button_link":"shopify:\/\/collections\/all"}},"row_exU4bG":{"type":"row","settings":{"caption":"Caption","heading":"Row","text":"<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>","button_label":"Button label","button_link":"shopify:\/\/collections\/all"}},"row_wLGBLW":{"type":"row","settings":{"caption":"Caption","heading":"Row","text":"<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>","button_label":"Button label","button_link":"shopify:\/\/collections\/all"}}},"block_order":["row_hy4BHG","row_exU4bG","row_wLGBLW"],"name":"t:sections.multirow.presets.name","settings":{"image_height":"medium","desktop_image_width":"medium","image_layout":"alternate-left","heading_size":"h1","text_style":"body","button_style":"primary","desktop_content_position":"middle","desktop_content_alignment":"left","mobile_content_alignment":"left","section_color_scheme":"scheme-1","row_color_scheme":"scheme-1","padding_top":36,"padding_bottom":36}},"rich_text_yVG7nn":{"type":"rich-text","blocks":{"heading_tBYPUy":{"type":"heading","settings":{"heading":"Talk about your brand","heading_size":"h1"}},"text_tWQRdB":{"type":"text","settings":{"text":"<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"}},"button_7Jxywb":{"type":"button","settings":{"button_label":"GET IN TOUCH","button_link":"shopify:\/\/pages\/contact","button_style_secondary":false,"button_label_2":"","button_link_2":"","button_style_secondary_2":false}}},"block_order":["heading_tBYPUy","text_tWQRdB","button_7Jxywb"],"name":"t:sections.rich-text.presets.name","settings":{"desktop_content_position":"center","content_alignment":"center","color_scheme":"","full_width":true,"padding_top":40,"padding_bottom":52}}},"order":["main","sectionsbreadcrumb_Kh7zWX","image_banner_8wWV6F","multirow_74FK47","rich_text_yVG7nn"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "sectionsbreadcrumb_Kh7zWX": {
+      "type": "sectionsbreadcrumb",
+      "name": "Dynamic Breadcrumb",
+      "settings": {
+        "background_image": "shopify://shop_images/Breadcrumbs_1_1920x_26ee6cb1-f349-408a-ba4f-9de89df8d74b.webp",
+        "overlay_opacity": 40,
+        "section_height": 120,
+        "mobile_height": 80,
+        "container_width": 1200,
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "padding_horizontal": 20,
+        "mobile_padding_top": 15,
+        "mobile_padding_bottom": 15,
+        "mobile_padding_horizontal": 15,
+        "font_family": "inherit",
+        "font_size": 16,
+        "mobile_font_size": 14,
+        "font_weight": "400",
+        "text_color": "#ffffff",
+        "hover_color": "#cccccc",
+        "current_color": "#ffffff",
+        "separator_color": "#ffffff",
+        "icon_size": 20,
+        "mobile_icon_size": 16,
+        "item_spacing": 12,
+        "mobile_item_spacing": 8,
+        "icon_text_spacing": 6,
+        "separator_spacing": 8,
+        "separator_size": 14,
+        "home_text": "Home",
+        "search_text": "Search",
+        "cart_text": "Cart",
+        "error_text": "Page Not Found",
+        "separator": ">"
+      }
+    },
+    "image_banner_8wWV6F": {
+      "type": "image-banner",
+      "blocks": {
+        "heading_38x7Vm": {
+          "type": "heading",
+          "settings": {
+            "heading": "ABOUT US",
+            "heading_size": "h1"
+          }
+        },
+        "text_XUgmgN": {
+          "type": "text",
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "buttons_THkPUt": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_38x7Vm",
+        "text_XUgmgN",
+        "buttons_THkPUt"
+      ],
+      "name": "t:sections.image-banner.presets.name",
+      "settings": {
+        "image_overlay_opacity": 0,
+        "image_height": "medium",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": true
+      }
+    },
+    "multirow_74FK47": {
+      "type": "multirow",
+      "blocks": {
+        "row_hy4BHG": {
+          "type": "row",
+          "settings": {
+            "caption": "Caption",
+            "heading": "Row",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "button_label": "Button label",
+            "button_link": "shopify://collections/all"
+          }
+        },
+        "row_exU4bG": {
+          "type": "row",
+          "settings": {
+            "caption": "Caption",
+            "heading": "Row",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "button_label": "Button label",
+            "button_link": "shopify://collections/all"
+          }
+        },
+        "row_wLGBLW": {
+          "type": "row",
+          "settings": {
+            "caption": "Caption",
+            "heading": "Row",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "button_label": "Button label",
+            "button_link": "shopify://collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "row_hy4BHG",
+        "row_exU4bG",
+        "row_wLGBLW"
+      ],
+      "name": "t:sections.multirow.presets.name",
+      "settings": {
+        "image_height": "medium",
+        "desktop_image_width": "medium",
+        "image_layout": "alternate-left",
+        "heading_size": "h1",
+        "text_style": "body",
+        "button_style": "primary",
+        "desktop_content_position": "middle",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-1",
+        "row_color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "rich_text_yVG7nn": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_tBYPUy": {
+          "type": "heading",
+          "settings": {
+            "heading": "Talk about your brand",
+            "heading_size": "h1"
+          }
+        },
+        "text_tWQRdB": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+          }
+        },
+        "button_7Jxywb": {
+          "type": "button",
+          "settings": {
+            "button_label": "GET IN TOUCH",
+            "button_link": "shopify://pages/contact",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "heading_tBYPUy",
+        "text_tWQRdB",
+        "button_7Jxywb"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    }
+  },
+  "order": [
+    "main",
+    "sectionsbreadcrumb_Kh7zWX",
+    "image_banner_8wWV6F",
+    "multirow_74FK47",
+    "rich_text_yVG7nn"
+  ]
+}
