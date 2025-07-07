@@ -1,1 +1,507 @@
-{"sections":{"sectionsbreadcrumb_ayUCW7":{"type":"sectionsbreadcrumb","name":"Dynamic Breadcrumb","settings":{"background_image":"shopify:\/\/shop_images\/Breadcrumbs_1.png","overlay_opacity":40,"section_height":120,"mobile_height":80,"container_width":1100,"padding_top":20,"padding_bottom":20,"padding_horizontal":100,"mobile_padding_top":15,"mobile_padding_bottom":15,"mobile_padding_horizontal":15,"font_family":"inherit","font_size":14,"mobile_font_size":14,"font_weight":"400","text_color":"#ffffff","hover_color":"#cccccc","current_color":"#ffffff","separator_color":"#ffffff","icon_size":14,"mobile_icon_size":12,"home_icon":"shopify:\/\/shop_images\/Group_3f8f4fc1-e300-44f0-88ec-ef6f52dd9d6a.png","item_spacing":14,"mobile_item_spacing":8,"icon_text_spacing":12,"separator_spacing":6,"separator_size":14,"home_text":"Home","search_text":"Search","cart_text":"Cart","error_text":"Page Not Found","separator":">"}},"main":{"type":"main-product","blocks":{"vendor":{"type":"text","disabled":true,"settings":{"text":"{{ product.vendor }}","text_style":"uppercase"}},"title":{"type":"title","settings":{}},"product_rating_XeFVNe":{"type":"product_rating","settings":{"rating":5,"review_count":0,"show_sku":true,"show_no_rating_message":true,"no_rating_text":"Be the first to review this product","show_review_link":false,"review_link":"","review_link_text":"See all reviews"}},"price":{"type":"price","settings":{}},"share":{"type":"share","settings":{"share_label":"Share item:"}},"variant_picker":{"type":"variant_picker","settings":{"picker_type":"button","swatch_shape":"circle"}},"description":{"type":"description","settings":{}},"quantity_selector":{"type":"quantity_selector","settings":{}},"buy_buttons":{"type":"buy_buttons","settings":{"show_dynamic_checkout":false,"show_gift_card_recipient":false}},"product_category_tags_BB3bCi":{"type":"product_category_tags","settings":{"show_category":true,"category_label":"Category:","show_tags":true,"tags_label":"Tag:","max_tags":10,"exclude_tags":"","make_tags_clickable":false}}},"block_order":["vendor","title","product_rating_XeFVNe","price","share","variant_picker","description","quantity_selector","buy_buttons","product_category_tags_BB3bCi"],"custom_css":[".product__title > * {margin: 0; font-size: 26px; font-weight: 600;}","span.price-item.price-item--sale.price-item--last {color: #2c742f; font-weight: 600;}","s.price-item.price-item--regular {color: #b3b3b3;}",".product-form__submit {border-radius: 50px;}","button.quantity__button {background-color: #f2f2f2 !important; padding: 10px; border-radius: 100%;}","quantity-input.quantity {padding: 5px;}","quantity-input.quantity {border: 1px solid #e6e6e6; border-radius: 50px;}",".quantity:after {border: 0px solid #e6e6e6; box-shadow: none;}"],"settings":{"enable_sticky_info":true,"color_scheme":"scheme-1","media_size":"small","constrain_to_viewport":true,"media_fit":"contain","gallery_layout":"thumbnail","mobile_thumbnails":"show","media_position":"left","image_zoom":"none","hide_variants":true,"enable_video_looping":false,"padding_top":36,"padding_bottom":12}},"additional_product_data_ePWGQc":{"type":"Additional-Product-Data","blocks":{"spec_item_9nwVMc":{"type":"spec_item","settings":{"label":"Weight","value_type":"text","text_value":"0.5","tags_limit":5,"tag_background_color":"#f0f9ff","tag_text_color":"#0369a1","available_text":"Available (5,913)","unavailable_text":"Out of Stock","available_color":"#22c55e","unavailable_color":"#ef4444","metafield_namespace":"","metafield_key":""}},"spec_item_E3Knwj":{"type":"spec_item","settings":{"label":"Color","value_type":"text","text_value":"Green","tags_limit":5,"tag_background_color":"#f0f9ff","tag_text_color":"#0369a1","available_text":"Available (5,913)","unavailable_text":"Out of Stock","available_color":"#22c55e","unavailable_color":"#ef4444","metafield_namespace":"","metafield_key":""}},"spec_item_RW7zfk":{"type":"spec_item","settings":{"label":"Type","value_type":"product_type","text_value":"0.5 kg","tags_limit":5,"tag_background_color":"#f0f9ff","tag_text_color":"#0369a1","available_text":"Available (5,913)","unavailable_text":"Out of Stock","available_color":"#22c55e","unavailable_color":"#ef4444","metafield_namespace":"","metafield_key":""}},"spec_item_FU4L3j":{"type":"spec_item","settings":{"label":"Category","value_type":"text","text_value":"Vegetables","tags_limit":5,"tag_background_color":"#f0f9ff","tag_text_color":"#0369a1","available_text":"Available (5,913)","unavailable_text":"Out of Stock","available_color":"#22c55e","unavailable_color":"#ef4444","metafield_namespace":"","metafield_key":""}},"spec_item_mVxLT8":{"type":"spec_item","settings":{"label":"Stock Status","value_type":"availability","text_value":"0.5 kg","tags_limit":5,"tag_background_color":"#f0f9ff","tag_text_color":"#0369a1","available_text":"Available (5,913)","unavailable_text":"Out of Stock","available_color":"#22c55e","unavailable_color":"#ef4444","metafield_namespace":"","metafield_key":""}},"spec_item_zne8TW":{"type":"spec_item","settings":{"label":"Tags","value_type":"product_tags","text_value":"0.5 kg","tags_limit":5,"tag_background_color":"#f0f9ff","tag_text_color":"#0369a1","available_text":"Available (5,913)","unavailable_text":"Out of Stock","available_color":"#22c55e","unavailable_color":"#ef4444","metafield_namespace":"","metafield_key":""}},"descriptions_info_block_Mk9AXT":{"type":"descriptions_info_block","settings":{"title":"Free Shipping","description":"Free shipping on all orders over $50","background_color":"rgba(0,0,0,0)","title_color":"#333333","description_color":"#666666","icon_image":"shopify:\/\/shop_images\/Vector_1.png","icon_svg":"","icon_text":"🚚","icon_color":"#22c55e","icon_background_color":"#edf2ee"}},"descriptions_info_block_JtH693":{"type":"descriptions_info_block","settings":{"title":"Great Support 24\/7","description":"Instant access to Contact","background_color":"rgba(0,0,0,0)","title_color":"#333333","description_color":"#666666","icon_image":"shopify:\/\/shop_images\/headphones_1.png","icon_svg":"","icon_text":"🚚","icon_color":"#22c55e","icon_background_color":"#edf2ee"}},"descriptions_info_block_69FKV8":{"type":"descriptions_info_block","settings":{"title":"100% Sucure Payment","description":"We ensure your money is save","background_color":"rgba(0,0,0,0)","title_color":"#333333","description_color":"#666666","icon_image":"shopify:\/\/shop_images\/Group_2.png","icon_svg":"","icon_text":"🚚","icon_color":"#22c55e","icon_background_color":"#edf2ee"}},"descriptions_info_block_3t7ExE":{"type":"descriptions_info_block","settings":{"title":"Money-Back Guarantee","description":"30 days money-back","background_color":"rgba(0,0,0,0)","title_color":"#333333","description_color":"#666666","icon_image":"shopify:\/\/shop_images\/package.png","icon_svg":"","icon_text":"🚚","icon_color":"#edf2ee","icon_background_color":"#edf2ee"}},"additional_info_block_qTWdaP":{"type":"additional_info_block","settings":{"title":"Quality Assured","description":"All products are quality tested","background_color":"rgba(0,0,0,0)","title_color":"#333333","description_color":"#666666","icon_image":"shopify:\/\/shop_images\/Vector_1.png","icon_svg":"","icon_text":"✓","icon_color":"#22c55e","icon_background_color":"#edf2ee"}},"additional_info_block_EnTAnQ":{"type":"additional_info_block","settings":{"title":"Quality Assured","description":"All products are quality tested","background_color":"rgba(0,0,0,0)","title_color":"#333333","description_color":"#666666","icon_image":"shopify:\/\/shop_images\/headphones_1.png","icon_svg":"","icon_text":"✓","icon_color":"#22c55e","icon_background_color":"#edf2ee"}},"additional_info_block_DzXBkt":{"type":"additional_info_block","settings":{"title":"Quality Assured","description":"All products are quality tested","background_color":"rgba(0,0,0,0)","title_color":"#333333","description_color":"#666666","icon_image":"shopify:\/\/shop_images\/Group_2.png","icon_svg":"","icon_text":"✓","icon_color":"#22c55e","icon_background_color":"#edf2ee"}},"additional_info_block_GHHei8":{"type":"additional_info_block","settings":{"title":"Quality Assured","description":"All products are quality tested","background_color":"rgba(0,0,0,0)","title_color":"#333333","description_color":"#666666","icon_image":"shopify:\/\/shop_images\/package.png","icon_svg":"","icon_text":"✓","icon_color":"#22c55e","icon_background_color":"#edf2ee"}},"customer_review_nmRJzy":{"type":"customer_review","settings":{"reviewer_name":"John Smith","review_date":"January 15, 2024","rating":5,"review_text":"Excellent product! I've been using it for a few weeks now and I can already see the difference. Highly recommended for anyone looking for a quality supplement.","background_color":"#ffffff"}},"customer_review_7kEcLc":{"type":"customer_review","settings":{"reviewer_name":"John Smith","review_date":"January 15, 2024","rating":5,"review_text":"Excellent product! I've been using it for a few weeks now and I can already see the difference. Highly recommended for anyone looking for a quality supplement.","background_color":"#ffffff"}},"customer_review_eFni9r":{"type":"customer_review","settings":{"reviewer_name":"John Smith","review_date":"January 15, 2024","rating":5,"review_text":"Excellent product! I've been using it for a few weeks now and I can already see the difference. Highly recommended for anyone looking for a quality supplement.","background_color":"#ffffff"}}},"block_order":["spec_item_9nwVMc","spec_item_E3Knwj","spec_item_RW7zfk","spec_item_FU4L3j","spec_item_mVxLT8","spec_item_zne8TW","descriptions_info_block_Mk9AXT","descriptions_info_block_JtH693","descriptions_info_block_69FKV8","descriptions_info_block_3t7ExE","additional_info_block_qTWdaP","additional_info_block_EnTAnQ","additional_info_block_DzXBkt","additional_info_block_GHHei8","customer_review_nmRJzy","customer_review_7kEcLc","customer_review_eFni9r"],"name":"Additional Information","settings":{"section_background_color":"#ffffff","section_padding_top":60,"section_padding_bottom":60,"descriptions_tab_title":"Descriptions","additional_info_tab_title":"Additional information","customer_feedback_tab_title":"Customer Feedback","tab_font_size":16,"active_tab_color":"#333333","inactive_tab_color":"#999999","active_tab_border_color":"#00b207","tab_border_color":"#e5e5e5","descriptions_product_description":"<p>Milk thistle (Silybum marianum) is a flowering herb known for its potential health benefits. Silymarin, an extract taken from the seeds of the milk thistle plant, has antioxidant properties which may help protect the liver from certain toxins to promote a healthy detoxification process.<\/p>","descriptions_description_color":"#666666","descriptions_description_font_size":16,"descriptions_show_features_list":true,"descriptions_features_color":"#333333","descriptions_features_font_size":14,"descriptions_block_title_font_size":16,"descriptions_block_description_font_size":13,"descriptions_block_border_radius":8,"descriptions_icon_size":24,"descriptions_icon_border_radius":50,"additional_label_color":"#333333","additional_label_font_size":14,"additional_value_color":"#666666","additional_value_font_size":14,"additional_border_color":"#f0f0f0","additional_row_padding":12,"additional_block_title_font_size":16,"additional_block_description_font_size":13,"additional_block_border_radius":8,"additional_icon_size":24,"additional_icon_border_radius":50,"feedback_title":"What Our Customers Say","feedback_title_color":"#333333","feedback_title_font_size":24,"feedback_border_radius":8,"star_color":"#ffd700","empty_star_color":"#e5e5e5","reviewer_name_color":"#333333","review_date_color":"#999999","review_text_color":"#666666","review_text_font_size":14}},"related-products":{"type":"related-products","settings":{"heading":"You may also like","heading_size":"h2","products_to_show":5,"columns_desktop":4,"columns_mobile":"2","color_scheme":"scheme-1","image_ratio":"square","image_shape":"default","show_secondary_image":true,"show_vendor":true,"show_rating":true,"padding_top":36,"padding_bottom":28}}},"order":["sectionsbreadcrumb_ayUCW7","main","additional_product_data_ePWGQc","related-products"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "sectionsbreadcrumb_ayUCW7": {
+      "type": "sectionsbreadcrumb",
+      "name": "Dynamic Breadcrumb",
+      "settings": {
+        "background_image": "shopify://shop_images/Breadcrumbs_1_1920x_26ee6cb1-f349-408a-ba4f-9de89df8d74b.webp",
+        "overlay_opacity": 40,
+        "section_height": 120,
+        "mobile_height": 80,
+        "container_width": 1100,
+        "padding_top": 20,
+        "padding_bottom": 20,
+        "padding_horizontal": 100,
+        "mobile_padding_top": 15,
+        "mobile_padding_bottom": 15,
+        "mobile_padding_horizontal": 15,
+        "font_family": "inherit",
+        "font_size": 14,
+        "mobile_font_size": 14,
+        "font_weight": "400",
+        "text_color": "#ffffff",
+        "hover_color": "#cccccc",
+        "current_color": "#ffffff",
+        "separator_color": "#ffffff",
+        "icon_size": 14,
+        "mobile_icon_size": 12,
+        "item_spacing": 14,
+        "mobile_item_spacing": 8,
+        "icon_text_spacing": 12,
+        "separator_spacing": 6,
+        "separator_size": 14,
+        "home_text": "Home",
+        "search_text": "Search",
+        "cart_text": "Cart",
+        "error_text": "Page Not Found",
+        "separator": ">"
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "product_rating_XeFVNe": {
+          "type": "product_rating",
+          "settings": {
+            "rating": 5,
+            "review_count": 0,
+            "show_sku": true,
+            "show_no_rating_message": true,
+            "no_rating_text": "Be the first to review this product",
+            "show_review_link": false,
+            "review_link": "",
+            "review_link_text": "See all reviews"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share item:"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": false
+          }
+        },
+        "product_category_tags_BB3bCi": {
+          "type": "product_category_tags",
+          "settings": {
+            "show_category": true,
+            "category_label": "Category:",
+            "show_tags": true,
+            "tags_label": "Tag:",
+            "max_tags": 10,
+            "exclude_tags": "",
+            "make_tags_clickable": false
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "product_rating_XeFVNe",
+        "price",
+        "share",
+        "variant_picker",
+        "description",
+        "quantity_selector",
+        "buy_buttons",
+        "product_category_tags_BB3bCi"
+      ],
+      "custom_css": [
+        ".product__title > * {margin: 0; font-size: 26px; font-weight: 600;}",
+        "span.price-item.price-item--sale.price-item--last {color: #2c742f; font-weight: 600;}",
+        "s.price-item.price-item--regular {color: #b3b3b3;}",
+        ".product-form__submit {border-radius: 50px;}",
+        "button.quantity__button {background-color: #f2f2f2 !important; padding: 10px; border-radius: 100%;}",
+        "quantity-input.quantity {padding: 5px;}",
+        "quantity-input.quantity {border: 1px solid #e6e6e6; border-radius: 50px;}",
+        ".quantity:after {border: 0px solid #e6e6e6; box-shadow: none;}"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "thumbnail",
+        "mobile_thumbnails": "show",
+        "media_position": "left",
+        "image_zoom": "none",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "additional_product_data_ePWGQc": {
+      "type": "Additional-Product-Data",
+      "blocks": {
+        "spec_item_9nwVMc": {
+          "type": "spec_item",
+          "settings": {
+            "label": "Weight",
+            "value_type": "text",
+            "text_value": "0.5",
+            "tags_limit": 5,
+            "tag_background_color": "#f0f9ff",
+            "tag_text_color": "#0369a1",
+            "available_text": "Available (5,913)",
+            "unavailable_text": "Out of Stock",
+            "available_color": "#22c55e",
+            "unavailable_color": "#ef4444",
+            "metafield_namespace": "",
+            "metafield_key": ""
+          }
+        },
+        "spec_item_E3Knwj": {
+          "type": "spec_item",
+          "settings": {
+            "label": "Color",
+            "value_type": "text",
+            "text_value": "Green",
+            "tags_limit": 5,
+            "tag_background_color": "#f0f9ff",
+            "tag_text_color": "#0369a1",
+            "available_text": "Available (5,913)",
+            "unavailable_text": "Out of Stock",
+            "available_color": "#22c55e",
+            "unavailable_color": "#ef4444",
+            "metafield_namespace": "",
+            "metafield_key": ""
+          }
+        },
+        "spec_item_RW7zfk": {
+          "type": "spec_item",
+          "settings": {
+            "label": "Type",
+            "value_type": "product_type",
+            "text_value": "0.5 kg",
+            "tags_limit": 5,
+            "tag_background_color": "#f0f9ff",
+            "tag_text_color": "#0369a1",
+            "available_text": "Available (5,913)",
+            "unavailable_text": "Out of Stock",
+            "available_color": "#22c55e",
+            "unavailable_color": "#ef4444",
+            "metafield_namespace": "",
+            "metafield_key": ""
+          }
+        },
+        "spec_item_FU4L3j": {
+          "type": "spec_item",
+          "settings": {
+            "label": "Category",
+            "value_type": "text",
+            "text_value": "Vegetables",
+            "tags_limit": 5,
+            "tag_background_color": "#f0f9ff",
+            "tag_text_color": "#0369a1",
+            "available_text": "Available (5,913)",
+            "unavailable_text": "Out of Stock",
+            "available_color": "#22c55e",
+            "unavailable_color": "#ef4444",
+            "metafield_namespace": "",
+            "metafield_key": ""
+          }
+        },
+        "spec_item_mVxLT8": {
+          "type": "spec_item",
+          "settings": {
+            "label": "Stock Status",
+            "value_type": "availability",
+            "text_value": "0.5 kg",
+            "tags_limit": 5,
+            "tag_background_color": "#f0f9ff",
+            "tag_text_color": "#0369a1",
+            "available_text": "Available (5,913)",
+            "unavailable_text": "Out of Stock",
+            "available_color": "#22c55e",
+            "unavailable_color": "#ef4444",
+            "metafield_namespace": "",
+            "metafield_key": ""
+          }
+        },
+        "spec_item_zne8TW": {
+          "type": "spec_item",
+          "settings": {
+            "label": "Tags",
+            "value_type": "product_tags",
+            "text_value": "0.5 kg",
+            "tags_limit": 5,
+            "tag_background_color": "#f0f9ff",
+            "tag_text_color": "#0369a1",
+            "available_text": "Available (5,913)",
+            "unavailable_text": "Out of Stock",
+            "available_color": "#22c55e",
+            "unavailable_color": "#ef4444",
+            "metafield_namespace": "",
+            "metafield_key": ""
+          }
+        },
+        "descriptions_info_block_Mk9AXT": {
+          "type": "descriptions_info_block",
+          "settings": {
+            "title": "Free Shipping",
+            "description": "Free shipping on all orders over $50",
+            "background_color": "rgba(0,0,0,0)",
+            "title_color": "#333333",
+            "description_color": "#666666",
+            "icon_image": "shopify://shop_images/Vector_1.webp",
+            "icon_svg": "",
+            "icon_text": "🚚",
+            "icon_color": "#22c55e",
+            "icon_background_color": "#edf2ee"
+          }
+        },
+        "descriptions_info_block_JtH693": {
+          "type": "descriptions_info_block",
+          "settings": {
+            "title": "Great Support 24/7",
+            "description": "Instant access to Contact",
+            "background_color": "rgba(0,0,0,0)",
+            "title_color": "#333333",
+            "description_color": "#666666",
+            "icon_image": "shopify://shop_images/headphones_1.webp",
+            "icon_svg": "",
+            "icon_text": "🚚",
+            "icon_color": "#22c55e",
+            "icon_background_color": "#edf2ee"
+          }
+        },
+        "descriptions_info_block_69FKV8": {
+          "type": "descriptions_info_block",
+          "settings": {
+            "title": "100% Sucure Payment",
+            "description": "We ensure your money is save",
+            "background_color": "rgba(0,0,0,0)",
+            "title_color": "#333333",
+            "description_color": "#666666",
+            "icon_image": "shopify://shop_images/Group_2.webp",
+            "icon_svg": "",
+            "icon_text": "🚚",
+            "icon_color": "#22c55e",
+            "icon_background_color": "#edf2ee"
+          }
+        },
+        "descriptions_info_block_3t7ExE": {
+          "type": "descriptions_info_block",
+          "settings": {
+            "title": "Money-Back Guarantee",
+            "description": "30 days money-back",
+            "background_color": "rgba(0,0,0,0)",
+            "title_color": "#333333",
+            "description_color": "#666666",
+            "icon_image": "shopify://shop_images/package.webp",
+            "icon_svg": "",
+            "icon_text": "🚚",
+            "icon_color": "#edf2ee",
+            "icon_background_color": "#edf2ee"
+          }
+        },
+        "additional_info_block_qTWdaP": {
+          "type": "additional_info_block",
+          "settings": {
+            "title": "Quality Assured",
+            "description": "All products are quality tested",
+            "background_color": "rgba(0,0,0,0)",
+            "title_color": "#333333",
+            "description_color": "#666666",
+            "icon_image": "shopify://shop_images/Vector_1.webp",
+            "icon_svg": "",
+            "icon_text": "✓",
+            "icon_color": "#22c55e",
+            "icon_background_color": "#edf2ee"
+          }
+        },
+        "additional_info_block_EnTAnQ": {
+          "type": "additional_info_block",
+          "settings": {
+            "title": "Quality Assured",
+            "description": "All products are quality tested",
+            "background_color": "rgba(0,0,0,0)",
+            "title_color": "#333333",
+            "description_color": "#666666",
+            "icon_image": "shopify://shop_images/headphones_1.webp",
+            "icon_svg": "",
+            "icon_text": "✓",
+            "icon_color": "#22c55e",
+            "icon_background_color": "#edf2ee"
+          }
+        },
+        "additional_info_block_DzXBkt": {
+          "type": "additional_info_block",
+          "settings": {
+            "title": "Quality Assured",
+            "description": "All products are quality tested",
+            "background_color": "rgba(0,0,0,0)",
+            "title_color": "#333333",
+            "description_color": "#666666",
+            "icon_image": "shopify://shop_images/Group_2.webp",
+            "icon_svg": "",
+            "icon_text": "✓",
+            "icon_color": "#22c55e",
+            "icon_background_color": "#edf2ee"
+          }
+        },
+        "additional_info_block_GHHei8": {
+          "type": "additional_info_block",
+          "settings": {
+            "title": "Quality Assured",
+            "description": "All products are quality tested",
+            "background_color": "rgba(0,0,0,0)",
+            "title_color": "#333333",
+            "description_color": "#666666",
+            "icon_image": "shopify://shop_images/package.webp",
+            "icon_svg": "",
+            "icon_text": "✓",
+            "icon_color": "#22c55e",
+            "icon_background_color": "#edf2ee"
+          }
+        },
+        "customer_review_nmRJzy": {
+          "type": "customer_review",
+          "settings": {
+            "reviewer_name": "John Smith",
+            "review_date": "January 15, 2024",
+            "rating": 5,
+            "review_text": "Excellent product! I've been using it for a few weeks now and I can already see the difference. Highly recommended for anyone looking for a quality supplement.",
+            "background_color": "#ffffff"
+          }
+        },
+        "customer_review_7kEcLc": {
+          "type": "customer_review",
+          "settings": {
+            "reviewer_name": "John Smith",
+            "review_date": "January 15, 2024",
+            "rating": 5,
+            "review_text": "Excellent product! I've been using it for a few weeks now and I can already see the difference. Highly recommended for anyone looking for a quality supplement.",
+            "background_color": "#ffffff"
+          }
+        },
+        "customer_review_eFni9r": {
+          "type": "customer_review",
+          "settings": {
+            "reviewer_name": "John Smith",
+            "review_date": "January 15, 2024",
+            "rating": 5,
+            "review_text": "Excellent product! I've been using it for a few weeks now and I can already see the difference. Highly recommended for anyone looking for a quality supplement.",
+            "background_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "spec_item_9nwVMc",
+        "spec_item_E3Knwj",
+        "spec_item_RW7zfk",
+        "spec_item_FU4L3j",
+        "spec_item_mVxLT8",
+        "spec_item_zne8TW",
+        "descriptions_info_block_Mk9AXT",
+        "descriptions_info_block_JtH693",
+        "descriptions_info_block_69FKV8",
+        "descriptions_info_block_3t7ExE",
+        "additional_info_block_qTWdaP",
+        "additional_info_block_EnTAnQ",
+        "additional_info_block_DzXBkt",
+        "additional_info_block_GHHei8",
+        "customer_review_nmRJzy",
+        "customer_review_7kEcLc",
+        "customer_review_eFni9r"
+      ],
+      "name": "Additional Information",
+      "settings": {
+        "section_background_color": "#ffffff",
+        "section_padding_top": 60,
+        "section_padding_bottom": 60,
+        "descriptions_tab_title": "Descriptions",
+        "additional_info_tab_title": "Additional information",
+        "customer_feedback_tab_title": "Customer Feedback",
+        "tab_font_size": 16,
+        "active_tab_color": "#333333",
+        "inactive_tab_color": "#999999",
+        "active_tab_border_color": "#00b207",
+        "tab_border_color": "#e5e5e5",
+        "descriptions_product_description": "<p>Milk thistle (Silybum marianum) is a flowering herb known for its potential health benefits. Silymarin, an extract taken from the seeds of the milk thistle plant, has antioxidant properties which may help protect the liver from certain toxins to promote a healthy detoxification process.</p>",
+        "descriptions_description_color": "#666666",
+        "descriptions_description_font_size": 16,
+        "descriptions_show_features_list": true,
+        "descriptions_features_color": "#333333",
+        "descriptions_features_font_size": 14,
+        "descriptions_block_title_font_size": 16,
+        "descriptions_block_description_font_size": 13,
+        "descriptions_block_border_radius": 8,
+        "descriptions_icon_size": 24,
+        "descriptions_icon_border_radius": 50,
+        "additional_label_color": "#333333",
+        "additional_label_font_size": 14,
+        "additional_value_color": "#666666",
+        "additional_value_font_size": 14,
+        "additional_border_color": "#f0f0f0",
+        "additional_row_padding": 12,
+        "additional_block_title_font_size": 16,
+        "additional_block_description_font_size": 13,
+        "additional_block_border_radius": 8,
+        "additional_icon_size": 24,
+        "additional_icon_border_radius": 50,
+        "feedback_title": "What Our Customers Say",
+        "feedback_title_color": "#333333",
+        "feedback_title_font_size": 24,
+        "feedback_border_radius": 8,
+        "star_color": "#ffd700",
+        "empty_star_color": "#e5e5e5",
+        "reviewer_name_color": "#333333",
+        "review_date_color": "#999999",
+        "review_text_color": "#666666",
+        "review_text_font_size": 14
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 5,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": true,
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "sectionsbreadcrumb_ayUCW7",
+    "main",
+    "additional_product_data_ePWGQc",
+    "related-products"
+  ]
+}
