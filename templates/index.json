@@ -520,6 +520,7 @@
           "type": "category_block",
           "settings": {
             "column": "left",
+            "background_image": "shopify://shop_images/02-img-2_1.webp",
             "title": "Hair wellness from within",
             "category_url": "shopify://collections/digestive-health",
             "button_text": "Shop now",
@@ -535,6 +536,7 @@
           "type": "category_block",
           "settings": {
             "column": "left",
+            "background_image": "shopify://shop_images/Mask_group.webp",
             "title": "Hair Vitamins",
             "category_url": "shopify://collections/energy-focus-enhancers",
             "button_text": "Shop now",
@@ -550,6 +552,7 @@
           "type": "category_block",
           "settings": {
             "column": "right",
+            "background_image": "shopify://shop_images/Mask_group_1.webp",
             "title": "The Ultimate Vitamin",
             "category_url": "shopify://collections/immune-support",
             "button_text": "Shop now",
@@ -565,6 +568,7 @@
           "type": "category_block",
           "settings": {
             "column": "right",
+            "background_image": "shopify://shop_images/Mask_group_2.webp",
             "title": "Sustainable Beauty Sale",
             "category_url": "shopify://collections/sleep-aids",
             "button_text": "Shop now",
