@@ -207,6 +207,8 @@
           "settings": {
             "title": "Free Shipping",
             "description": "Free shipping with discount",
+            "icon_image": "shopify://shop_images/Vector_1.webp",
+            "hover_icon_image": "shopify://shop_images/Vector_2_1.webp",
             "icon_bg_color": "#d9f4da",
             "icon_hover_bg_color": "#00b207",
             "title_color": "#000000",
@@ -221,6 +223,8 @@
           "settings": {
             "title": "Great Support 24/7",
             "description": "Instant access to Contact",
+            "icon_image": "shopify://shop_images/headphones_1.webp",
+            "hover_icon_image": "shopify://shop_images/Group_3_1.webp",
             "icon_bg_color": "#d9f4da",
             "icon_hover_bg_color": "#00b207",
             "title_color": "#000000",
@@ -235,6 +239,8 @@
           "settings": {
             "title": "100% Secure Payment",
             "description": "We ensure your money is safe",
+            "icon_image": "shopify://shop_images/Group_2.webp",
+            "hover_icon_image": "shopify://shop_images/Group_4_1.webp",
             "icon_bg_color": "#d9f4da",
             "icon_hover_bg_color": "#00b207",
             "title_color": "#000000",
@@ -249,6 +255,8 @@
           "settings": {
             "title": "Money-Back Guarantee",
             "description": "30 days money-back",
+            "icon_image": "shopify://shop_images/package.webp",
+            "hover_icon_image": "shopify://shop_images/Vector_2_1.webp",
             "icon_bg_color": "#d9f4da",
             "icon_hover_bg_color": "#00b207",
             "title_color": "#000000",
@@ -322,6 +330,7 @@
         "category_UUHWcH": {
           "type": "category",
           "settings": {
+            "category_icon": "shopify://shop_images/XMLID_2010.png",
             "category_title": "Vitamins & Minerals",
             "category_url": "shopify://collections/vitamins-minerals"
           }
@@ -329,6 +338,7 @@
         "category_dRpGcC": {
           "type": "category",
           "settings": {
+            "category_icon": "shopify://shop_images/Group_41.png",
             "category_title": "Herbal Supplements",
             "category_url": "shopify://collections/herbal-supplements"
           }
@@ -336,6 +346,7 @@
         "category_fhCPGt": {
           "type": "category",
           "settings": {
+            "category_icon": "shopify://shop_images/Union.avif",
             "category_title": "Sports Nutrition & Performance",
             "category_url": "shopify://collections/sports-nutrition-performance"
           }
@@ -343,6 +354,7 @@
         "category_PndTf7": {
           "type": "category",
           "settings": {
+            "category_icon": "shopify://shop_images/Vector_3.png",
             "category_title": "Digestive Health",
             "category_url": "shopify://collections/digestive-health"
           }
@@ -350,6 +362,7 @@
         "category_3kVCGf": {
           "type": "category",
           "settings": {
+            "category_icon": "shopify://shop_images/Layer_x0020_1.png",
             "category_title": "Specialty Supplements",
             "category_url": "shopify://collections/specialty-supplements"
           }
