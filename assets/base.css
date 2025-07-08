@@ -7,6 +7,14 @@
   --focused-base-outline-offset: 0.3rem;
   --focused-base-box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
 }
+section.cta-banner-section.cta-section-template--24966074925422__cta_banner_xywCjR {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.0)), url(//vitarasa.com/cdn/shop/files/Group_9.webp?v=1751891538&width=1920) !important;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    padding: 80px 0 80px 0;
+}
 
 .product-card-wrapper .card,
 .contains-card--product {
