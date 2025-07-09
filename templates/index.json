@@ -185,7 +185,8 @@
         "category_JYMHX3"
       ],
       "custom_css": [
-        "section.search-section {position: relative; z-index: 10; /* margin-top: -52px; */ background-color: red; width: 50%; margin: 0px auto auto auto; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);}"
+        "section.search-section {position: relative; z-index: 10; /* margin-top: -52px; */ background-color: red; width: 50%; margin: 0px auto auto auto; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);}",
+        "@media (max-width: 768px) {section.search-section {position: relative; z-index: 10; /* margin-top: -52px; */ background-color: red; width: 100%; margin: 0px auto auto auto; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);}}"
       ],
       "name": "Search Section",
       "settings": {
@@ -460,6 +461,9 @@
         "product_WiJzXb",
         "product_d8QJFw",
         "product_ATmL64"
+      ],
+      "custom_css": [
+        "@media (max-width: 768px) {.carousel-controls {display: none; }}"
       ],
       "name": "Counter Products",
       "settings": {
