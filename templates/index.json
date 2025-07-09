@@ -186,7 +186,7 @@
       ],
       "custom_css": [
         "section.search-section {position: relative; z-index: 10; /* margin-top: -52px; */ background-color: red; width: 50%; margin: 0px auto auto auto; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);}",
-        "@media (max-width: 768px) {section.search-section {position: relative; z-index: 10; /* margin-top: -52px; */ background-color: red; width: 100%; margin: 0px auto auto auto; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);}}"
+        "@media (max-width: 768px) {section.search-section {position: relative; z-index: 10; /* margin-top: -52px; */ background-color: red; width: 100%; margin: 0px auto auto auto; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); }}"
       ],
       "name": "Search Section",
       "settings": {
@@ -609,6 +609,7 @@
             "number": "37+",
             "heading": "Years of Hard Work",
             "description": "",
+            "background_image": "shopify://shop_images/Screenshot_2025-06-27_150946.webp",
             "bg_color": "rgba(0,0,0,0)",
             "overlay_color": "rgba(0,0,0,0)",
             "overlay_opacity": 0,
@@ -655,6 +656,7 @@
             "number": "500k+",
             "heading": "Happy Customer",
             "description": "",
+            "background_image": "shopify://shop_images/Screenshot_2025-06-27_150946.webp",
             "bg_color": "#2a2a2a",
             "overlay_color": "#000000",
             "overlay_opacity": 0,
@@ -701,6 +703,7 @@
             "number": "28",
             "heading": "Qualified Team Member",
             "description": "",
+            "background_image": "shopify://shop_images/Screenshot_2025-06-27_150946.webp",
             "bg_color": "#2a2a2a",
             "overlay_color": "#000000",
             "overlay_opacity": 0,
@@ -747,6 +750,7 @@
             "number": "750k+",
             "heading": "Monthly Orders",
             "description": "",
+            "background_image": "shopify://shop_images/Screenshot_2025-06-27_150946.webp",
             "bg_color": "#2a2a2a",
             "overlay_color": "#000000",
             "overlay_opacity": 0,
